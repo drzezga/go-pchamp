@@ -1,6 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class GamerTileScript : MonoBehaviour
@@ -12,7 +10,7 @@ public class GamerTileScript : MonoBehaviour
     private SelectedGamerTileSO _selectedGamerTileSo;
 
     private bool _armed = false;
-
+    
     private void OnMouseEnter()
     {
         Debug.Log($"Mouse entered {name}");

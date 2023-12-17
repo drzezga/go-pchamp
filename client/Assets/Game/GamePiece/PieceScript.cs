@@ -1,4 +1,7 @@
 
+using System;
+using System.Text;
+using System.Threading;
 using DG.Tweening;
 using UnityEngine;
 
@@ -16,6 +19,9 @@ public class PieceScript : MonoBehaviour
     [SerializeField]
     private SelectedGamerTileSO _selectedGamerTileSo;
 
+    [SerializeField]
+    private Color _color;
+
     public void PlaceItselfOnTile(GameObject tile)
     {
         if(!enabled)
@@ -23,7 +29,7 @@ public class PieceScript : MonoBehaviour
             return;
         }
         
-        transform.DOMove(tile.transform.position, tileTransitionDuration).SetEase(Ease.OutCubic);
+        transform.DOMove(tile.transform.position, placePieceDuration).SetEase(Ease.OutCubic);
         enabled = false;
     }
 
@@ -31,9 +37,10 @@ public class PieceScript : MonoBehaviour
     {
         transform.DOShakePosition(shakeDuration, new Vector3(1, 0, 0));
     }
-    
+
     private void OnEnable()
     {
+        GetComponent<MeshRenderer>().material.color = _color;
         _selectedGamerTileSo.OnValueChanged += HandleSelectedGamerTileChanged;
     }
 
