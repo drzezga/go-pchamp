@@ -12,11 +12,12 @@ public class Board {
         this.pieces = new Piece[size][size];
     }
 
-    public boolean canPlaceAt(Position pos) {
-        return pieces[pos.x()][pos.y()] == null;
-    }
-
     public void setPiece(Position pos, Piece piece) {
         pieces[pos.x()][pos.y()] = piece;
     }
+
+    public void clearPiece(Position pos) {
+        pieces[pos.x()][pos.y()] = null;
+    }
+
 }
