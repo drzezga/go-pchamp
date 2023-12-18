@@ -13,8 +13,6 @@ public class GamerTileScript : MonoBehaviour
     
     private void OnMouseEnter()
     {
-        Debug.Log($"Mouse entered {name}");
-
         _selectedGamerTileSo.Value = gameObject;
     }
 
