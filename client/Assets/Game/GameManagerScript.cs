@@ -1,8 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
+
 using NativeWebSocket;
 using UnityEngine;
 
@@ -11,38 +7,30 @@ public class GameManagerScript : MonoBehaviour
     public PieceScript piece;
 
     public GameObject piecePrefab;
-    
+
     [SerializeField]
-    private GameManagerApiSO _gameManagerApiSo;
+    private GameManagerApiSO gameManagerApiSo;
+
+    [SerializeField]
+    private ServerConnectionChannelSO serverServerConnectionChannelSo;
 
     private WebSocket _socket;
 
-    private async void Start()
-    {
-        _socket = new WebSocket("ws://localhost:8000");
-        _socket.OnMessage += message =>
-        {
-            Debug.Log(message);
-        };
-        
-        _socket.OnOpen += async () =>
-        {
-            Debug.Log("Connection open!");
-            await _socket.SendText("Hello world");
-        };
-        
-        await _socket.Connect();
-
-    }
-
     private void OnEnable()
     {
-        _gameManagerApiSo.OnPlacePieceOnTileRequested += PlacePieceOnTile;
+        serverServerConnectionChannelSo.OnMessageReceived += ReceiveMessage;
+        gameManagerApiSo.OnPlacePieceOnTileRequested += PlacePieceOnTile;
     }
 
     private void OnDisable()
     {
-        _gameManagerApiSo.OnPlacePieceOnTileRequested -= PlacePieceOnTile;
+        serverServerConnectionChannelSo.OnMessageReceived -= ReceiveMessage;
+        gameManagerApiSo.OnPlacePieceOnTileRequested -= PlacePieceOnTile;
+    }
+    
+    private void ReceiveMessage(string message)
+    {
+        Debug.Log($"Received message {message}");
     }
 
     public void PlacePieceOnTile(GamerTileScript tile)
