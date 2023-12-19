@@ -19,6 +19,11 @@ public class GamerTileScript : MonoBehaviour
 
     private void OnEnable()
     {
+        boardIndex = new Vector2Int(
+            Int32.Parse(name.Substring(4)),
+            Int32.Parse(transform.parent.name)
+        );
+        
         gameBoardSo.RegisterGamerTile(this);
     }
 

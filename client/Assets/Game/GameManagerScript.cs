@@ -14,6 +14,9 @@ public class GameManagerScript : MonoBehaviour
     [SerializeField]
     private ServerConnectionChannelSO serverServerConnectionChannelSo;
 
+    [SerializeField]
+    private MessageSenderSO messageSenderSo;
+
     private WebSocket _socket;
 
     private void OnEnable()
@@ -37,11 +40,16 @@ public class GameManagerScript : MonoBehaviour
     {
         // piece.PlayShakeAnimation();
         //
-        currentPlayerPiece.PlaceItselfOnTile(tile.gameObject);
+        // currentPlayerPiece.PlaceItselfOnTile(tile.gameObject);
+        //
+        // GameObject newPieceGameObject = Instantiate(piecePrefab);
+        //
+        // currentPlayerPiece = newPieceGameObject.GetComponent<CurrentPlayerPieceScript>();
+
+        var message = new GameTryMoveRequestMessage(tile.boardIndex);
+
+        messageSenderSo.SendMessage(message);
         
-        GameObject newPieceGameObject = Instantiate(piecePrefab);
-        
-        currentPlayerPiece = newPieceGameObject.GetComponent<CurrentPlayerPieceScript>();
     }
 
 }

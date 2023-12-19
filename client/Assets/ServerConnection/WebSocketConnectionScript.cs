@@ -19,16 +19,17 @@ public class WebSocketConnectionScript : MonoBehaviour
         _webSocket.OnOpen += async () =>
         {
             Debug.Log("WebSocket open!");
-            serverConnectionChannelSo.OnMessageSent += SendMessage;
         };
-
+        
         _webSocket.OnMessage += message =>
         {
             serverConnectionChannelSo.ReceiveMessage(
                 System.Text.Encoding.UTF8.GetString(message)
             );
         };
-
+        
+        serverConnectionChannelSo.OnMessageSent += SendMessage;
+        
         await _webSocket.Connect();
     }
 
@@ -36,7 +37,7 @@ public class WebSocketConnectionScript : MonoBehaviour
     {
         if(_webSocket.State != WebSocketState.Open)
         {
-            Debug.LogError("Cannot send message because the WebSocket is not open");
+            Debug.LogWarning("Cannot send message because the WebSocket is not open");
             return;
         }
 

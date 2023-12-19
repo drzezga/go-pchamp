@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 27152643d1d0540ffb082b06f8761f01, type: 3}
-  m_Name: SampleMessegaReceiveTest
+  m_Name: GAME_TRY_MOVE - ok
   m_EditorClassIdentifier: 
-  message: "{\n\t\"msg\": \"GAME_MOVE\",\n\t\"status\": \"ok\",\n\t\"content\": {\n\t\t\"player\":
-    \"drzezga\",\n\t\t\"position\": null\n\t}\n}"
+  message: "{\n\t\"msg\": \"GAME_TRY_MOVE\",\n\t\"status\": \"ok\",\n\t\"content\":
+    null\n}"
   connectionChannelSo: {fileID: 11400000, guid: de56e73b0ee464aa99288c63adf5e902,
     type: 2}

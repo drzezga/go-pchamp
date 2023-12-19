@@ -1,10 +1,11 @@
 
 using UnityEngine;
 
+
 public class GameMoveMessageHandler : MonoBehaviour
 {
     [SerializeField]
-    private MessageDecoderSO messageDecoderSo;
+    private MessageReceiverSO messageReceiverSo;
 
     [SerializeField]
     private GameBoardSO gameBoardSo;
@@ -14,15 +15,17 @@ public class GameMoveMessageHandler : MonoBehaviour
 
     private void OnEnable()
     {
-        messageDecoderSo.OnGameMoveResponseMessage += HandleGameMoveMessage;
+        messageReceiverSo.OnGameMoveResponseMessage += HandleGameMoveMessage;
+        messageReceiverSo.OnGameTryMoveResponseMessage += HandleGameTryMoveMessage;
     }
 
     private void OnDisable()
     {
-        messageDecoderSo.OnGameMoveResponseMessage -= HandleGameMoveMessage;
+        messageReceiverSo.OnGameMoveResponseMessage -= HandleGameMoveMessage;
+        messageReceiverSo.OnGameTryMoveResponseMessage -= HandleGameTryMoveMessage;
     }
 
-    private void HandleGameMoveMessage(ResponseMessage<GameMoveResponseMessageContent> message)
+    private void HandleGameMoveMessage(GameMoveResponseMessage message)
     {
         GameObject newOpponentPiece = Instantiate(opponentGamePiecePrefab);
         var animationController = newOpponentPiece.GetComponent<PieceAnimationController>();
@@ -33,5 +36,10 @@ public class GameMoveMessageHandler : MonoBehaviour
         );
         GamerTileScript gameTile = gameBoardSo.GetTileByIndex(gameTileIndex)!;
         animationController.PlacePiece(gameTile.transform.position);
+    }
+
+    private void HandleGameTryMoveMessage(GameTryMoveResponseMessage message)
+    {
+        Debug.Log("Game try move");
     }
 }

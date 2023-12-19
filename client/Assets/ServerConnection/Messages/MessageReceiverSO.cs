@@ -4,15 +4,17 @@ using Newtonsoft.Json;
 using UnityEngine;
 using Object = System.Object;
 
-[CreateAssetMenu(menuName = "GO/MessageDecoderSO")]
-public class MessageDecoderSO : ScriptableObject
+[CreateAssetMenu(menuName = "GO/MessageReceiverSO")]
+public class MessageReceiverSO : ScriptableObject
 {
     [SerializeField]
     private ServerConnectionChannelSO serverConnectionChannelSo;
-    
-    public delegate void OnMessageDelegate<T>([CanBeNull] ResponseMessage<T> responseMessage);
 
-    public event OnMessageDelegate<GameMoveResponseMessageContent> OnGameMoveResponseMessage;
+    public delegate void OnMessageDelegate<in T>(T responseMessage);
+
+    public event OnMessageDelegate<GameTryMoveResponseMessage> OnGameTryMoveResponseMessage;
+    public event OnMessageDelegate<GameMoveResponseMessage> OnGameMoveResponseMessage;
+    
 
     private void OnEnable()
     {
@@ -30,9 +32,14 @@ public class MessageDecoderSO : ScriptableObject
 
         switch(message!.msg)
         {
+            case MessageType.GameTryMove:
+                OnGameTryMoveResponseMessage?.Invoke(
+                    JsonConvert.DeserializeObject<GameTryMoveResponseMessage>(messageString)
+                );
+                break;
             case MessageType.GameMove:
                 OnGameMoveResponseMessage?.Invoke(
-                    JsonConvert.DeserializeObject<ResponseMessage<GameMoveResponseMessageContent>>(messageString)
+                    JsonConvert.DeserializeObject<GameMoveResponseMessage>(messageString)
                 );
                 break;
             default: throw new NotImplementedException($"Parsing was not implemented for message {message.msg}");

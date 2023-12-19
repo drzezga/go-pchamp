@@ -1,18 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using UnityEngine;
 
-public class Requests : MonoBehaviour
+[Serializable]
+public class RequestMessage<T>
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [JsonConverter(typeof(StringEnumConverter))]
+    public MessageType msg;
+    public T content;
+}
 
-    // Update is called once per frame
-    void Update()
+class GameTryMoveRequestMessage : RequestMessage<GameTryMoveMessageContent>
+{
+    public GameTryMoveRequestMessage(Vector2Int positionIndex)
     {
-        
+        msg = MessageType.GameTryMove;
+        content = new GameTryMoveMessageContent();
+        content.position = new[]
+        {
+            positionIndex[0],
+            positionIndex[1]
+        };
     }
+}
+
+[Serializable]
+public class GameTryMoveMessageContent
+{
+    public int[] position;
 }
