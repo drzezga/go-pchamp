@@ -5,8 +5,7 @@ import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public class Player {
-    Game game;
-    String name;
-    Piece piece;
+public abstract class Player {
+    protected GameAPI game = null;
+    protected String name;
 }
