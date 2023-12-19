@@ -22,6 +22,6 @@ public class GameBuilder {
 
     public Game build() {
         Board board = new Board(boardSize);
-        return new Game(players, board);
+        return new Game(board);
     }
 }

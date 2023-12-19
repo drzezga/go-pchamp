@@ -3,13 +3,26 @@ package tp.game.rules;
 import tp.game.Board;
 import tp.game.Move;
 
-import java.util.List;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Optional;
 
 public class RuleValidator {
-    List<Rule> ruleList;
+    private ArrayList<Rule> ruleList;
 
-    public Optional<Board> validate(Board board, Move move) {
-        return ruleList.stream().reduce(Optional.of(board), (b, r) -> b.isEmpty() ? b : r.modify(b.get(), move), (oldBoard, newBoard) -> newBoard);
+    public Board validate(Board board, Move move) throws RuleBrokenException {
+        Board acc = board;
+        for (Rule rule : ruleList) {
+            acc = rule.modify(acc, move);
+        }
+        return acc;
+    }
+
+    public void addRule(Rule rule) {
+        this.ruleList.add(rule);
+    }
+
+    public void addAllRules(Collection<Rule> rules) {
+        this.ruleList.addAll(rules);
     }
 }
