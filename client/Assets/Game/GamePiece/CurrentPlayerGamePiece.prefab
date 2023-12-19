@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 603707110986231998}
   - component: {fileID: 925438529603145636}
   - component: {fileID: 7013992194785007092}
+  - component: {fileID: 3791017382478900697}
   m_Layer: 0
-  m_Name: GamePiece
+  m_Name: CurrentPlayerGamePiece
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -96,9 +97,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7076fb576d734855829286ba7ccb1bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileTransitionDuration: 0.3
-  shakeDuration: 0.5
-  placePieceDuration: 0.1
   _selectedGamerTileSo: {fileID: 11400000, guid: c9df8ec02331f415c8c2ea12b1102414,
     type: 2}
   _color: {r: 1, g: 1, b: 1, a: 0}
+--- !u!114 &3791017382478900697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1356292747684828366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84869be90db964644b7f2e9fc9ce82b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileTransitionDuration: 0.3
+  shakeDuration: 0.5
+  placePieceDuration: 0.3

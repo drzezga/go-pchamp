@@ -1,19 +1,30 @@
 
+using System;
 using UnityEngine;
 
 public class GamerTileScript : MonoBehaviour
 {
     [SerializeField]
-    private GameManagerApiSO _gameManagerApiSo;
+    private GameManagerApiSO gameManagerApiSo;
     
     [SerializeField]
-    private SelectedGamerTileSO _selectedGamerTileSo;
+    private SelectedGamerTileSO selectedGamerTileSo;
+
+    [SerializeField]
+    private GameBoardSO gameBoardSo;
+    
+    public Vector2Int boardIndex;
 
     private bool _armed = false;
-    
+
+    private void OnEnable()
+    {
+        gameBoardSo.RegisterGamerTile(this);
+    }
+
     private void OnMouseEnter()
     {
-        _selectedGamerTileSo.Value = gameObject;
+        selectedGamerTileSo.Value = gameObject;
     }
 
     private void OnMouseExit()
@@ -30,7 +41,7 @@ public class GamerTileScript : MonoBehaviour
     {
         if(_armed)
         {
-            _gameManagerApiSo.PlacePieceOnTile(this);
+            gameManagerApiSo.PlacePieceOnTile(this);
         }
         
         _armed = false;

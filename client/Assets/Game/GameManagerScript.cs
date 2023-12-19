@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManagerScript : MonoBehaviour
 {
-    public PieceScript piece;
+    public CurrentPlayerPieceScript currentPlayerPiece;
 
     public GameObject piecePrefab;
 
@@ -30,18 +30,18 @@ public class GameManagerScript : MonoBehaviour
     
     private void ReceiveMessage(string message)
     {
-        Debug.Log($"Received message {message}");
+        
     }
 
     public void PlacePieceOnTile(GamerTileScript tile)
     {
         // piece.PlayShakeAnimation();
         //
-        piece.PlaceItselfOnTile(tile.gameObject);
+        currentPlayerPiece.PlaceItselfOnTile(tile.gameObject);
         
         GameObject newPieceGameObject = Instantiate(piecePrefab);
         
-        piece = newPieceGameObject.GetComponent<PieceScript>();
+        currentPlayerPiece = newPieceGameObject.GetComponent<CurrentPlayerPieceScript>();
     }
 
 }
