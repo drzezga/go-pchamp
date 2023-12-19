@@ -21,7 +21,7 @@ public class MessageController extends TextWebSocketHandler {
     public void handleTextMessage(WebSocketSession session, TextMessage message) {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            RequestMessage msg = objectMapper.readValue(message.toString(), RequestMessage.class);
+            RequestMessage msg = objectMapper.readValue(message.getPayload(), RequestMessage.class);
 
             if (msg instanceof RequestGameTryMove) {
                 Position pos = ((RequestGameTryMove) msg).getPosition();

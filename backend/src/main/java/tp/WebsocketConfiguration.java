@@ -13,11 +13,11 @@ import tp.messages.MessageController;
 public class WebsocketConfiguration implements WebSocketConfigurer {
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-        registry.addHandler(messageController(), "/ws");
+        registry.addHandler(defaultMessageController(), "/ws");
     }
 
     @Bean
-    public WebSocketHandler messageController() {
+    public WebSocketHandler defaultMessageController() {
         return new MessageController();
     }
 }
