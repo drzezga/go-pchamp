@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 603707110986231998}
   - component: {fileID: 925438529603145636}
   - component: {fileID: 3791017382478900697}
+  - component: {fileID: 1274585704774889441}
   m_Layer: 0
   m_Name: OpponentGamePiece
   m_TagString: Untagged
@@ -99,3 +100,16 @@ MonoBehaviour:
   tileTransitionDuration: 0.3
   shakeDuration: 0.5
   placePieceDuration: 0.3
+--- !u!114 &1274585704774889441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1356292747684828366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b0b54daa2cd84c68bb9538fc5bc63c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 0, g: 0, b: 0, a: 1}

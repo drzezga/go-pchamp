@@ -26,8 +26,8 @@ public class GameMoveMessageHandler : MonoBehaviour
     private void HandleGameMoveMessage(GameMoveResponseMessage message)
     {
         GameObject newOpponentPiece = Instantiate(opponentGamePiecePrefab);
+
         var animationController = newOpponentPiece.GetComponent<PieceAnimationController>();
-        Debug.Log(message.content.position);
 
         var gameTileIndex = new Vector2Int(
             message.content.position[0],

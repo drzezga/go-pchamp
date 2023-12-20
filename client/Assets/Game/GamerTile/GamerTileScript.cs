@@ -5,7 +5,7 @@ using UnityEngine;
 public class GamerTileScript : MonoBehaviour
 {
     [SerializeField]
-    private GameManagerApiSO gameManagerApiSo;
+    private MessageSenderSO messageSenderSo;
     
     [SerializeField]
     private SelectedGamerTileSO selectedGamerTileSo;
@@ -46,7 +46,7 @@ public class GamerTileScript : MonoBehaviour
     {
         if(_armed)
         {
-            gameManagerApiSo.PlacePieceOnTile(this);
+            messageSenderSo.SendMessage(new GameTryMoveRequestMessage(boardIndex));
         }
         
         _armed = false;

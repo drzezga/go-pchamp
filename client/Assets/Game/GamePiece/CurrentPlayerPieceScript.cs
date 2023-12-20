@@ -1,8 +1,4 @@
 
-using System;
-using System.Text;
-using System.Threading;
-using DG.Tweening;
 using UnityEngine;
 
 [RequireComponent(typeof(PieceAnimationController))]
@@ -17,21 +13,14 @@ public class CurrentPlayerPieceScript : MonoBehaviour
 
     private PieceAnimationController _pieceAnimationController;
 
-    public void PlaceItselfOnTile(GameObject tile)
+    private void Start()
     {
-        if(!enabled)
-        {
-            return;
-        }
-        
-        _pieceAnimationController.PlacePiece(tile.transform.position);
-        enabled = false;
+        _pieceAnimationController = GetComponent<PieceAnimationController>();
+        GetComponent<MeshRenderer>().material.color = _color;
     }
 
     private void OnEnable()
     {
-        _pieceAnimationController = GetComponent<PieceAnimationController>();
-        GetComponent<MeshRenderer>().material.color = _color;
         _selectedGamerTileSo.OnValueChanged += HandleSelectedGamerTileChanged;
     }
 

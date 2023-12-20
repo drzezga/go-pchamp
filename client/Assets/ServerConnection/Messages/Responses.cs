@@ -18,8 +18,8 @@ public class ResponseMessage<T>
 }
 
 public class LobbyListResponseMessage : ResponseMessage<List<Lobby>> {}
-public class LobbyStatusResponseMessage : ResponseMessage<LobbyStatusMessageContent> {}
-public class GameTryMoveResponseMessage : ResponseMessage<GameTryMoveMessageContent> {}
+public class LobbyStatusResponseMessage : ResponseMessage<LobbyStatusResponseMessageContent> {}
+public class GameTryMoveResponseMessage : ResponseMessage<GameTryMoveResponseMessageContent> {}
 public class GameMoveResponseMessage : ResponseMessage<GameMoveResponseMessageContent> {}
 
 public class NullMessageContent : System.Object {}
@@ -38,7 +38,7 @@ public class LobbyPlayer
 }
 
 [Serializable]
-public class LobbyStatusMessageContent
+public class LobbyStatusResponseMessageContent
 {
     public string name;
     public List<LobbyPlayer> players;

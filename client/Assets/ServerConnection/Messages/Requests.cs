@@ -11,12 +11,12 @@ public class RequestMessage<T>
     public T content;
 }
 
-class GameTryMoveRequestMessage : RequestMessage<GameTryMoveMessageContent>
+class GameTryMoveRequestMessage : RequestMessage<GameTryMoveRequestMessageContent>
 {
     public GameTryMoveRequestMessage(Vector2Int positionIndex)
     {
         msg = MessageType.GameTryMove;
-        content = new GameTryMoveMessageContent();
+        content = new GameTryMoveRequestMessageContent();
         content.position = new[]
         {
             positionIndex[0],
@@ -26,7 +26,7 @@ class GameTryMoveRequestMessage : RequestMessage<GameTryMoveMessageContent>
 }
 
 [Serializable]
-public class GameTryMoveMessageContent
+public class GameTryMoveRequestMessageContent
 {
     public int[] position;
 }
