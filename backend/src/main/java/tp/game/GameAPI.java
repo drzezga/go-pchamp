@@ -1,9 +1,24 @@
 package tp.game;
 
+import lombok.AllArgsConstructor;
 import tp.game.rules.RuleBrokenException;
 
-public interface GameAPI {
-    void placeStone(Position position) throws RuleBrokenException;
+import java.util.Optional;
 
-    void passTurn();
+@AllArgsConstructor
+public class GameAPI {
+    private Piece piece;
+    private Game game;
+
+    public void placeStone(Position position) throws RuleBrokenException {
+        game.makeMove(new Move(position, piece));
+    }
+
+    public void passTurn() throws RuleBrokenException {
+        game.makeMove(new Move(null, piece));
+    }
+
+    public Optional<String> getPlayerByPiece(Piece piece) {
+        return game.getPiecePlayer(piece);
+    }
 }
