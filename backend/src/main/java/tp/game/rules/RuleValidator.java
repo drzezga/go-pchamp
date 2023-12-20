@@ -5,17 +5,15 @@ import tp.game.Move;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Optional;
 
 public class RuleValidator {
-    private ArrayList<Rule> ruleList;
+    protected ArrayList<Rule> ruleList = new ArrayList<>();
 
     public Board validate(Board board, Move move) throws RuleBrokenException {
-        Board acc = board;
         for (Rule rule : ruleList) {
-            acc = rule.modify(acc, move);
+            rule.modify(board, move);
         }
-        return acc;
+        return board;
     }
 
     public void addRule(Rule rule) {

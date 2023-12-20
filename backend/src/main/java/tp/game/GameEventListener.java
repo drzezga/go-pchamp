@@ -5,6 +5,7 @@ public interface GameEventListener {
 
     void turnPassed(Piece piece);
 
-    // TODO: Finish this
     void gameFinished();
+
+    void gameStarted();
 }

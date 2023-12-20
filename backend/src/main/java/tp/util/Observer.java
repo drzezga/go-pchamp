@@ -3,7 +3,7 @@ package tp.util;
 import java.util.ArrayList;
 
 public abstract class Observer<T> {
-    protected ArrayList<T> listeners;
+    protected ArrayList<T> listeners = new ArrayList<>();
 
     public void addListener(T listener) {
         this.listeners.add(listener);
