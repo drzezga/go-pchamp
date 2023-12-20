@@ -16,30 +16,26 @@ public class GameMoveMessageHandler : MonoBehaviour
     private void OnEnable()
     {
         messageReceiverSo.OnGameMoveResponseMessage += HandleGameMoveMessage;
-        messageReceiverSo.OnGameTryMoveResponseMessage += HandleGameTryMoveMessage;
     }
 
     private void OnDisable()
     {
         messageReceiverSo.OnGameMoveResponseMessage -= HandleGameMoveMessage;
-        messageReceiverSo.OnGameTryMoveResponseMessage -= HandleGameTryMoveMessage;
     }
 
     private void HandleGameMoveMessage(GameMoveResponseMessage message)
     {
         GameObject newOpponentPiece = Instantiate(opponentGamePiecePrefab);
         var animationController = newOpponentPiece.GetComponent<PieceAnimationController>();
+        Debug.Log(message.content.position);
 
         var gameTileIndex = new Vector2Int(
             message.content.position[0],
             message.content.position[1]
         );
+        
         GamerTileScript gameTile = gameBoardSo.GetTileByIndex(gameTileIndex)!;
         animationController.PlacePiece(gameTile.transform.position);
     }
 
-    private void HandleGameTryMoveMessage(GameTryMoveResponseMessage message)
-    {
-        Debug.Log("Game try move");
-    }
 }

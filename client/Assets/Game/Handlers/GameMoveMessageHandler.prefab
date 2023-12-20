@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a697cda582f41406caf3b4f0f71109d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  messageDecoderSo: {fileID: 11400000, guid: 1e0bbe10678754b52ad8ab5227bf50ce, type: 2}
+  messageReceiverSo: {fileID: 11400000, guid: 1e0bbe10678754b52ad8ab5227bf50ce, type: 2}
   gameBoardSo: {fileID: 11400000, guid: 7f096cdcc074c48c388862b1536d6ceb, type: 2}
   opponentGamePiecePrefab: {fileID: 1356292747684828366, guid: ac7d004e6a07d47b09527562df6b3b5a,
     type: 3}

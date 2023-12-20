@@ -13,9 +13,7 @@ public class MessageSenderSO : ScriptableObject
     public void SendMessage<T>(RequestMessage<T> requestMessage)
     {
         var json = JsonConvert.SerializeObject(requestMessage);
-        
-        Debug.Log($"Sending json: {json}");
-        
+
         serverConnectionChannelSo.SendMessage(json);
     }
 }

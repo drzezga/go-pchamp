@@ -11,6 +11,7 @@ using AOT;
 using System.Runtime.InteropServices;
 using UnityEngine;
 using System.Collections;
+using UnityEngine.PlayerLoop;
 
 public class MainThreadUtil : MonoBehaviour
 {
@@ -487,6 +488,7 @@ namespace NativeWebSocket
                 }
             }
         }
+        
 
         public WebSocketState State
         {
@@ -667,12 +669,14 @@ namespace NativeWebSocket
                             {
                               m_MessageList.Add(ms.ToArray());
                             }
+                            
+                            // OnMessage?.Invoke(ms.ToArray());
 
-                            //using (var reader = new StreamReader(ms, Encoding.UTF8))
-                            //{
-                            //	string message = reader.ReadToEnd();
-                            //	OnMessage?.Invoke(this, new MessageEventArgs(message));
-                            //}
+                            // using (var reader = new StreamReader(ms, Encoding.UTF8))
+                            // {
+                            // 	string message = reader.ReadToEnd();
+                            // 	OnMessage?.Invoke(Encoding.UTF8.GetBytes(message));
+                            // }
                         }
                         else if (result.MessageType == WebSocketMessageType.Binary)
                         {

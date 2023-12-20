@@ -44,6 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bebe671c7882140009cd664fd94814d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serverAddress: ws://localhost:8000
+  serverAddress: ws://localhost:8080/ws
   serverConnectionChannelSo: {fileID: 11400000, guid: de56e73b0ee464aa99288c63adf5e902,
     type: 2}

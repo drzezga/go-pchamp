@@ -5,7 +5,7 @@ using UnityEngine;
 public class WebSocketConnectionScript : MonoBehaviour
 {
     [SerializeField]
-    private string serverAddress = "ws://localhost:8000";
+    private string serverAddress = "ws://localhost:8080/ws";
 
     [SerializeField]
     private ServerConnectionChannelSO serverConnectionChannelSo;
@@ -20,8 +20,13 @@ public class WebSocketConnectionScript : MonoBehaviour
         {
             Debug.Log("WebSocket open!");
         };
-        
-        _webSocket.OnMessage += message =>
+
+        _webSocket.OnClose += _ =>
+        {
+            Debug.Log("Websocket closed");
+        };
+
+        _webSocket.OnMessage += async message =>
         {
             serverConnectionChannelSo.ReceiveMessage(
                 System.Text.Encoding.UTF8.GetString(message)
@@ -32,6 +37,15 @@ public class WebSocketConnectionScript : MonoBehaviour
         
         await _webSocket.Connect();
     }
+    
+    
+    void Update()
+    {
+        #if !UNITY_WEBGL || UNITY_EDITOR
+        _webSocket.DispatchMessageQueue();
+        #endif
+    }
+
 
     private async void SendMessage(string message)
     {
@@ -40,7 +54,7 @@ public class WebSocketConnectionScript : MonoBehaviour
             Debug.LogWarning("Cannot send message because the WebSocket is not open");
             return;
         }
-
+        
         await _webSocket.SendText(message);
     }
 }
