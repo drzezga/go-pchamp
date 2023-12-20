@@ -17,14 +17,37 @@ public class RuleValidatorTest {
         board.setPiece(3, 3, Piece.WHITE);
 
         Rule rule = (b, m) -> {
-            assertEquals(b.getPiece(2, 3), Piece.BLACK);
-            assertEquals(b.getPiece(2, 3), Piece.BLACK);
+            assertEquals(Piece.BLACK, b.getPiece(2, 3));
+            assertEquals(Piece.BLACK, b.getPiece(2, 3));
             assertNull(b.getPiece(8, 8));
         };
 
         RuleValidator validator = new RuleValidator();
         validator.addRule(rule);
 
-        validator.validate(board, new Move(new Position(3, 2), Piece.BLACK));
+        validator.validate(board, null);
+    }
+
+    @Test
+    void validatorCanModifyBoard() throws RuleBrokenException {
+        Board board = new Board(9);
+
+        Rule rule1 = (b, m) -> {
+            b.setPiece(2, 3, Piece.WHITE);
+            b.setPiece(3, 3, Piece.WHITE);
+        };
+
+        Rule rule2 = (b, m) -> b.setPiece(3, 3, Piece.BLACK);
+
+        RuleValidator validator = new RuleValidator();
+
+        validator.addRule(rule1);
+        validator.addRule(rule2);
+
+        validator.validate(board, null);
+
+        assertEquals(Piece.WHITE, board.getPiece(2, 3));
+        assertEquals(Piece.BLACK, board.getPiece(3, 3));
+
     }
 }
