@@ -1,6 +1,6 @@
 package tp.messages.request;
 
-import tp.game.Position;
+import tp.game.core.Position;
 import tp.messages.RequestMessage;
 
 public class RequestGameTryMove extends RequestMessage {

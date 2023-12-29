@@ -13,7 +13,6 @@ import tp.messages.response.ResponseGameTryMove;
         @JsonSubTypes.Type(value = ResponseGameTryMove.class, name = "GAME_TRY_MOVE")
 })
 public abstract class ResponseMessage {
-//    protected MessageType msg;
     protected MessageStatus status;
 
     public ResponseMessage(MessageStatus status) {

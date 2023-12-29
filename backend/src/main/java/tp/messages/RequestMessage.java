@@ -10,6 +10,6 @@ import tp.messages.request.RequestGameTryMove;
 @JsonSubTypes({
     @JsonSubTypes.Type(value = RequestGameTryMove.class, name = "GAME_TRY_MOVE")
 })
-public class RequestMessage {
-//    MessageType msg;
+public abstract class RequestMessage {
+    protected MessageType msg;
 }

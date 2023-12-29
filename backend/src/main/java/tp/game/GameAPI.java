@@ -1,7 +1,10 @@
 package tp.game;
 
 import lombok.AllArgsConstructor;
-import tp.game.rules.RuleBrokenException;
+import tp.game.core.Move;
+import tp.game.core.Piece;
+import tp.game.core.Position;
+import tp.game.core.rules.RuleBrokenException;
 
 import java.util.Optional;
 

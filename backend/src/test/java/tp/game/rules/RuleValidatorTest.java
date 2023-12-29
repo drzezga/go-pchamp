@@ -1,10 +1,11 @@
 package tp.game.rules;
 
 import org.junit.jupiter.api.Test;
-import tp.game.Board;
-import tp.game.Move;
-import tp.game.Piece;
-import tp.game.Position;
+import tp.game.core.Board;
+import tp.game.core.Piece;
+import tp.game.core.rules.Rule;
+import tp.game.core.rules.RuleBrokenException;
+import tp.game.core.rules.RuleValidator;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;

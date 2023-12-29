@@ -1,8 +1,8 @@
-package tp.game.rules;
+package tp.game.core.rules;
 
 
-import tp.game.Board;
-import tp.game.Move;
+import tp.game.core.Board;
+import tp.game.core.Move;
 
 public class PlayingAddsAStone implements Rule {
     @Override

@@ -3,7 +3,7 @@ package tp.messages.response;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
-import tp.game.Position;
+import tp.game.core.Position;
 import tp.messages.MessageStatus;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

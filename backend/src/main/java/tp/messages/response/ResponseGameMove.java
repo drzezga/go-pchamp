@@ -1,6 +1,6 @@
 package tp.messages.response;
 
-import tp.game.Position;
+import tp.game.core.Position;
 import tp.messages.MessageStatus;
 import tp.messages.ResponseMessage;
 

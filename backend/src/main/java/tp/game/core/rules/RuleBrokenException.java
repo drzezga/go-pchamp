@@ -1,4 +1,4 @@
-package tp.game.rules;
+package tp.game.core.rules;
 
 public class RuleBrokenException extends Exception {
     RuleBrokenException(String content) {

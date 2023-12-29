@@ -1,4 +1,4 @@
-package tp.game;
+package tp.game.core;
 
 import lombok.Getter;
 

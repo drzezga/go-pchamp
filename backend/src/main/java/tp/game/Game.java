@@ -1,8 +1,10 @@
 package tp.game;
 
 import lombok.Getter;
-import org.springframework.stereotype.Component;
-import tp.game.rules.*;
+import tp.game.core.Board;
+import tp.game.core.Move;
+import tp.game.core.Piece;
+import tp.game.core.rules.*;
 import tp.util.Observer;
 
 import java.util.ArrayList;

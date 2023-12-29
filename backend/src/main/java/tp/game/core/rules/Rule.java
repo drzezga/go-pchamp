@@ -1,10 +1,7 @@
-package tp.game.rules;
+package tp.game.core.rules;
 
-import tp.game.Board;
-import tp.game.Game;
-import tp.game.Move;
-
-import java.util.Optional;
+import tp.game.core.Board;
+import tp.game.core.Move;
 
 public interface Rule {
     /**
