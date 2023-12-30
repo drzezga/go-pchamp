@@ -20,15 +20,27 @@ public class MessageController extends TextWebSocketHandler {
     @Autowired
     public MessageController(List<MessageHandler<?>> handlers) {
         for (MessageHandler<?> handler: handlers) {
+            log.info("Registering handler for " + handler.getMessageType().toString());
             this.handlers.put(handler.getMessageType(), handler);
         }
     }
 
     @Override
-    public void handleTextMessage(WebSocketSession session, TextMessage message) throws JsonProcessingException {
+    public void handleTextMessage(WebSocketSession session, TextMessage message) {
         ObjectMapper objectMapper = new ObjectMapper();
-        RequestMessage msg = objectMapper.readValue(message.getPayload(), RequestMessage.class);
-        handlers.get(msg.getMsg()).onMessageInternal(msg);
+        RequestMessage msg;
+        try {
+            msg = objectMapper.readValue(message.getPayload(), RequestMessage.class);
+        } catch (JsonProcessingException e) {
+            // TODO: Send error message back
+            return;
+        }
+        MessageHandler<?> handler = handlers.get(msg.getType());
+        if (handler == null) {
+            log.severe("Could not find handler for message type " + msg.getType());
+        } else {
+            handler.onMessageInternal(msg);
+        }
 //        WebsocketPlayer player = (WebsocketPlayer) session.getAttributes().get("player");
 //        if (player == null) {
 //            player = new WebsocketPlayer();

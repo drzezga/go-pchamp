@@ -1,9 +1,10 @@
-package tp.lobby;
+package tp.lobby.handlers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import tp.game.Player;
 import tp.game.WebsocketPlayer;
+import tp.lobby.LobbyController;
 import tp.messages.MessageHandler;
 import tp.messages.MessageType;
 import tp.messages.request.RequestLobbyList;
