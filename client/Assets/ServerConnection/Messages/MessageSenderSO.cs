@@ -1,19 +1,19 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Newtonsoft.Json;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "GO/MessageSenderSO")]
-public class MessageSenderSO : ScriptableObject
+namespace ServerConnection.Messages
 {
-    [SerializeField]
-    private ServerConnectionChannelSO serverConnectionChannelSo;
-
-    public void SendMessage<T>(RequestMessage<T> requestMessage)
+    [CreateAssetMenu(menuName = "GO/MessageSenderSO")]
+    public class MessageSenderSO : ScriptableObject
     {
-        var json = JsonConvert.SerializeObject(requestMessage);
+        [SerializeField]
+        private ServerConnectionChannelSO serverConnectionChannelSo;
 
-        serverConnectionChannelSo.SendMessage(json);
+        public void SendMessage<T>(RequestMessage<T> requestMessage)
+        {
+            var json = JsonConvert.SerializeObject(requestMessage);
+
+            serverConnectionChannelSo.SendMessage(json);
+        }
     }
 }

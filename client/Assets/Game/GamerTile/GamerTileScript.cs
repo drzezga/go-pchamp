@@ -1,3 +1,4 @@
+using ServerConnection.Messages;
 using UnityEngine;
 
 public class GamerTileScript : MonoBehaviour
