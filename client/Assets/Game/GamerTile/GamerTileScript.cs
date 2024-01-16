@@ -1,5 +1,4 @@
-
-using System;
+using ServerConnection.Messages;
 using UnityEngine;
 
 public class GamerTileScript : MonoBehaviour
@@ -20,8 +19,8 @@ public class GamerTileScript : MonoBehaviour
     private void OnEnable()
     {
         boardIndex = new Vector2Int(
-            Int32.Parse(name.Substring(4)),
-            Int32.Parse(transform.parent.name)
+            int.Parse(name[4..]),
+            int.Parse(transform.parent.name)
         );
         
         gameBoardSo.RegisterGamerTile(this);

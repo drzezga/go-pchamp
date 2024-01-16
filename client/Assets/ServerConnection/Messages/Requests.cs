@@ -1,32 +1,153 @@
 using System;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using UnityEngine;
 
-[Serializable]
-public class RequestMessage<T>
+namespace ServerConnection.Messages
 {
-    [JsonConverter(typeof(StringEnumConverter))]
-    public MessageType msg;
-    public T content;
-}
-
-class GameTryMoveRequestMessage : RequestMessage<GameTryMoveRequestMessageContent>
-{
-    public GameTryMoveRequestMessage(Vector2Int positionIndex)
+    [Serializable]
+    public class RequestMessage<T>
     {
-        msg = MessageType.GameTryMove;
-        content = new GameTryMoveRequestMessageContent();
-        content.position = new[]
-        {
-            positionIndex[0],
-            positionIndex[1]
-        };
+        [JsonConverter(typeof(StringEnumConverter))]
+        public MessageType msg;
+        public T content;
     }
-}
 
-[Serializable]
-public class GameTryMoveRequestMessageContent
-{
-    public int[] position;
+    public class RegisterRequestMessage : RequestMessage<string>
+    {
+        public RegisterRequestMessage(string username)
+        {
+            msg = MessageType.Register;
+            content = username;
+        }
+    }
+    
+    public class LobbyJoinRequestMessage : RequestMessage<LobbyStatusRequestMessageContent>
+    {
+        public LobbyJoinRequestMessage(string lobbyName)
+        {
+            msg = MessageType.Register;
+            content = new LobbyStatusRequestMessageContent
+            {
+                action = LobbyStatusAction.Join,
+                name = lobbyName
+            };
+        }
+    }
+    
+    public class LobbyLeaveRequestMessage : RequestMessage<LobbyStatusRequestMessageContent>
+    {
+        public LobbyLeaveRequestMessage(string lobbyName)
+        {
+            msg = MessageType.Register;
+            content = new LobbyStatusRequestMessageContent
+            {
+                action = LobbyStatusAction.Leave,
+                name = lobbyName
+            };
+        }
+    }
+
+    public class GameStartRequestMessage : RequestMessage<GameSettings>
+    {
+        public GameStartRequestMessage(GameSettings settings)
+        {
+            msg = MessageType.Register;
+            content = settings;
+        }
+    }
+    
+    public class GameLeaveRequestMessage : RequestMessage<GameLeaveRequestMessageContent>
+    {
+        public GameLeaveRequestMessage(string lobbyName)
+        {
+            msg = MessageType.Register;
+            content = new GameLeaveRequestMessageContent
+            {
+                name = lobbyName
+            };
+        }
+    }
+
+    public class GameTryMoveRequestMessage : RequestMessage<GameTryMoveRequestMessageContent>
+    {
+        public GameTryMoveRequestMessage(Vector2Int positionIndex)
+        {
+            msg = MessageType.GameTryMove;
+            content = new GameTryMoveRequestMessageContent
+            {
+                position = new[]
+                {
+                    positionIndex[0],
+                    positionIndex[1]
+                }
+            };
+        }
+    }
+    
+    public class GamePassTurnRequestMessage : RequestMessage<GameTryMoveRequestMessageContent>
+    {
+        public GamePassTurnRequestMessage()
+        {
+            msg = MessageType.GameTryMove;
+            content = null;
+        }
+    }
+
+    public class ReplayListRequestMessage : RequestMessage<NullMessageContent>
+    {
+        public ReplayListRequestMessage()
+        {
+            msg = MessageType.ReplayList;
+            content = null;
+        }
+    }
+
+    public class ReplayGetRequestMessage : RequestMessage<ReplayGetRequestMessageContent>
+    {
+        public ReplayGetRequestMessage(string replayId)
+        {
+            msg = MessageType.ReplayGet;
+            content = new ReplayGetRequestMessageContent()
+            {
+                id = replayId
+            };
+        }
+    }
+
+    public enum LobbyStatusAction
+    {
+        [EnumMember(Value = "JOIN")]
+        Join,
+        [EnumMember(Value = "LEAVE")]
+        Leave,
+    }
+
+    [Serializable]
+    public class LobbyStatusRequestMessageContent
+    {
+        [JsonConverter(typeof(StringEnumConverter))]
+        public LobbyStatusAction action;
+
+        public string name;
+    }
+    
+    [Serializable]
+    public class GameLeaveRequestMessageContent
+    {
+        public string name;
+    }
+
+    [Serializable]
+    public class GameTryMoveRequestMessageContent
+    {
+        public int[] position;
+    }
+
+    [Serializable]
+    public class ReplayGetRequestMessageContent
+    {
+        public string id;
+    }
 }
