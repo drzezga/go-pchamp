@@ -32,11 +32,11 @@ public class WebsocketConfiguration implements WebSocketConfigurer {
     // https://github.com/spring-projects/spring-framework/blob/main/spring-websocket/src/main/java/org/springframework/web/socket/config/annotation/WebSocketMessageBrokerConfigurationSupport.java#L127
     // https://github.com/spring-projects/spring-framework/blob/main/spring-messaging/src/main/java/org/springframework/messaging/simp/SimpSessionScope.java#L33
 
-    @Bean
-    public static CustomScopeConfigurer webSocketScopeConfigurer() {
-        CustomScopeConfigurer configurer = new CustomScopeConfigurer();
-        configurer.addScope("websocket", new SimpSessionScope());
-        return configurer;
-    }
+//    @Bean
+//    public static CustomScopeConfigurer webSocketScopeConfigurer() {
+//        CustomScopeConfigurer configurer = new CustomScopeConfigurer();
+//        configurer.addScope("websocket", new SimpSessionScope());
+//        return configurer;
+//    }
 
 }

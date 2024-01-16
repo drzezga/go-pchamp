@@ -13,9 +13,11 @@ import tp.messages.response.ResponseGameTryMove;
         @JsonSubTypes.Type(value = ResponseGameTryMove.class, name = "GAME_TRY_MOVE")
 })
 public abstract class ResponseMessage {
-    protected MessageStatus status;
+    public MessageType msg;
+    public MessageStatus status;
 
-    public ResponseMessage(MessageStatus status) {
+    public ResponseMessage(MessageType messageType, MessageStatus status) {
+        this.msg = messageType;
         this.status = status;
     }
 }
