@@ -16,7 +16,7 @@ public class WebSocketConnectionScript : MonoBehaviour
     {
         _webSocket = new WebSocket(serverAddress);
 
-        _webSocket.OnOpen += async () =>
+        _webSocket.OnOpen += () =>
         {
             Debug.Log("WebSocket open!");
         };
@@ -26,20 +26,20 @@ public class WebSocketConnectionScript : MonoBehaviour
             Debug.Log("Websocket closed");
         };
 
-        _webSocket.OnMessage += async message =>
+        _webSocket.OnMessage += message =>
         {
             serverConnectionChannelSo.ReceiveMessage(
                 System.Text.Encoding.UTF8.GetString(message)
             );
         };
         
-        serverConnectionChannelSo.OnMessageSent += SendMessage;
+        serverConnectionChannelSo.OnMessageSent += SendWebsocketMessage;
         
         await _webSocket.Connect();
     }
     
     
-    void Update()
+    private void Update()
     {
         #if !UNITY_WEBGL || UNITY_EDITOR
         _webSocket.DispatchMessageQueue();
@@ -47,7 +47,7 @@ public class WebSocketConnectionScript : MonoBehaviour
     }
 
 
-    private async void SendMessage(string message)
+    private async void SendWebsocketMessage(string message)
     {
         if(_webSocket.State != WebSocketState.Open)
         {

@@ -1,13 +1,11 @@
-using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
-using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "GO/GameBoardSO")]
 public class GameBoardSO : ScriptableObject
 {
-    private Dictionary<Vector2Int, GamerTileScript> _registeredTiles = new();
+    private readonly Dictionary<Vector2Int, GamerTileScript> _registeredTiles = new();
 
     public void RegisterGamerTile(GamerTileScript tile)
     {
