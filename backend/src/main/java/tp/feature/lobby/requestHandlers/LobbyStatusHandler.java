@@ -15,9 +15,9 @@ public class LobbyStatusHandler implements MessageHandler<RequestLobbyStatus> {
 
     @Override
     public void onMessage(RequestLobbyStatus message, WebSocketSession sender) {
-        String lobbyName = message.content.getName();
+        String lobbyName = message.getContent().getName();
 
-        switch(message.content.getAction()) {
+        switch(message.getContent().getAction()) {
             case JOIN -> System.out.println("Joining " + lobbyName);
             case LEAVE -> System.out.println("Leaving " + lobbyName);
         }

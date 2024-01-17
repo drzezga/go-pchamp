@@ -2,11 +2,15 @@ package tp.model.messages.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import tp.communication.MessageStatus;
 import tp.communication.MessageType;
 
 public class ResponseGameTryMove extends ResponseMessage {
-    public Content content;
+    @Getter
+    @Setter
+    private Content content;
 
     public ResponseGameTryMove() {
         super(MessageType.GAME_TRY_MOVE, MessageStatus.NOT_OK);

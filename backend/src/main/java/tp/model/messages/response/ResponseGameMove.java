@@ -2,12 +2,16 @@ package tp.model.messages.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import tp.communication.MessageStatus;
 import tp.communication.MessageType;
 import tp.model.Position;
 
 public class ResponseGameMove extends ResponseMessage {
-    public Content content;
+    @Getter
+    @Setter
+    private Content content;
 
     public ResponseGameMove(MessageStatus status, String player, Position position) {
         super(MessageType.GAME_MOVE, status);

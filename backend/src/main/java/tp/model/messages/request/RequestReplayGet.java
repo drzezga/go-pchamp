@@ -8,8 +8,9 @@ import tp.model.messages.shared.GameSettings;
 
 import java.util.List;
 
+@Data
 public class RequestReplayGet extends RequestMessage {
-    public Content content;
+    private Content content;
 
     @Override
     public MessageType getType() {

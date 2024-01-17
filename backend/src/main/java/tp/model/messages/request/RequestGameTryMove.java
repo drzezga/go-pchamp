@@ -4,8 +4,9 @@ import lombok.Data;
 import tp.communication.MessageType;
 import tp.model.Position;
 
+@Data
 public class RequestGameTryMove extends RequestMessage {
-    public Content content;
+    private Content content;
 
     @Override
     public MessageType getType() {

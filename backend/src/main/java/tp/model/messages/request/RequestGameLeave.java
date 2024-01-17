@@ -3,8 +3,9 @@ package tp.model.messages.request;
 import lombok.Data;
 import tp.communication.MessageType;
 
+@Data
 public class RequestGameLeave extends RequestMessage {
-    public Content content;
+    private Content content;
 
     @Override
     public MessageType getType() {

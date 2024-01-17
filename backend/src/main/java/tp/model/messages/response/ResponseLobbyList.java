@@ -2,6 +2,8 @@ package tp.model.messages.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import tp.communication.MessageStatus;
 import tp.communication.MessageType;
 
@@ -9,7 +11,9 @@ import java.util.Collection;
 import java.util.List;
 
 public class ResponseLobbyList extends ResponseMessage {
-    public List<Lobby> content;
+    @Getter
+    @Setter
+    private List<Lobby> content;
 
     public ResponseLobbyList(Collection<tp.feature.lobby.Lobby> lobbies) {
         super(MessageType.LOBBY_LIST, MessageStatus.OK);
