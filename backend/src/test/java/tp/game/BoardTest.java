@@ -1,8 +1,8 @@
 package tp.game;
 
 import org.junit.jupiter.api.Test;
-import tp.game.core.Board;
-import tp.game.core.Piece;
+import tp.model.Board;
+import tp.model.Piece;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
