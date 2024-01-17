@@ -1,5 +1,7 @@
 package tp.messages.response;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import tp.game.core.Position;
 import tp.messages.MessageStatus;
 import tp.messages.MessageType;
@@ -17,5 +19,10 @@ public class ResponseGameMove extends ResponseMessage {
         }
     }
 
-    public record Content(String player, Position position) { }
+    @Data
+    @AllArgsConstructor
+    public class Content {
+        private String player;
+        private Position position;
+    }
 }

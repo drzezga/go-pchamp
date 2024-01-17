@@ -1,5 +1,6 @@
 package tp.messages.request;
 
+import lombok.Data;
 import tp.game.core.Position;
 import tp.messages.MessageType;
 import tp.messages.RequestMessage;
@@ -14,8 +15,11 @@ public class RequestGameTryMove extends RequestMessage {
 
     public Position getPosition() {
         if (this.content == null) return null;
-        return this.content.position();
+        return this.content.getPosition();
     }
 
-    public record Content(Position position) {}
+    @Data
+    public class Content {
+        private Position position;
+    }
 }

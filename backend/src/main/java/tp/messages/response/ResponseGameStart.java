@@ -1,5 +1,6 @@
 package tp.messages.response;
 
+import lombok.Data;
 import tp.messages.MessageStatus;
 import tp.messages.MessageType;
 import tp.messages.ResponseMessage;
@@ -11,5 +12,10 @@ public class ResponseGameStart extends ResponseMessage {
         super(MessageType.GAME_START, status);
     }
 
-    public record Content(Integer size, Boolean botOpponent, String startingPlayer) {}
+    @Data
+    public class Content {
+        private Integer size;
+        private Boolean botOpponent;
+        private String startingPlayer;
+    }
 }

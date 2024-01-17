@@ -1,5 +1,6 @@
 package tp.messages.request;
 
+import lombok.Data;
 import tp.messages.MessageType;
 import tp.messages.RequestMessage;
 
@@ -11,5 +12,8 @@ public class RequestReplayGet extends RequestMessage {
         return MessageType.REPLAY_GET;
     }
 
-    public record Content(String id) {}
+    @Data
+    public class Content {
+        private String id;
+    }
 }

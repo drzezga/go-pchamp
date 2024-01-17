@@ -1,5 +1,6 @@
 package tp.messages.request;
 
+import lombok.Data;
 import tp.messages.MessageType;
 import tp.messages.RequestMessage;
 
@@ -11,7 +12,12 @@ public class RequestLobbyStatus extends RequestMessage {
         return MessageType.LOBBY_STATUS;
     }
 
-    public record Content(Action action, String name) {}
+    @Data
+    public class Content {
+        private Action action;
+        private String name;
+    }
+
     public enum Action {
         JOIN,
         LEAVE,

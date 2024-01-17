@@ -1,5 +1,6 @@
 package tp.messages.response;
 
+import lombok.Data;
 import tp.messages.MessageStatus;
 import tp.messages.MessageType;
 import tp.messages.ResponseMessage;
@@ -13,6 +14,15 @@ public class ResponseLobbyStatus extends ResponseMessage {
         super(MessageType.LOBBY_STATUS, MessageStatus.OK);
     }
 
-    public record Content(String name, List<Player> players) {}
-    public record Player(String name, Boolean isHost) {}
+    @Data
+    public class Content {
+        private String name;
+        private List<Player> players;
+    }
+
+    @Data
+    public class Player {
+        private String name;
+        private Boolean isHost;
+    }
 }

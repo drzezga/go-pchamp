@@ -1,5 +1,6 @@
 package tp.messages.request;
 
+import lombok.Data;
 import tp.messages.MessageType;
 import tp.messages.RequestMessage;
 
@@ -11,5 +12,10 @@ public class RequestGameStart extends RequestMessage {
         return MessageType.GAME_START;
     }
 
-    public record Content(Integer size, Boolean botOpponent, String startingPlayer) {}
+    @Data
+    public class Content {
+        private Integer size;
+        private Boolean botOpponent;
+        private String staringPlayer;
+    }
 }

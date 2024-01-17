@@ -1,5 +1,6 @@
 package tp.messages.response;
 
+import lombok.Data;
 import tp.game.core.Position;
 import tp.messages.MessageStatus;
 import tp.messages.MessageType;
@@ -14,14 +15,25 @@ public class ResponseReplayGet extends ResponseMessage {
         super(MessageType.REPLAY_GET, status);
     }
 
-    public record Content(
-            String id,
-            String name,
-            List<Player> players,
-            List<Position> move,
-            GameSettings gameSettings
-    ) {}
+    @Data
+    public class Content {
+        private String id;
+        private String name;
+        private List<Player> players;
+        private List<Position> move;
+        private GameSettings gameSettings;
+    }
 
-    public record Player(String name, Integer score) {}
-    public record GameSettings(Integer size, Boolean botOpponent, String startingPlayer) {}
+    @Data
+    public class Player {
+        private String name;
+        private Integer score;
+    }
+
+    @Data
+    public class GameSettings {
+        private Integer size;
+        private Boolean botOpponent;
+        private String startingPlayer;
+    }
 }

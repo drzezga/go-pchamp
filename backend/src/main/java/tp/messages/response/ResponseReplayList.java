@@ -1,5 +1,6 @@
 package tp.messages.response;
 
+import lombok.Data;
 import tp.messages.MessageStatus;
 import tp.messages.MessageType;
 import tp.messages.ResponseMessage;
@@ -13,6 +14,17 @@ public class ResponseReplayList extends ResponseMessage {
         super(MessageType.REPLAY_LIST, MessageStatus.OK);
     }
 
-    public record ReplayMetadata(String id, String name, List<Player> players, String startingPlayer) {}
-    public record Player(String name, Integer score) {}
+    @Data
+    public class ReplayMetadata {
+        private String id;
+        private String name;
+        private List<Player> players;
+        private String startingPlayer;
+    }
+
+    @Data
+    public class Player {
+        private String name;
+        private Integer score;
+    }
 }

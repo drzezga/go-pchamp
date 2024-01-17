@@ -1,5 +1,7 @@
 package tp.messages.response;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import tp.messages.MessageStatus;
 import tp.messages.MessageType;
 import tp.messages.ResponseMessage;
@@ -16,5 +18,9 @@ public class ResponseGameTryMove extends ResponseMessage {
         content = new Content(error);
     }
 
-    public record Content(String error) { }
+    @Data
+    @AllArgsConstructor
+    public class Content {
+        String error;
+    }
 }
