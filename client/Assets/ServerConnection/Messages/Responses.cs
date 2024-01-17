@@ -29,6 +29,7 @@ namespace ServerConnection.Messages
     public class GameMoveResponseMessage : ResponseMessage<GameMoveResponseMessageContent> {}
     public class GameFinishedResponseMessage : ResponseMessage<GameFinishedResponseMessageContent> {}
     public class ReplayListResponseMessage : ResponseMessage<List<ReplayBrief>> {}
+    public class ReplayGetResponseMessage : ResponseMessage<List<Replay>> {}
 
     public class NullMessageContent : System.Object {}
 

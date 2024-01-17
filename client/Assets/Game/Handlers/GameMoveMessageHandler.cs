@@ -1,7 +1,5 @@
-
 using ServerConnection.Messages;
 using UnityEngine;
-
 
 public class GameMoveMessageHandler : MonoBehaviour
 {

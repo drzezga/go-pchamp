@@ -12,6 +12,7 @@ public class ServerConnectionChannelSO : ScriptableObject
 
     public void SendMessage(string message)
     {
+        Debug.Log("Message sent " + message);
         OnMessageSent?.Invoke(message);
     }
 

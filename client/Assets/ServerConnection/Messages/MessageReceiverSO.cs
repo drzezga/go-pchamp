@@ -13,8 +13,17 @@ namespace ServerConnection.Messages
 
         public delegate void OnMessageDelegate<in T>(T responseMessage);
 
+        
+        public event OnMessageDelegate<RegisterResponseMessage> OnRegisterResponseMessage;
+        public event OnMessageDelegate<LobbyListResponseMessage> OnLobbyListResponseMessage;
+        public event OnMessageDelegate<LobbyStatusResponseMessage> OnLobbyStatusResponseMessage;
+        public event OnMessageDelegate<GameStartResponseMessage> OnGameStartResponseMessage;
+        public event OnMessageDelegate<GameLeaveResponseMessage> OnGameLeaveResponseMessage;
         public event OnMessageDelegate<GameTryMoveResponseMessage> OnGameTryMoveResponseMessage;
         public event OnMessageDelegate<GameMoveResponseMessage> OnGameMoveResponseMessage;
+        public event OnMessageDelegate<GameFinishedResponseMessage> OnGameFinishedResponseMessage;
+        public event OnMessageDelegate<ReplayListResponseMessage> OnReplayListResponseMessage;
+        public event OnMessageDelegate<ReplayGetResponseMessage> OnReplayGetResponseMessage;
     
 
         private void OnEnable()
@@ -41,6 +50,46 @@ namespace ServerConnection.Messages
                 case MessageType.GameMove:
                     OnGameMoveResponseMessage?.Invoke(
                         JsonConvert.DeserializeObject<GameMoveResponseMessage>(messageString)
+                    );
+                    break;
+                case MessageType.Register:
+                    OnRegisterResponseMessage?.Invoke(
+                        JsonConvert.DeserializeObject<RegisterResponseMessage>(messageString)
+                    );
+                    break;
+                case MessageType.LobbyList:
+                    OnLobbyListResponseMessage?.Invoke(
+                        JsonConvert.DeserializeObject<LobbyListResponseMessage>(messageString)
+                    );
+                    break;
+                case MessageType.LobbyStatus:
+                    OnLobbyStatusResponseMessage?.Invoke(
+                        JsonConvert.DeserializeObject<LobbyStatusResponseMessage>(messageString)
+                    );
+                    break;
+                case MessageType.GameStart:
+                    OnGameStartResponseMessage?.Invoke(
+                        JsonConvert.DeserializeObject<GameStartResponseMessage>(messageString)
+                    );
+                    break;
+                case MessageType.GameLeave:
+                    OnGameLeaveResponseMessage?.Invoke(
+                        JsonConvert.DeserializeObject<GameLeaveResponseMessage>(messageString)
+                    );
+                    break;
+                case MessageType.GameFinished:
+                    OnGameFinishedResponseMessage?.Invoke(
+                        JsonConvert.DeserializeObject<GameFinishedResponseMessage>(messageString)
+                    );
+                    break;
+                case MessageType.ReplayList:
+                    OnReplayListResponseMessage?.Invoke(
+                        JsonConvert.DeserializeObject<ReplayListResponseMessage>(messageString)
+                    );
+                    break;
+                case MessageType.ReplayGet:
+                    OnReplayGetResponseMessage?.Invoke(
+                        JsonConvert.DeserializeObject<ReplayGetResponseMessage>(messageString)
                     );
                     break;
                 default: throw new NotImplementedException($"Parsing was not implemented for message {message.msg}");
