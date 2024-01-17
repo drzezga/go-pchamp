@@ -3,14 +3,14 @@ package tp.feature.lobby.requestHandlers;
 import lombok.experimental.ExtensionMethod;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.socket.WebSocketSession;
-import tp.communication.MessageHandler;
+import tp.communication.RequestMessageHandler;
 import tp.communication.MessageType;
 import tp.communication.WebsocketExtensions;
 import tp.model.messages.request.RequestLobbyStatus;
 
 @Controller
 @ExtensionMethod({WebsocketExtensions.class})
-public class LobbyStatusHandler implements MessageHandler<RequestLobbyStatus> {
+public class LobbyStatusHandler implements RequestMessageHandler<RequestLobbyStatus> {
 
 
     @Override

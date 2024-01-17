@@ -5,7 +5,7 @@ import tp.communication.MessageType;
 
 @Data
 public class RequestRegister extends RequestMessage {
-    private Object content;
+    private String content;
 
     @Override
     public MessageType getType() {

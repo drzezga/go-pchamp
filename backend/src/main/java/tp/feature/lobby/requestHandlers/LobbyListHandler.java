@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.socket.WebSocketSession;
 import tp.feature.lobby.Lobby;
 import tp.feature.lobby.LobbyRegistry;
-import tp.communication.MessageHandler;
+import tp.communication.RequestMessageHandler;
 import tp.communication.MessageType;
 import tp.communication.WebsocketExtensions;
 import tp.model.messages.request.RequestLobbyList;
@@ -15,8 +15,8 @@ import tp.model.messages.response.ResponseLobbyList;
 import java.util.Collection;
 
 @Controller
-@ExtensionMethod({WebsocketExtensions.class})
-public class LobbyListHandler implements MessageHandler<RequestLobbyList> {
+@ExtensionMethod({ WebsocketExtensions.class })
+public class LobbyListHandler implements RequestMessageHandler<RequestLobbyList> {
     private final LobbyRegistry lobbyRegistry;
 
     @Autowired
