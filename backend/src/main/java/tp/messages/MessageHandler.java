@@ -1,10 +1,12 @@
 package tp.messages;
 
-public interface MessageHandler<T extends RequestMessage> {
-    void onMessage(T message);
+import org.springframework.web.socket.WebSocketSession;
 
-    default void onMessageInternal(RequestMessage message) {
-        this.onMessage((T)message);
+public interface MessageHandler<T extends RequestMessage> {
+    void onMessage(T message, WebSocketSession sender);
+
+    default void onMessageInternal(RequestMessage message, WebSocketSession sender) {
+        this.onMessage((T)message, sender);
     }
 
     MessageType getMessageType();
