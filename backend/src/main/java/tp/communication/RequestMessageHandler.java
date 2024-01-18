@@ -1,13 +1,13 @@
 package tp.communication;
 
-import org.springframework.web.socket.WebSocketSession;
+import tp.feature.player.Player;
 import tp.model.messages.request.RequestMessage;
 
 public interface RequestMessageHandler<T extends RequestMessage> {
-    void onMessage(T message, WebSocketSession sender);
+    void onMessage(T message, Player player);
 
-    default void onMessageInternal(RequestMessage message, WebSocketSession sender) {
-        this.onMessage((T)message, sender);
+    default void onMessageInternal(RequestMessage message, Player player) {
+        this.onMessage((T)message, player);
     }
 
     MessageType getMessageType();

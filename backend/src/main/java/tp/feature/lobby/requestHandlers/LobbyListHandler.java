@@ -8,14 +8,13 @@ import tp.feature.lobby.Lobby;
 import tp.feature.lobby.LobbyRegistry;
 import tp.communication.RequestMessageHandler;
 import tp.communication.MessageType;
-import tp.communication.WebsocketExtensions;
+import tp.feature.player.Player;
 import tp.model.messages.request.RequestLobbyList;
 import tp.model.messages.response.ResponseLobbyList;
 
 import java.util.Collection;
 
 @Controller
-@ExtensionMethod({ WebsocketExtensions.class })
 public class LobbyListHandler implements RequestMessageHandler<RequestLobbyList> {
     private final LobbyRegistry lobbyRegistry;
 
@@ -25,10 +24,10 @@ public class LobbyListHandler implements RequestMessageHandler<RequestLobbyList>
     }
 
     @Override
-    public void onMessage(RequestLobbyList message, WebSocketSession sender) {
+    public void onMessage(RequestLobbyList message, Player sender) {
         Collection<Lobby> lobbies = lobbyRegistry.getAllLobbies();
 
-        sender.sendResponse(new ResponseLobbyList(lobbies));
+        sender.getMessageChannel().sendResponse(new ResponseLobbyList(lobbies));
     }
 
     @Override

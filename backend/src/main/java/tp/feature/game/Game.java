@@ -4,7 +4,6 @@ import lombok.Data;
 import tp.feature.game.core.rules.RuleValidator;
 import tp.model.Board;
 import tp.model.Move;
-import tp.feature.player.Player;
 
 import java.util.ArrayList;
 

@@ -1,8 +1,14 @@
 package tp.feature.player;
 
-import tp.feature.game.Game;
+import lombok.Getter;
 
-public interface Player {
+@Getter
+public class Player {
+    private PlayerMessageChannel messageChannel;
+    private String name;
 
-    void makeMove(Game game);
+    public Player(PlayerMessageChannel messageChannel, String name) {
+        this.messageChannel = messageChannel;
+        this.name = name;
+    }
 }

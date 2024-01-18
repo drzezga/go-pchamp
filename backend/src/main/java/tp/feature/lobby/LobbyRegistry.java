@@ -8,7 +8,7 @@ import java.util.*;
 public class LobbyRegistry {
     private HashMap<String, Lobby> nameToLobbyMap = new HashMap<>();
 
-    public Lobby registerNewLobby(String lobbyName) {
+    public Lobby addNewLobby(String lobbyName) {
         var lobby = new Lobby(lobbyName);
         nameToLobbyMap.put(lobbyName, lobby);
         return lobby;

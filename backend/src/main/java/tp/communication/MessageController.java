@@ -9,7 +9,9 @@ import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
+import tp.feature.player.Player;
 import tp.feature.player.PlayerRegistry;
+import tp.feature.player.WebSocketMessageChannel;
 import tp.model.messages.request.RequestMessage;
 
 import java.util.HashMap;
@@ -31,13 +33,17 @@ public class MessageController extends TextWebSocketHandler {
     }
 
     @Override
-    public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-        playerRegistry.addPlayer(session);
+    public void afterConnectionEstablished(WebSocketSession session) {
+        playerRegistry.addPlayer(new Player(
+                new WebSocketMessageChannel(session),
+                session.getId()
+        ));
     }
 
     @Override
-    public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-        playerRegistry.removePlayer(session);
+    public void afterConnectionClosed(WebSocketSession session, CloseStatus status) {
+        Player player = playerRegistry.getPlayerByMessageChannel(new WebSocketMessageChannel(session)).get();
+        playerRegistry.removePlayer(player);
     }
 
     @Override
@@ -57,7 +63,9 @@ public class MessageController extends TextWebSocketHandler {
             return;
         }
 
-        handler.onMessageInternal(msg, session);
+        Player player = playerRegistry.getPlayerByMessageChannel(new WebSocketMessageChannel(session)).get();
+
+        handler.onMessageInternal(msg, player);
     }
 
 }
