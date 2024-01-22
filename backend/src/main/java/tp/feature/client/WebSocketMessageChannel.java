@@ -1,4 +1,4 @@
-package tp.feature.player;
+package tp.feature.client;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.web.socket.TextMessage;
@@ -9,7 +9,7 @@ import lombok.extern.java.Log;
 import java.io.IOException;
 
 @Log
-public class WebSocketMessageChannel implements PlayerMessageChannel {
+public class WebSocketMessageChannel implements ClientMessageChannel {
     private WebSocketSession websocket;
 
     public WebSocketMessageChannel(WebSocketSession websocket) {

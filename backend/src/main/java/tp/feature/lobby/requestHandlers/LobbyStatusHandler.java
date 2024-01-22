@@ -1,15 +1,13 @@
 package tp.feature.lobby.requestHandlers;
 
-import lombok.experimental.ExtensionMethod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.socket.WebSocketSession;
 import tp.communication.RequestMessageHandler;
 import tp.communication.MessageType;
 import tp.feature.lobby.Lobby;
 import tp.feature.lobby.LobbyRegistry;
-import tp.feature.player.Player;
-import tp.feature.player.PlayerRegistry;
+import tp.feature.client.Client;
+import tp.feature.client.ClientRepository;
 import tp.model.messages.request.RequestLobbyStatus;
 import tp.model.messages.response.ResponseLobbyStatus;
 
@@ -17,17 +15,17 @@ import java.util.Optional;
 
 @Controller
 public class LobbyStatusHandler implements RequestMessageHandler<RequestLobbyStatus> {
-    private final PlayerRegistry playerRegistry;
+    private final ClientRepository playerRegistry;
     private final LobbyRegistry lobbyRegistry;
 
     @Autowired
-    public LobbyStatusHandler(PlayerRegistry playerRegistry, LobbyRegistry lobbyRegistry) {
+    public LobbyStatusHandler(ClientRepository playerRegistry, LobbyRegistry lobbyRegistry) {
         this.playerRegistry = playerRegistry;
         this.lobbyRegistry = lobbyRegistry;
     }
 
     @Override
-    public void onMessage(RequestLobbyStatus message, Player sender) {
+    public void onMessage(RequestLobbyStatus message, Client sender) {
         switch(message.getContent().getAction()) {
             case JOIN -> handleJoinLobby(message, sender);
             case LEAVE -> handleLeaveLobby(message, sender);
@@ -40,7 +38,7 @@ public class LobbyStatusHandler implements RequestMessageHandler<RequestLobbySta
         return MessageType.LOBBY_STATUS;
     }
 
-    private void handleJoinLobby(RequestLobbyStatus message, Player sender) {
+    private void handleJoinLobby(RequestLobbyStatus message, Client sender) {
         String lobbyName = message.getContent().getName();
 
         Optional<Lobby> optionalLobby = lobbyRegistry.getLobbyByName(lobbyName);
@@ -58,7 +56,7 @@ public class LobbyStatusHandler implements RequestMessageHandler<RequestLobbySta
         sender.getMessageChannel().sendResponse(convertLobbyToResponseMessage(lobby));
     }
 
-    private void handleLeaveLobby(RequestLobbyStatus message, Player sender) {
+    private void handleLeaveLobby(RequestLobbyStatus message, Client sender) {
         String lobbyName = message.getContent().getName();
 
         Lobby lobby = lobbyRegistry.getLobbyByName(lobbyName).get();
@@ -72,7 +70,7 @@ public class LobbyStatusHandler implements RequestMessageHandler<RequestLobbySta
         }
 
         String hostName = lobby.getHost().get();
-        Optional<Player> optionalHostWebsocket = playerRegistry.getPlayerByName(hostName);
+        Optional<Client> optionalHostWebsocket = playerRegistry.getPlayerByName(hostName);
 
         optionalHostWebsocket.ifPresent(
                 player -> player.getMessageChannel().sendResponse(convertLobbyToResponseMessage(lobby))

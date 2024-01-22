@@ -9,9 +9,9 @@ import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
-import tp.feature.player.Player;
-import tp.feature.player.PlayerRegistry;
-import tp.feature.player.WebSocketMessageChannel;
+import tp.feature.client.Client;
+import tp.feature.client.ClientRepository;
+import tp.feature.client.WebSocketMessageChannel;
 import tp.model.messages.request.RequestMessage;
 
 import java.util.HashMap;
@@ -21,10 +21,10 @@ import java.util.List;
 @Controller
 public class MessageController extends TextWebSocketHandler {
     private final HashMap<MessageType, RequestMessageHandler<?>> handlers = new HashMap<>();
-    private final PlayerRegistry playerRegistry;
+    private final ClientRepository playerRegistry;
 
     @Autowired
-    public MessageController(List<RequestMessageHandler<?>> handlers, PlayerRegistry playerRegistry) {
+    public MessageController(List<RequestMessageHandler<?>> handlers, ClientRepository playerRegistry) {
         this.playerRegistry = playerRegistry;
         for (RequestMessageHandler<?> handler: handlers) {
             log.info("Registering handler for " + handler.getMessageType().toString());
@@ -34,7 +34,7 @@ public class MessageController extends TextWebSocketHandler {
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) {
-        playerRegistry.addPlayer(new Player(
+        playerRegistry.addPlayer(new Client(
                 new WebSocketMessageChannel(session),
                 session.getId()
         ));
@@ -42,7 +42,7 @@ public class MessageController extends TextWebSocketHandler {
 
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) {
-        Player player = playerRegistry.getPlayerByMessageChannel(new WebSocketMessageChannel(session)).get();
+        Client player = playerRegistry.getPlayerByMessageChannel(new WebSocketMessageChannel(session)).get();
         playerRegistry.removePlayer(player);
     }
 
@@ -63,7 +63,7 @@ public class MessageController extends TextWebSocketHandler {
             return;
         }
 
-        Player player = playerRegistry.getPlayerByMessageChannel(new WebSocketMessageChannel(session)).get();
+        Client player = playerRegistry.getPlayerByMessageChannel(new WebSocketMessageChannel(session)).get();
 
         handler.onMessageInternal(msg, player);
     }

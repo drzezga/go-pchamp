@@ -1,14 +1,12 @@
 package tp.feature.lobby.requestHandlers;
 
-import lombok.experimental.ExtensionMethod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.socket.WebSocketSession;
 import tp.feature.lobby.Lobby;
 import tp.feature.lobby.LobbyRegistry;
 import tp.communication.RequestMessageHandler;
 import tp.communication.MessageType;
-import tp.feature.player.Player;
+import tp.feature.client.Client;
 import tp.model.messages.request.RequestLobbyList;
 import tp.model.messages.response.ResponseLobbyList;
 
@@ -24,7 +22,7 @@ public class LobbyListHandler implements RequestMessageHandler<RequestLobbyList>
     }
 
     @Override
-    public void onMessage(RequestLobbyList message, Player sender) {
+    public void onMessage(RequestLobbyList message, Client sender) {
         Collection<Lobby> lobbies = lobbyRegistry.getAllLobbies();
 
         sender.getMessageChannel().sendResponse(new ResponseLobbyList(lobbies));
