@@ -16,7 +16,7 @@ public class ResponseLobbyStatus extends ResponseMessage {
     private Content content;
 
     public ResponseLobbyStatus() {
-        super(MessageType.LOBBY_STATUS, MessageStatus.OK);
+        super(MessageStatus.OK);
     }
 
     public ResponseLobbyStatus(Content content) {

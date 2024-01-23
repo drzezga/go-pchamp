@@ -14,7 +14,7 @@ public class ResponseGameMove extends ResponseMessage {
     private Content content;
 
     public ResponseGameMove(MessageStatus status, String player, Position position) {
-        super(MessageType.GAME_MOVE, status);
+        super(status);
         if (position == null) {
             this.content = null;
         } else {

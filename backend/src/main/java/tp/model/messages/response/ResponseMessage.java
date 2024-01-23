@@ -21,11 +21,9 @@ import tp.communication.MessageType;
         @JsonSubTypes.Type(value = ResponseReplayGet.class, name = "REPLAY_GET"),
 })
 public abstract class ResponseMessage {
-    public MessageType msg;
     public MessageStatus status;
 
-    public ResponseMessage(MessageType messageType, MessageStatus status) {
-        this.msg = messageType;
+    public ResponseMessage(MessageStatus status) {
         this.status = status;
     }
 }

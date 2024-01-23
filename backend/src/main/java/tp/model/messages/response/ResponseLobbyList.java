@@ -16,7 +16,7 @@ public class ResponseLobbyList extends ResponseMessage {
     private List<Lobby> content;
 
     public ResponseLobbyList(Collection<tp.feature.lobby.Lobby> lobbies) {
-        super(MessageType.LOBBY_LIST, MessageStatus.OK);
+        super(MessageStatus.OK);
         this.content = lobbies
                 .stream()
                 .map(lobby -> new Lobby(lobby.getLobbyName(), lobby.getPlayerCount()))

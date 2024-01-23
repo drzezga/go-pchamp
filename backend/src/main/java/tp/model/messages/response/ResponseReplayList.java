@@ -15,7 +15,7 @@ public class ResponseReplayList extends ResponseMessage {
     private List<ReplayMetadata> content;
 
     public ResponseReplayList() {
-        super(MessageType.REPLAY_LIST, MessageStatus.OK);
+        super(MessageStatus.OK);
     }
 
     @Data

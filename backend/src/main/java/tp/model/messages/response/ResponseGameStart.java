@@ -13,6 +13,6 @@ public class ResponseGameStart extends ResponseMessage {
     private GameSettings content;
 
     public ResponseGameStart(MessageStatus status) {
-        super(MessageType.GAME_START, status);
+        super(status);
     }
 }

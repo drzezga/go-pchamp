@@ -15,7 +15,7 @@ public class ResponseGameFinished extends ResponseMessage {
     private Content content;
 
     public ResponseGameFinished() {
-        super(MessageType.GAME_FINISHED, MessageStatus.OK);
+        super(MessageStatus.OK);
     }
 
     @Data

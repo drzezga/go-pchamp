@@ -5,6 +5,6 @@ import tp.communication.MessageType;
 
 public class ResponseGameLeave extends ResponseMessage {
     public ResponseGameLeave() {
-        super(MessageType.GAME_LEAVE, MessageStatus.OK);
+        super(MessageStatus.OK);
     }
 }

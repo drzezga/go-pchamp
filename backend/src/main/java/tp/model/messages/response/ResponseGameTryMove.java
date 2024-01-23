@@ -13,11 +13,11 @@ public class ResponseGameTryMove extends ResponseMessage {
     private Content content;
 
     public ResponseGameTryMove() {
-        super(MessageType.GAME_TRY_MOVE, MessageStatus.NOT_OK);
+        super(MessageStatus.NOT_OK);
     }
 
     public ResponseGameTryMove(String error) {
-        super(MessageType.GAME_TRY_MOVE, MessageStatus.NOT_OK);
+        super(MessageStatus.NOT_OK);
         content = new Content(error);
     }
 

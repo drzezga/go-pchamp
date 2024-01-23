@@ -17,7 +17,7 @@ public class ResponseReplayGet extends ResponseMessage {
     private Content content;
 
     public ResponseReplayGet(MessageStatus status) {
-        super(MessageType.REPLAY_GET, status);
+        super(status);
     }
 
     @Data

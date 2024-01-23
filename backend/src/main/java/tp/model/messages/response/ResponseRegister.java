@@ -12,11 +12,11 @@ public class ResponseRegister extends ResponseMessage {
 
 
     public ResponseRegister() {
-        super(MessageType.REGISTER, MessageStatus.OK);
+        super(MessageStatus.OK);
     }
 
     public ResponseRegister(MessageStatus status, String content) {
-        super(MessageType.REGISTER, status);
+        super(status);
         this.content = content;
     }
 }
