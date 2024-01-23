@@ -25,7 +25,7 @@ public class ClientRepository {
         nameToPlayerMap.remove(player.getName());
     }
 
-    public Optional<Client> getPlayerByName(String playerName) {
+    public Optional<Client> getClientByName(String playerName) {
         return Optional.ofNullable(nameToPlayerMap.get(playerName));
     }
 

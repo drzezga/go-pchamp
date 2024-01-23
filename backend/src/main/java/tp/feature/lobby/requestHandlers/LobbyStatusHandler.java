@@ -15,12 +15,12 @@ import java.util.Optional;
 
 @Controller
 public class LobbyStatusHandler implements RequestMessageHandler<RequestLobbyStatus> {
-    private final ClientRepository playerRegistry;
+    private final ClientRepository clientRepository;
     private final LobbyRegistry lobbyRegistry;
 
     @Autowired
     public LobbyStatusHandler(ClientRepository playerRegistry, LobbyRegistry lobbyRegistry) {
-        this.playerRegistry = playerRegistry;
+        this.clientRepository = playerRegistry;
         this.lobbyRegistry = lobbyRegistry;
     }
 
@@ -53,7 +53,17 @@ public class LobbyStatusHandler implements RequestMessageHandler<RequestLobbySta
             lobby.setHost(Optional.of(playerName));
         }
 
-        sender.getMessageChannel().sendResponse(convertLobbyToResponseMessage(lobby));
+        ResponseLobbyStatus response = convertLobbyToResponseMessage(lobby);
+
+        Client host = clientRepository.getClientByName(lobby.getHost().get()).get();
+        host.getMessageChannel().sendResponse(response);
+
+        if(lobby.getGuest().isEmpty()) {
+            return;
+        }
+
+        Client guest = clientRepository.getClientByName(lobby.getGuest().get()).get();
+        guest.getMessageChannel().sendResponse(response);
     }
 
     private void handleLeaveLobby(RequestLobbyStatus message, Client sender) {
@@ -62,7 +72,7 @@ public class LobbyStatusHandler implements RequestMessageHandler<RequestLobbySta
         Lobby lobby = lobbyRegistry.getLobbyByName(lobbyName).get();
         String senderName = sender.getName();
 
-        if(lobby.getHost().equals(senderName)) {
+        if(lobby.getHost().equals(Optional.of(senderName))) {
             lobby.setHost(lobby.getGuest());
             lobby.setGuest(Optional.empty());
         } else {
@@ -70,10 +80,10 @@ public class LobbyStatusHandler implements RequestMessageHandler<RequestLobbySta
         }
 
         String hostName = lobby.getHost().get();
-        Optional<Client> optionalHostWebsocket = playerRegistry.getPlayerByName(hostName);
+        Optional<Client> optionalHost = clientRepository.getClientByName(hostName);
 
-        optionalHostWebsocket.ifPresent(
-                player -> player.getMessageChannel().sendResponse(convertLobbyToResponseMessage(lobby))
+        optionalHost.ifPresent(
+                client -> client.getMessageChannel().sendResponse(convertLobbyToResponseMessage(lobby))
         );
 
         sender.getMessageChannel().sendResponse(new ResponseLobbyStatus());

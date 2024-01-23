@@ -15,8 +15,8 @@ public class ResponseRegister extends ResponseMessage {
         super(MessageType.REGISTER, MessageStatus.OK);
     }
 
-    public ResponseRegister(String content) {
-        super(MessageType.REGISTER, MessageStatus.OK);
+    public ResponseRegister(MessageStatus status, String content) {
+        super(MessageType.REGISTER, status);
         this.content = content;
     }
 }
