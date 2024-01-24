@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20cd921cfc2338e448c4ab8c22c1440c, type: 3}
-  m_Name: Username
+  m_Script: {fileID: 11500000, guid: b8e6584c81454111b8914f992738af04, type: 3}
+  m_Name: LobbyList
   m_EditorClassIdentifier: 
-  description: This SO stores the username of the player. By default it's an empty
-    string.
-  value: 
+  description: This SO stores the list of available lobbies as returned by the LOBBY_LIST
+    message.
+  value: []

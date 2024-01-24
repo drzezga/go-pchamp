@@ -1,6 +1,7 @@
 ﻿using Game.GameState;
 using ServerConnection.Messages;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace MainMenu.Handlers
 {
@@ -12,8 +13,8 @@ namespace MainMenu.Handlers
         [SerializeField]
         private ErrorSO errorSo;
 
-        [SerializeField]
-        private LobbySO lobbySo;
+        [FormerlySerializedAs("lobbySo")] [SerializeField]
+        private CurrentLobbySO currentLobbySo;
         
         private void OnEnable()
         {
@@ -29,12 +30,12 @@ namespace MainMenu.Handlers
         {
             if (message.status == ResponseStatus.Ok)
             {
-                lobbySo.Value = message.content;
+                currentLobbySo.Value = message.content;
             }
             else
             {
                 // Display the error
-                errorSo.Value = "Lobby error";
+                errorSo.DisplayError("Lobby error");
             }
         }
     }

@@ -2,6 +2,6 @@
 
 namespace Game.GameState
 {
-    public class LobbySO : SingleValueSO<LobbyDetails>
+    public class CurrentLobbySO : SingleValueSO<LobbyDetails>
     { }
 }

@@ -1,3 +1,4 @@
+using System;
 using ServerConnection.Messages;
 using TMPro;
 using UnityEngine;
@@ -12,6 +13,11 @@ namespace MainMenu
         private void OnEnable()
         {
             usernameSo.OnValueChanged += UsernameChanged;
+        }
+
+        private void OnDisable()
+        {
+            usernameSo.OnValueChanged -= UsernameChanged;
         }
 
         private void UsernameChanged(string newValue)

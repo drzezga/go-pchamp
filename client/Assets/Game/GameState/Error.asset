@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20cd921cfc2338e448c4ab8c22c1440c, type: 3}
-  m_Name: Username
+  m_Script: {fileID: 11500000, guid: f99702074d064fdebcc8853c2f7c6733, type: 3}
+  m_Name: Error
   m_EditorClassIdentifier: 
-  description: This SO stores the username of the player. By default it's an empty
-    string.
+  description: This SO stores the last received error. It is used for displaying
+    the error to the user when it is set.
   value: 

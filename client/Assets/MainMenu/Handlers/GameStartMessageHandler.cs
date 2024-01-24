@@ -1,5 +1,7 @@
-﻿using ServerConnection.Messages;
+﻿using Game.GameState;
+using ServerConnection.Messages;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
 namespace MainMenu.Handlers
@@ -8,6 +10,10 @@ namespace MainMenu.Handlers
     {
         [SerializeField]
         private MessageReceiverSO messageReceiverSo;
+
+        [SerializeField] private GameSettingsSO gameSettingsSo;
+
+        [SerializeField] private ErrorSO errorSo;
 
         private void OnEnable()
         {
@@ -21,14 +27,18 @@ namespace MainMenu.Handlers
 
         private void HandleMessage(GameStartResponseMessage message)
         {
-            // We have left the lobby
-            // Load the MainMenu scene
+            if (message.status == ResponseStatus.Ok)
+            {
+                gameSettingsSo.inGame = true;
+                gameSettingsSo.Value = message.content;
 
-            // OR
-
-            // We are joining a lobby
-            // Load the appropriate level scene
-            // TODO: Add dynamic size scenes
+                // TODO: Add dynamically-sized scene
+                SceneManager.LoadScene("GO_19x19");
+            }
+            else
+            {
+                errorSo.DisplayError("Error joining the game");
+            }
         }
 
     }

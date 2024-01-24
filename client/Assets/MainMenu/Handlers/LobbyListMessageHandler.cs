@@ -1,4 +1,5 @@
-﻿using ServerConnection.Messages;
+﻿using Game.GameState;
+using ServerConnection.Messages;
 using UnityEngine;
 
 namespace MainMenu.Handlers
@@ -7,6 +8,8 @@ namespace MainMenu.Handlers
     {
         [SerializeField]
         private MessageReceiverSO messageReceiverSo;
+
+        [SerializeField] private LobbyListSO lobbyListSo;
 
         private void OnEnable()
         {
@@ -20,7 +23,7 @@ namespace MainMenu.Handlers
 
         private void HandleMessage(LobbyListResponseMessage message)
         {
-            
+            lobbyListSo.Value = message.content;
         }
     }
 }
