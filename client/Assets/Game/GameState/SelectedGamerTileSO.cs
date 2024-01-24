@@ -4,4 +4,6 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "Data", menuName = "GO/SelectedGamerTileSO", order = 1)]
 public class SelectedGamerTileSO : SingleValueSO<GameObject>
-{ }
+{
+    
+}

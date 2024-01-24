@@ -22,7 +22,15 @@ namespace ServerConnection.Messages
             content = username;
         }
     }
-    
+
+    public class LobbyListRequestMessage : RequestMessage<NullMessageContent>
+    {
+        public LobbyListRequestMessage()
+        {
+            msg = MessageType.LobbyList;
+            content = null;
+        }
+    }
     public class LobbyJoinRequestMessage : RequestMessage<LobbyStatusRequestMessageContent>
     {
         public LobbyJoinRequestMessage(string lobbyName)

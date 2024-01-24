@@ -22,7 +22,7 @@ namespace ServerConnection.Messages
 
     public class RegisterResponseMessage : ResponseMessage<string> {}
     public class LobbyListResponseMessage : ResponseMessage<List<Lobby>> {}
-    public class LobbyStatusResponseMessage : ResponseMessage<LobbyStatusResponseMessageContent> {}
+    public class LobbyStatusResponseMessage : ResponseMessage<LobbyDetails> {}
     public class GameStartResponseMessage : ResponseMessage<GameSettings> {}
     public class GameLeaveResponseMessage : ResponseMessage<NullMessageContent> {}
     public class GameTryMoveResponseMessage : ResponseMessage<GameTryMoveResponseMessageContent> {}
@@ -55,7 +55,7 @@ namespace ServerConnection.Messages
     }
 
     [Serializable]
-    public class LobbyStatusResponseMessageContent
+    public class LobbyDetails
     {
         public string name;
         public List<LobbyPlayer> players;
