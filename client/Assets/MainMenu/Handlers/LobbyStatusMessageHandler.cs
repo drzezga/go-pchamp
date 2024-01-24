@@ -1,4 +1,5 @@
-﻿using ServerConnection.Messages;
+﻿using Game.GameState;
+using ServerConnection.Messages;
 using UnityEngine;
 
 namespace MainMenu.Handlers
@@ -8,19 +9,33 @@ namespace MainMenu.Handlers
         [SerializeField]
         private MessageReceiverSO messageReceiverSo;
 
+        [SerializeField]
+        private ErrorSO errorSo;
+
+        [SerializeField]
+        private LobbySO lobbySo;
+        
         private void OnEnable()
         {
-            messageReceiverSo.OnLobbyStatusResponseMessage += HandleMessage;
+            messageReceiverSo.OnLobbyStatusResponseMessage += Handle;
         }
 
         private void OnDisable()
         {
-            messageReceiverSo.OnLobbyStatusResponseMessage -= HandleMessage;
+            messageReceiverSo.OnLobbyStatusResponseMessage -= Handle;
         }
 
-        private void HandleMessage(LobbyStatusResponseMessage message)
+        private void Handle(LobbyStatusResponseMessage message)
         {
-            
+            if (message.status == ResponseStatus.Ok)
+            {
+                lobbySo.Value = message.content;
+            }
+            else
+            {
+                // Display the error
+                errorSo.Value = "Lobby error";
+            }
         }
     }
 }
