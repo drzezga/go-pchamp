@@ -1,23 +1,37 @@
 package tp.feature.game;
 
-import lombok.Data;
-import tp.feature.game.core.rules.RuleValidator;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
+import tp.feature.game.rules.CannotPlaceStoneOnOccupiedTile;
+import tp.feature.game.rules.MustPlayWithinBounds;
+import tp.feature.game.rules.PlayingAddsAStone;
+import tp.feature.game.rules.RuleValidator;
 import tp.model.Board;
 import tp.model.Move;
+import tp.model.messages.shared.GameSettings;
 
 import java.util.ArrayList;
 
-@Data
+
+@Getter
+@Setter(AccessLevel.PACKAGE)
 public class Game {
     private Board board;
     private final RuleValidator rules = new RuleValidator();
     private ArrayList<Move> moves = new ArrayList<>();
+    private GameSettings gameSettings;
 
-    private Player whitePlayer;
-    private Player blackPlayer;
+    private String whitePlayer;
+    private String blackPlayer;
 
+    public Game() {
+        rules.addRule(new MustPlayWithinBounds());
+        rules.addRule(new CannotPlaceStoneOnOccupiedTile());
+        rules.addRule(new PlayingAddsAStone());
+    }
 
-//    private final Map<Piece, String> playerPieces;
+    //    private final Map<Piece, String> playerPieces;
 //
 //    public Game(Board board) {
 //        this.board = board;

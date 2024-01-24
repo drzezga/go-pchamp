@@ -1,11 +1,12 @@
 package tp.feature.lobby;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
 
 import java.util.Optional;
 
-@Data
+@Getter
+@Setter(AccessLevel.PACKAGE)
+@ToString
 @AllArgsConstructor
 public class Lobby {
     String lobbyName;

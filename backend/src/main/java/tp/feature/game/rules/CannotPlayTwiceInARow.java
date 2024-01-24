@@ -1,4 +1,4 @@
-package tp.feature.game.core.rules;
+package tp.feature.game.rules;
 
 import tp.model.Board;
 import tp.model.Move;

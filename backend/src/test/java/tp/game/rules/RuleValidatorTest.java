@@ -3,9 +3,9 @@ package tp.game.rules;
 import org.junit.jupiter.api.Test;
 import tp.model.Board;
 import tp.model.Piece;
-import tp.feature.game.core.rules.Rule;
-import tp.feature.game.core.rules.RuleBrokenException;
-import tp.feature.game.core.rules.RuleValidator;
+import tp.feature.game.rules.Rule;
+import tp.feature.game.rules.RuleBrokenException;
+import tp.feature.game.rules.RuleValidator;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;

@@ -6,5 +6,5 @@ import lombok.Data;
 public class GameSettings {
     private Integer size;
     private Boolean botOpponent;
-    private String staringPlayer;
+    private String startingPlayer;
 }

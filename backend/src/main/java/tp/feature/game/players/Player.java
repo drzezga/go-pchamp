@@ -1,4 +1,4 @@
-package tp.feature.game;
+package tp.feature.game.players;
 
 import tp.feature.game.Game;
 

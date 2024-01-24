@@ -3,7 +3,7 @@ package tp.feature.lobby.requestHandlers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import tp.feature.lobby.Lobby;
-import tp.feature.lobby.LobbyRegistry;
+import tp.feature.lobby.LobbyController;
 import tp.communication.RequestMessageHandler;
 import tp.communication.MessageType;
 import tp.feature.client.Client;
@@ -14,10 +14,10 @@ import java.util.Collection;
 
 @Controller
 public class LobbyListHandler implements RequestMessageHandler<RequestLobbyList> {
-    private final LobbyRegistry lobbyRegistry;
+    private final LobbyController lobbyRegistry;
 
     @Autowired
-    public LobbyListHandler(LobbyRegistry lobbyRegistry) {
+    public LobbyListHandler(LobbyController lobbyRegistry) {
         this.lobbyRegistry = lobbyRegistry;
     }
 

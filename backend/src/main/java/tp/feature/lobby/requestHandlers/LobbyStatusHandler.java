@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import tp.communication.RequestMessageHandler;
 import tp.communication.MessageType;
 import tp.feature.lobby.Lobby;
-import tp.feature.lobby.LobbyRegistry;
+import tp.feature.lobby.LobbyController;
 import tp.feature.client.Client;
 import tp.feature.client.ClientRepository;
 import tp.model.messages.request.RequestLobbyStatus;
@@ -16,12 +16,12 @@ import java.util.Optional;
 @Controller
 public class LobbyStatusHandler implements RequestMessageHandler<RequestLobbyStatus> {
     private final ClientRepository clientRepository;
-    private final LobbyRegistry lobbyRegistry;
+    private final LobbyController lobbyController;
 
     @Autowired
-    public LobbyStatusHandler(ClientRepository playerRegistry, LobbyRegistry lobbyRegistry) {
+    public LobbyStatusHandler(ClientRepository playerRegistry, LobbyController lobbyRegistry) {
         this.clientRepository = playerRegistry;
-        this.lobbyRegistry = lobbyRegistry;
+        this.lobbyController = lobbyRegistry;
     }
 
     @Override
@@ -30,7 +30,7 @@ public class LobbyStatusHandler implements RequestMessageHandler<RequestLobbySta
             case JOIN -> handleJoinLobby(message, sender);
             case LEAVE -> handleLeaveLobby(message, sender);
         }
-        System.out.println(lobbyRegistry.getAllLobbies());
+        System.out.println(lobbyController.getAllLobbies());
     }
 
     @Override
@@ -40,28 +40,15 @@ public class LobbyStatusHandler implements RequestMessageHandler<RequestLobbySta
 
     private void handleJoinLobby(RequestLobbyStatus message, Client sender) {
         String lobbyName = message.getContent().getName();
-
-        Optional<Lobby> optionalLobby = lobbyRegistry.getLobbyByName(lobbyName);
-        String playerName = sender.getName();
-
-        Lobby lobby;
-        if(optionalLobby.isPresent()) {
-            lobby = optionalLobby.get();
-            lobby.setGuest(Optional.of(playerName));
-        } else {
-            lobby = lobbyRegistry.addNewLobby(lobbyName);
-            lobby.setHost(Optional.of(playerName));
-        }
+        Lobby lobby = lobbyController.joinLobby(lobbyName, sender);
 
         ResponseLobbyStatus response = convertLobbyToResponseMessage(lobby);
-
         Client host = clientRepository.getClientByName(lobby.getHost().get()).get();
         host.getMessageChannel().sendResponse(response);
 
         if(lobby.getGuest().isEmpty()) {
             return;
         }
-
         Client guest = clientRepository.getClientByName(lobby.getGuest().get()).get();
         guest.getMessageChannel().sendResponse(response);
     }
@@ -69,24 +56,15 @@ public class LobbyStatusHandler implements RequestMessageHandler<RequestLobbySta
     private void handleLeaveLobby(RequestLobbyStatus message, Client sender) {
         String lobbyName = message.getContent().getName();
 
-        Lobby lobby = lobbyRegistry.getLobbyByName(lobbyName).get();
-        String senderName = sender.getName();
+        Lobby lobby = lobbyController.leaveLobby(lobbyName, sender).get();
 
-        if(lobby.getHost().equals(Optional.of(senderName))) {
-            lobby.setHost(lobby.getGuest());
-            lobby.setGuest(Optional.empty());
-        } else {
-            lobby.setGuest(Optional.empty());
-        }
+        sender.getMessageChannel().sendResponse(new ResponseLobbyStatus());
 
         String hostName = lobby.getHost().get();
         Optional<Client> optionalHost = clientRepository.getClientByName(hostName);
-
         optionalHost.ifPresent(
                 client -> client.getMessageChannel().sendResponse(convertLobbyToResponseMessage(lobby))
         );
-
-        sender.getMessageChannel().sendResponse(new ResponseLobbyStatus());
     }
 
     private ResponseLobbyStatus convertLobbyToResponseMessage(Lobby lobby) {
