@@ -32,6 +32,8 @@ public class GameLeaveHandler implements RequestMessageHandler<RequestGameLeave>
         Client whitePlayer = clientRepository.getClientByName(game.getWhitePlayer()).get();
         Client blackPlayer = clientRepository.getClientByName(game.getBlackPlayer()).get();
 
+        gameController.destroyGame(game);
+
         var response = new ResponseGameLeave();
         whitePlayer.getMessageChannel().sendResponse(response);
         blackPlayer.getMessageChannel().sendResponse(response);
