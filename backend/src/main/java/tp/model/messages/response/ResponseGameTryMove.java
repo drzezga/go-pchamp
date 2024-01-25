@@ -7,17 +7,15 @@ import lombok.Setter;
 import tp.communication.MessageStatus;
 import tp.communication.MessageType;
 
-public class ResponseGameTryMove extends ResponseMessage {
-    @Getter
-    @Setter
-    private Content content;
+public class ResponseGameTryMove extends ResponseMessage<ResponseGameTryMove.Content> {
 
     public ResponseGameTryMove() {
-        super(MessageStatus.NOT_OK);
+        this.messageType = MessageType.GAME_TRY_MOVE;
+        this.status = MessageStatus.NOT_OK;
     }
 
     public ResponseGameTryMove(String error) {
-        super(MessageStatus.NOT_OK);
+        this();
         content = new Content(error);
     }
 

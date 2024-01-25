@@ -9,13 +9,11 @@ import tp.model.messages.shared.GamePlayer;
 
 import java.util.List;
 
-public class ResponseReplayList extends ResponseMessage {
-    @Getter
-    @Setter
-    private List<ReplayMetadata> content;
+public class ResponseReplayList extends ResponseMessage<List<ResponseReplayList.ReplayMetadata>> {
 
     public ResponseReplayList() {
-        super(MessageStatus.OK);
+        this.messageType = MessageType.REPLAY_LIST;
+        this.status = MessageStatus.OK;
     }
 
     @Data

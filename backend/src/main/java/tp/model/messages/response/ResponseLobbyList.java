@@ -10,13 +10,12 @@ import tp.communication.MessageType;
 import java.util.Collection;
 import java.util.List;
 
-public class ResponseLobbyList extends ResponseMessage {
-    @Getter
-    @Setter
-    private List<Lobby> content;
+public class ResponseLobbyList extends ResponseMessage<List<ResponseLobbyList.Lobby>> {
 
     public ResponseLobbyList(Collection<tp.feature.lobby.Lobby> lobbies) {
-        super(MessageStatus.OK);
+        this.messageType = MessageType.LOBBY_LIST;
+        this.status = MessageStatus.OK;
+
         this.content = lobbies
                 .stream()
                 .map(lobby -> new Lobby(lobby.getLobbyName(), lobby.getPlayerCount()))

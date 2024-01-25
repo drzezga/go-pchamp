@@ -5,18 +5,15 @@ import lombok.Setter;
 import tp.communication.MessageStatus;
 import tp.communication.MessageType;
 
-public class ResponseRegister extends ResponseMessage {
-    @Getter
-    @Setter
-    private String content;
-
+public class ResponseRegister extends ResponseMessage<String> {
 
     public ResponseRegister() {
-        super(MessageStatus.OK);
+        this.messageType = MessageType.REGISTER;
+        this.status = MessageStatus.OK;
     }
 
     public ResponseRegister(MessageStatus status, String content) {
-        super(status);
+        this();
         this.content = content;
     }
 }

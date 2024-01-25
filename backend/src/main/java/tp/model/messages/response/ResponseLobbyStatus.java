@@ -10,13 +10,11 @@ import tp.communication.MessageType;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ResponseLobbyStatus extends ResponseMessage {
-    @Getter
-    @Setter
-    private Content content;
+public class ResponseLobbyStatus extends ResponseMessage<ResponseLobbyStatus.Content> {
 
     public ResponseLobbyStatus() {
-        super(MessageStatus.OK);
+        this.messageType = MessageType.LOBBY_STATUS;
+        this.status = MessageStatus.OK;
     }
 
     public ResponseLobbyStatus(Content content) {

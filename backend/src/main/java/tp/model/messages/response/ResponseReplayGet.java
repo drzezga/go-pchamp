@@ -11,13 +11,11 @@ import tp.model.messages.shared.GameSettings;
 
 import java.util.List;
 
-public class ResponseReplayGet extends ResponseMessage {
-    @Getter
-    @Setter
-    private Content content;
+public class ResponseReplayGet extends ResponseMessage<ResponseReplayGet.Content> {
 
     public ResponseReplayGet(MessageStatus status) {
-        super(status);
+        this.messageType = MessageType.REPLAY_GET;
+        this.status = status;
     }
 
     @Data

@@ -13,6 +13,7 @@ import tp.feature.client.Client;
 import tp.feature.client.ClientRepository;
 import tp.feature.client.WebSocketMessageChannel;
 import tp.model.messages.request.RequestMessage;
+import tp.model.messages.response.ResponseMessage;
 
 import java.util.HashMap;
 import java.util.List;
@@ -65,7 +66,22 @@ public class MessageController extends TextWebSocketHandler {
 
         Client player = playerRegistry.getPlayerByMessageChannel(new WebSocketMessageChannel(session)).get();
 
-        handler.onMessageInternal(msg, player);
+        try {
+            handler.onMessageInternal(msg, player);
+        } catch(Exception e) {
+            log.warning(String.format(
+                    "An error occurred while processing message %s: %s",
+                    msg.getType(),
+                    e
+            ));
+            player.getMessageChannel().sendResponse(
+                    ResponseMessage.builder()
+                            .messageType(msg.getType())
+                            .status(MessageStatus.NOT_OK)
+                            .error(e.getMessage())
+                            .build()
+            );
+        }
     }
 
 }

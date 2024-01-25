@@ -8,13 +8,12 @@ import tp.communication.MessageStatus;
 import tp.communication.MessageType;
 import tp.model.Position;
 
-public class ResponseGameMove extends ResponseMessage {
-    @Getter
-    @Setter
-    private Content content;
+public class ResponseGameMove extends ResponseMessage<ResponseGameMove.Content> {
 
     public ResponseGameMove(MessageStatus status, String player, Position position) {
-        super(status);
+        this.messageType = MessageType.GAME_MOVE;
+        this.status =  status;
+
         if (position == null) {
             this.content = null;
         } else {

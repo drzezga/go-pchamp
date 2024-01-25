@@ -9,13 +9,14 @@ import tp.model.messages.shared.GamePlayer;
 
 import java.util.List;
 
-public class ResponseGameFinished extends ResponseMessage {
+public class ResponseGameFinished extends ResponseMessage<ResponseGameFinished.Content> {
     @Getter
     @Setter
     private Content content;
 
     public ResponseGameFinished() {
-        super(MessageStatus.OK);
+        this.messageType = MessageType.GAME_FINISHED;
+        this.status =  MessageStatus.OK;
     }
 
     @Data
