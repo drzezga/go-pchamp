@@ -1,4 +1,4 @@
-package tp.game;
+package tp.feature.game;
 
 import org.junit.jupiter.api.Test;
 import tp.model.Board;

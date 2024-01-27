@@ -10,14 +10,14 @@ public class ClientRepository {
     private HashMap<String, Client> nameToPlayerMap = new HashMap<>();
     private HashMap<ClientMessageChannel, Client> messageChannelPlayerMap = new HashMap<>();
 
-    public void addPlayer(Client player) {
+    public void addClient(Client player) {
         messageChannelPlayerMap.put(player.getMessageChannel(), player);
         nameToPlayerMap.put(player.getName(), player);
     }
 
     public void renamePlayer(Client player, String newName) {
         removePlayer(player);
-        addPlayer(new Client(player.getMessageChannel(), newName));
+        addClient(new Client(player.getMessageChannel(), newName));
     }
 
     public void removePlayer(Client player) {

@@ -35,7 +35,7 @@ public class MessageController extends TextWebSocketHandler {
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) {
-        playerRegistry.addPlayer(new Client(
+        playerRegistry.addClient(new Client(
                 new WebSocketMessageChannel(session),
                 session.getId()
         ));

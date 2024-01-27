@@ -1,4 +1,4 @@
-package tp.messages.response;
+package tp.communication.messages.response;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

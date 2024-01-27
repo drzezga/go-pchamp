@@ -8,7 +8,6 @@ import java.util.ArrayList;
 public class Board implements Cloneable {
     private final int size;
     private final Piece[][] pieces;
-    private final ArrayList<Move> moves = new ArrayList<>();
 
     public Board(int size) {
         this.size = size;
@@ -35,10 +34,6 @@ public class Board implements Cloneable {
         return pieces[x][y];
     }
 
-    public void addMove(Move move) {
-        this.moves.add(move);
-    }
-
     @Override
     public Board clone() {
         Board board = new Board(this.size);
@@ -47,7 +42,29 @@ public class Board implements Cloneable {
                 board.setPiece(x, y, getPiece(x, y));
             }
         }
-        board.moves.addAll(moves);
         return board;
     }
+
+    @Override
+    public String toString() {
+        var builder = new StringBuilder();
+
+        for(int y = 0; y < size; y++) {
+            builder.append('[');
+
+            for(int x = 0; x < size; x++) {
+                boolean isPieceWhite = getPiece(x, y).equals(Piece.WHITE);
+                builder.append(isPieceWhite ? 'W' : 'B');
+                if(x < size - 1) {
+                    builder.append(' ');
+                }
+            }
+
+            builder.append("]\n");
+        }
+
+        return builder.toString();
+    }
+
+
 }

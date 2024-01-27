@@ -1,19 +1,18 @@
 package tp.feature.game.rules;
 
-import tp.model.Board;
+import tp.feature.game.Game;
 import tp.model.Move;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class RuleValidator {
+public class GameRuleApplicator {
     protected ArrayList<Rule> ruleList = new ArrayList<>();
 
-    public Board validate(Board board, Move move) throws RuleBrokenException {
+    public void applyMove(Game game, Move move) throws RuleBrokenException {
         for (Rule rule : ruleList) {
-            rule.modify(board, move);
+            rule.apply(game, move);
         }
-        return board;
     }
 
     public void addRule(Rule rule) {

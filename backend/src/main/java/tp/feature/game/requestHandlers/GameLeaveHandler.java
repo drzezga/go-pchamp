@@ -9,7 +9,6 @@ import tp.feature.client.Client;
 import tp.feature.client.ClientRepository;
 import tp.feature.game.Game;
 import tp.feature.game.GameController;
-import tp.feature.lobby.LobbyController;
 import tp.model.messages.request.RequestGameLeave;
 import tp.model.messages.response.ResponseGameLeave;
 
@@ -27,10 +26,10 @@ public class GameLeaveHandler implements RequestMessageHandler<RequestGameLeave>
 
     @Override
     public void onMessage(RequestGameLeave message, Client sender) {
-        Game game = gameController.getGameByClient(sender).get();
+        Game game = gameController.getGameByClient(sender);
 
-        Client whitePlayer = clientRepository.getClientByName(game.getWhitePlayer()).get();
-        Client blackPlayer = clientRepository.getClientByName(game.getBlackPlayer()).get();
+        Client whitePlayer = clientRepository.getClientByName(game.getWhitePlayerName()).get();
+        Client blackPlayer = clientRepository.getClientByName(game.getBlackPlayerName()).get();
 
         gameController.destroyGame(game);
 

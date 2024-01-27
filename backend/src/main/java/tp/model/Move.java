@@ -1,5 +1,7 @@
 package tp.model;
 
-public record Move(Position position, Piece piece) {
+import java.util.Optional;
+
+public record Move(Optional<Position> position, Piece piece) {
 
 }
