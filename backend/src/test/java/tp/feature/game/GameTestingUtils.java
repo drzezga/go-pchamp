@@ -25,7 +25,7 @@ public class GameTestingUtils {
 
     public static Game createGameFromArray(int[][] boardElements) {
         Game game = new Game();
-        game.setBoard(createBoardFromStrings(boardElements));
+        game.setCurrentBoardState(createBoardFromStrings(boardElements));
         return game;
     }
 

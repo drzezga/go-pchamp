@@ -1,12 +1,14 @@
 package tp.model;
 
 import lombok.Getter;
+import org.springframework.util.SerializationUtils;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.Arrays;
 
 @Getter
-public class Board implements Cloneable {
+
+public class Board implements Serializable, Cloneable {
     private final int size;
     private final Piece[][] pieces;
 
@@ -43,13 +45,7 @@ public class Board implements Cloneable {
 
     @Override
     public Board clone() {
-        Board board = new Board(this.size);
-        for (int x = 0; x < size; x++) {
-            for (int y = 0; y < size; y++) {
-                board.setPiece(x, y, getPiece(x, y));
-            }
-        }
-        return board;
+        return SerializationUtils.clone(this);
     }
 
     @Override

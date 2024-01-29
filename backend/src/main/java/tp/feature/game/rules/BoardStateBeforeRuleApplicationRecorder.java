@@ -3,9 +3,9 @@ package tp.feature.game.rules;
 import tp.feature.game.Game;
 import tp.model.Move;
 
-public class MoveIsRecorded implements GameRule {
+public class BoardStateBeforeRuleApplicationRecorder implements GameRule {
     @Override
     public void apply(Game game, Move move) throws RuleBrokenException {
-        game.getMoves().add(move);
+        game.setBoardStateBeforeRuleApplication(game.getCurrentBoardState().clone());
     }
 }

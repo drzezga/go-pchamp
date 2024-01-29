@@ -3,21 +3,21 @@ package tp.feature.game.rules;
 import tp.feature.game.Game;
 import tp.model.Move;
 
-public class CannotPlaceStoneOnOccupiedTile implements GameRule {
+public class KoRule implements GameRule {
     @Override
     public void apply(Game game, Move move) throws RuleBrokenException {
         if(move.position().isEmpty()) {
             return;
         }
 
-        if(game.getCurrentBoardState().getPiece(move.position().get()) != null) {
-            throw new CannotPlaceStoneOnOccupiedTile.Exception("Cannot place stone on occupied tile!");
+        if(game.getPreviousBoardState().equals(game.getCurrentBoardState())) {
+            throw new KoRule.Exception();
         }
     }
 
     public static class Exception extends RuleBrokenException {
-        public Exception(String message) {
-            super(message);
+        public Exception() {
+            super("This move violates the ko rule");
         }
     }
 }

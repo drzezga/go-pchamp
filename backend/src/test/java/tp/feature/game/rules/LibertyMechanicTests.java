@@ -39,7 +39,7 @@ public class LibertyMechanicTests {
                 {0, 1, 0}
         });
 
-        assertEquals(expected, game.getBoard());
+        assertEquals(expected, game.getCurrentBoardState());
     }
 
     @Test
@@ -58,7 +58,7 @@ public class LibertyMechanicTests {
                 {0, 0, 0}
         });
 
-        assertEquals(expected, game.getBoard());
+        assertEquals(expected, game.getCurrentBoardState());
     }
 
     @Test
@@ -77,7 +77,7 @@ public class LibertyMechanicTests {
                 {1, 0, 1}
         });
 
-        assertEquals(expected, game.getBoard());
+        assertEquals(expected, game.getCurrentBoardState());
     }
 
     @Test
@@ -108,7 +108,7 @@ public class LibertyMechanicTests {
                 {0, 0, 1, 0, 0, 0, 1, 1, 1}
         });
 
-        assertEquals(expected, game.getBoard());
+        assertEquals(expected, game.getCurrentBoardState());
     }
 
     @Test
@@ -131,7 +131,7 @@ public class LibertyMechanicTests {
                 {0, 0, 0, 0, 0}
         });
 
-        assertEquals(expected, game.getBoard());
+        assertEquals(expected, game.getCurrentBoardState());
     }
 
     @Test
@@ -154,6 +154,6 @@ public class LibertyMechanicTests {
                 {0, 2, 2, 2, 0}
         });
 
-        assertEquals(expected, game.getBoard());
+        assertEquals(expected, game.getCurrentBoardState());
     }
 }

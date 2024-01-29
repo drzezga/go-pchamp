@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import tp.feature.client.Client;
 import tp.feature.client.ClientRepository;
-import tp.feature.game.rules.RuleBrokenException;
 import tp.feature.lobby.Lobby;
 import tp.model.Board;
 import tp.model.Move;
@@ -63,7 +62,7 @@ public class GameController {
         game.makeMove(move);
 
 //        game.getBoard().setPiece(move.position(), playerPiece);
-        System.out.println(game.getBoard());
+        System.out.println(game.getCurrentBoardState());
         updateCurrentPlayerTurn(game);
     }
 
@@ -81,7 +80,7 @@ public class GameController {
         var game = new Game();
         game.setGameSettings(settings);
 
-        game.setBoard(new Board(settings.getSize()));
+        game.setCurrentBoardState(new Board(settings.getSize()));
 
         Client host = clientRepository.getClientByName(lobby.getHost().get()).get();
         Client guest = clientRepository.getClientByName(lobby.getGuest().get()).get();

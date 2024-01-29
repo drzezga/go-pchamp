@@ -12,7 +12,7 @@ import tp.model.Position;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CapturingMechanic implements Rule {
+public class CapturingMechanic implements GameRule {
     private static final List<Position> NEIGHBOR_OFFSETS = List.of(
             new Position( 0, 1),
             new Position( 0,-1),
@@ -22,22 +22,34 @@ public class CapturingMechanic implements Rule {
 
     @Override
     public void apply(Game game, Move move) throws RuleBrokenException {
-        Board board = game.getBoard();
-        List<PieceGroup> groups = getPieceGroups(board)
-                .stream().filter(group -> group.getColor() != move.piece())
-                .toList();
+        Board boardClone = game.getCurrentBoardState().clone();
+        List<PieceGroup> groups = getPieceGroups(boardClone);
 
-        for(PieceGroup group : groups) {
-            if(!shouldGroupBeCaptured(group, board)) {
+        List<PieceGroup> opponentGroups = groups.stream().filter(group -> group.getColor() != move.piece()).toList();
+
+        boolean capturedAGroup = false;
+        for(PieceGroup opponentGroup : opponentGroups) {
+            if(!shouldGroupBeCaptured(opponentGroup, boardClone)) {
                 continue;
             }
 
-            captureGroup(group, board);
+            captureGroup(opponentGroup, boardClone);
 
-            int groupSize = group.getPositions().size();
+            int groupSize = opponentGroup.getPositions().size();
             switch(move.piece()) {
                 case BLACK -> game.setNumberPiecesCapturedByBlack(game.getNumberPiecesCapturedByBlack() + groupSize);
                 case WHITE -> game.setNumberPiecesCapturedByWhite(game.getNumberPiecesCapturedByWhite() + groupSize);
+            }
+            capturedAGroup = true;
+        }
+        if(capturedAGroup) {
+            return;
+        }
+
+        List<PieceGroup> playerGroups = groups.stream().filter(group -> group.getColor() == move.piece()).toList();
+        for(PieceGroup playerGroup : playerGroups) {
+            if(shouldGroupBeCaptured(playerGroup, boardClone)) {
+                throw new CapturingMechanic.CannotDoSuicideMoveException();
             }
         }
     }
@@ -217,5 +229,11 @@ public class CapturingMechanic implements Rule {
     private class PieceGroup {
         private Piece color;
         private List<Position> positions;
+    }
+
+    public static class CannotDoSuicideMoveException extends RuleBrokenException {
+        public CannotDoSuicideMoveException() {
+            super("Cannot place a piece where it would result in immediate capture of own pieces");
+        }
     }
 }

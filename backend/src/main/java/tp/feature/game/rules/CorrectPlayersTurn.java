@@ -4,9 +4,7 @@ import tp.feature.game.Game;
 import tp.model.Move;
 import tp.model.Piece;
 
-import java.util.List;
-
-public class CorrectPlayersTurn implements Rule {
+public class CorrectPlayersTurn implements GameRule {
     @Override
     public void apply(Game game, Move move) throws RuleBrokenException {
         if(!game.getCurrentPlayer().equals(move.piece())) {
