@@ -22,18 +22,18 @@ public class CapturingMechanic implements GameRule {
 
     @Override
     public void apply(Game game, Move move) throws RuleBrokenException {
-        Board boardClone = game.getCurrentBoardState().clone();
-        List<PieceGroup> groups = getPieceGroups(boardClone);
+        Board board = game.getCurrentBoardState();
+        List<PieceGroup> groups = getPieceGroups(board);
 
         List<PieceGroup> opponentGroups = groups.stream().filter(group -> group.getColor() != move.piece()).toList();
 
         boolean capturedAGroup = false;
         for(PieceGroup opponentGroup : opponentGroups) {
-            if(!shouldGroupBeCaptured(opponentGroup, boardClone)) {
+            if(!shouldGroupBeCaptured(opponentGroup, board)) {
                 continue;
             }
 
-            captureGroup(opponentGroup, boardClone);
+            captureGroup(opponentGroup, board);
 
             int groupSize = opponentGroup.getPositions().size();
             switch(move.piece()) {
@@ -48,7 +48,7 @@ public class CapturingMechanic implements GameRule {
 
         List<PieceGroup> playerGroups = groups.stream().filter(group -> group.getColor() == move.piece()).toList();
         for(PieceGroup playerGroup : playerGroups) {
-            if(shouldGroupBeCaptured(playerGroup, boardClone)) {
+            if(shouldGroupBeCaptured(playerGroup, board)) {
                 throw new CapturingMechanic.CannotDoSuicideMoveException();
             }
         }

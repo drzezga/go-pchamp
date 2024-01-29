@@ -6,7 +6,7 @@ import tp.model.Move;
 public class KoRule implements GameRule {
     @Override
     public void apply(Game game, Move move) throws RuleBrokenException {
-        if(move.position().isEmpty()) {
+        if(move.position() == null) {
             return;
         }
 

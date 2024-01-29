@@ -31,25 +31,25 @@ public class GameTests {
         });
 
         game.makeMove(new Move(
-                Optional.of(new Position(0, 0)),
+                new Position(0, 0),
                 Piece.BLACK
         ));
         assertThrows(
                 CannotPlaceStoneOnOccupiedTile.Exception.class,
                 () -> game.makeMove(new Move(
-                        Optional.of(new Position(0, 0)),
+                        new Position(0, 0),
                         Piece.WHITE
                 ))
         );
 
         game.makeMove(new Move(
-                Optional.of(new Position(0, 1)),
+                new Position(0, 1),
                 Piece.WHITE
         ));
         assertThrows(
                 CannotPlaceStoneOnOccupiedTile.Exception.class,
                 () -> game.makeMove(new Move(
-                        Optional.of(new Position(0, 0)),
+                        new Position(0, 0),
                         Piece.BLACK
                 ))
         );
@@ -57,7 +57,7 @@ public class GameTests {
         assertThrows(
                 CannotPlaceStoneOnOccupiedTile.Exception.class,
                 () -> game.makeMove(new Move(
-                        Optional.of(new Position(0, 1)),
+                        new Position(0, 1),
                         Piece.WHITE
                 ))
         );
@@ -78,14 +78,14 @@ public class GameTests {
         });
 
         game.makeMove(new Move(
-                Optional.of(new Position(0, 0)),
+                new Position(0, 0),
                 Piece.BLACK
         ));
 
         assertThrows(
                 CorrectPlayersTurn.Exception.class,
                 () -> game.makeMove(new Move(
-                        Optional.of(new Position(0, 1)),
+                        new Position(0, 1),
                         Piece.BLACK
                 ))
         );
@@ -108,13 +108,13 @@ public class GameTests {
         assertThrows(
                 CorrectPlayersTurn.Exception.class,
                 () -> game.makeMove(new Move(
-                        Optional.of(new Position(0, 1)),
+                        new Position(0, 1),
                         Piece.WHITE
                 ))
         );
 
         game.makeMove(new Move(
-                Optional.empty(),
+                null,
                 Piece.BLACK
         ));
     }
@@ -128,9 +128,9 @@ public class GameTests {
         });
 
         assertFalse(game.isFinished());
-        game.makeMove(new Move(Optional.empty(), Piece.BLACK));
+        game.makeMove(new Move(null, Piece.BLACK));
         assertFalse(game.isFinished());
-        game.makeMove(new Move(Optional.empty(), Piece.WHITE));
+        game.makeMove(new Move(null, Piece.WHITE));
         assertTrue(game.isFinished());
     }
 

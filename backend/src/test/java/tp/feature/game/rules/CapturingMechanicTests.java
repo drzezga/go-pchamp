@@ -12,14 +12,14 @@ import tp.model.Position;
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.Optional;
 
-public class LibertyMechanicTests {
-    private CapturingMechanic libertyMechanic = new CapturingMechanic();
+public class CapturingMechanicTests {
+    private CapturingMechanic capturingMechanic = new CapturingMechanic();
     private Move someBlackMove = new Move(
-            Optional.of(new Position(0, 0)),
+            new Position(0, 0),
             Piece.BLACK
     );
     private Move someWhiteMove = new Move(
-            Optional.of(new Position(0, 0)),
+            new Position(0, 0),
             Piece.WHITE
     );
 
@@ -31,7 +31,7 @@ public class LibertyMechanicTests {
                 {0, 1, 0}
         });
 
-        libertyMechanic.apply(game, someBlackMove);
+        capturingMechanic.apply(game, someBlackMove);
 
         Board expected = GameTestingUtils.createBoardFromStrings(new int[][] {
                 {0, 1, 0},
@@ -50,7 +50,7 @@ public class LibertyMechanicTests {
                 {0, 0, 0}
         });
 
-        libertyMechanic.apply(game, someBlackMove);
+        capturingMechanic.apply(game, someBlackMove);
 
         Board expected = GameTestingUtils.createBoardFromStrings(new int[][] {
                 {0, 1, 0},
@@ -69,7 +69,7 @@ public class LibertyMechanicTests {
                 {1, 2, 1}
         });
 
-        libertyMechanic.apply(game, someBlackMove);
+        capturingMechanic.apply(game, someBlackMove);
 
         Board expected = GameTestingUtils.createBoardFromStrings(new int[][] {
                 {0, 0, 0},
@@ -94,7 +94,7 @@ public class LibertyMechanicTests {
                 {0, 0, 1, 2, 2, 2, 1, 1, 1}
         });
 
-        libertyMechanic.apply(game, someBlackMove);
+        capturingMechanic.apply(game, someBlackMove);
 
         Board expected = GameTestingUtils.createBoardFromStrings(new int[][] {
                 {0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -121,7 +121,7 @@ public class LibertyMechanicTests {
                 {0, 0, 0, 0, 0}
         });
 
-        libertyMechanic.apply(game, someBlackMove);
+        capturingMechanic.apply(game, someBlackMove);
 
         Board expected = GameTestingUtils.createBoardFromStrings(new int[][] {
                 {0, 0, 0, 0, 0},
@@ -144,7 +144,7 @@ public class LibertyMechanicTests {
                 {0, 2, 2, 2, 0}
         });
 
-        libertyMechanic.apply(game, someWhiteMove);
+        capturingMechanic.apply(game, someWhiteMove);
 
         Board expected = GameTestingUtils.createBoardFromStrings(new int[][] {
                 {0, 2, 2, 2, 0},

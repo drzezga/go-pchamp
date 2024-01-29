@@ -6,11 +6,11 @@ import tp.model.Move;
 public class CannotPlaceStoneOnOccupiedTile implements GameRule {
     @Override
     public void apply(Game game, Move move) throws RuleBrokenException {
-        if(move.position().isEmpty()) {
+        if(move.position() == null) {
             return;
         }
 
-        if(game.getCurrentBoardState().getPiece(move.position().get()) != null) {
+        if(game.getCurrentBoardState().getPiece(move.position()) != null) {
             throw new CannotPlaceStoneOnOccupiedTile.Exception("Cannot place stone on occupied tile!");
         }
     }

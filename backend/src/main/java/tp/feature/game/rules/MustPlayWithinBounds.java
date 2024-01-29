@@ -7,12 +7,12 @@ import tp.model.Move;
 public class MustPlayWithinBounds implements GameRule {
     @Override
     public void apply(Game game, Move move) throws RuleBrokenException {
-        if(move.position().isEmpty()) {
+        if(move.position() == null) {
             return;
         }
 
         Board board = game.getCurrentBoardState();
-        if (move.position().get().x() >= board.getSize() || move.position().get().y() >= board.getSize()) {
+        if (move.position().x() >= board.getSize() || move.position().y() >= board.getSize()) {
             throw new MustPlayWithinBounds.Exception("Must play within bounds!");
         }
     }

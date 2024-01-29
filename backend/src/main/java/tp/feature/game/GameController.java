@@ -57,7 +57,7 @@ public class GameController {
     public void makeMove(Client player, Position position) {
         Game game = getGameByClient(player);
         Piece playerPiece = getPlayerPiece(game, player);
-        Move move = new Move(Optional.of(position), playerPiece);
+        Move move = new Move(position, playerPiece);
 
         game.makeMove(move);
 
@@ -77,10 +77,7 @@ public class GameController {
     }
 
     private Game startGameAgainstHuman(Lobby lobby, GameSettings settings) {
-        var game = new Game();
-        game.setGameSettings(settings);
-
-        game.setCurrentBoardState(new Board(settings.getSize()));
+        var game = new Game(settings);
 
         Client host = clientRepository.getClientByName(lobby.getHost().get()).get();
         Client guest = clientRepository.getClientByName(lobby.getGuest().get()).get();

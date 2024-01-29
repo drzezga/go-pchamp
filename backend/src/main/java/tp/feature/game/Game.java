@@ -36,6 +36,11 @@ public class Game implements Serializable, Cloneable {
     private int numberPiecesCapturedByWhite = 0;
     private int numberPiecesCapturedByBlack = 0;
 
+    public Game(GameSettings settings) {
+        this(settings.getSize());
+        this.setGameSettings(settings);
+    }
+
     public Game(int size) {
         currentBoardState = new Board(size);
         previousBoardState = new Board(size);

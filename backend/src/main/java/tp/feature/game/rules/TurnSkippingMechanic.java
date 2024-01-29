@@ -6,7 +6,7 @@ import tp.model.Move;
 public class TurnSkippingMechanic implements GameRule {
     @Override
     public void apply(Game game, Move move) throws RuleBrokenException {
-        if(move.position().isPresent()) {
+        if(move.position() != null) {
             game.setNumConsecutiveSkips(0);
             return;
         }
