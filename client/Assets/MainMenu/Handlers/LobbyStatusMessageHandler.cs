@@ -13,6 +13,8 @@ namespace MainMenu.Handlers
         [SerializeField]
         private ErrorSO errorSo;
 
+        [SerializeField] private MainMenuState mainMenuState;
+
         [FormerlySerializedAs("lobbySo")] [SerializeField]
         private CurrentLobbySO currentLobbySo;
         
@@ -31,6 +33,7 @@ namespace MainMenu.Handlers
             if (message.status == ResponseStatus.Ok)
             {
                 currentLobbySo.Value = message.content;
+                mainMenuState.SetMainMenuState(MainMenuState.StateEnum.Lobby);
             }
             else
             {

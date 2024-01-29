@@ -11,12 +11,15 @@ namespace MainMenu
         private GameObject lobbyListUI;
         [SerializeField]
         private GameObject replayListUI;
+        [SerializeField]
+        private GameObject lobbyUI;
     
         public enum StateEnum
         {
             MainMenu,
             LobbyList,
             ReplayList,
+            Lobby,
         }
 
         private StateEnum _state = StateEnum.MainMenu;
@@ -40,6 +43,9 @@ namespace MainMenu
                     break;
                 case StateEnum.ReplayList:
                     replayListUI.SetActive(newState);
+                    break;
+                case StateEnum.Lobby:
+                    lobbyUI.SetActive(newState);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
