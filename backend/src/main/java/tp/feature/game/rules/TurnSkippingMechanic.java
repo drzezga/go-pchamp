@@ -3,7 +3,7 @@ package tp.feature.game.rules;
 import tp.feature.game.Game;
 import tp.model.Move;
 
-public class SkippingMechanic implements Rule {
+public class TurnSkippingMechanic implements Rule {
     @Override
     public void apply(Game game, Move move) throws RuleBrokenException {
         if(move.position().isPresent()) {

@@ -3,6 +3,7 @@ package tp.model;
 import lombok.Getter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 @Getter
 public class Board implements Cloneable {
@@ -12,6 +13,12 @@ public class Board implements Cloneable {
     public Board(int size) {
         this.size = size;
         this.pieces = new Piece[size][size];
+
+        for(int i = 0; i < size; i++) {
+            for(int j = 0; j < size; j++) {
+                this.pieces[i][j] = null;
+            }
+        }
     }
 
     public void setPiece(Position pos, Piece piece) {
@@ -53,8 +60,18 @@ public class Board implements Cloneable {
             builder.append('[');
 
             for(int x = 0; x < size; x++) {
-                boolean isPieceWhite = getPiece(x, y).equals(Piece.WHITE);
-                builder.append(isPieceWhite ? 'W' : 'B');
+                Piece piece = getPiece(x, y);
+
+                if(piece == null) {
+                    builder.append(' ');
+                }
+                if(piece == Piece.BLACK) {
+                    builder.append('B');
+                }
+                if(piece == Piece.WHITE) {
+                    builder.append('W');
+                }
+
                 if(x < size - 1) {
                     builder.append(' ');
                 }
@@ -66,5 +83,11 @@ public class Board implements Cloneable {
         return builder.toString();
     }
 
-
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Board board = (Board) o;
+        return Arrays.deepEquals(pieces, board.pieces);
+    }
 }

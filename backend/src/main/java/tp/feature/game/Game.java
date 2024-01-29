@@ -15,7 +15,8 @@ import java.util.List;
 @Getter
 @Setter
 public class Game {
-    private Board board;
+    private Board board = new Board();
+
     private final GameRuleApplicator rules = new GameRuleApplicator();
     private GameSettings gameSettings;
     private List<Move> moves = new ArrayList<>();
@@ -27,6 +28,11 @@ public class Game {
     private String whitePlayerName;
     private String blackPlayerName;
 
+    private int numberPiecesCapturedByWhite = 0;
+    private int numberPiecesCapturedByBlack = 0;
+
+
+
     public Game() {
         rules.addRule(new MustPlayWithinBounds());
         rules.addRule(new CannotPlaceStoneOnOccupiedTile());
@@ -34,7 +40,7 @@ public class Game {
         rules.addRule(new PlayingAddsAStone());
         rules.addRule(new MoveIsRecorded());
         rules.addRule(new CurrentPlayerIsSwitched());
-        rules.addRule(new SkippingMechanic());
+        rules.addRule(new TurnSkippingMechanic());
     }
 
     public void makeMove(Move move) {

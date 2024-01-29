@@ -14,27 +14,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class GameTests {
 
-    private Board createBoardFromArray(int[][] boardElements) {
-        var board = new Board(boardElements.length);
 
-        for(int x = 0; x < board.getSize(); x++) {
-            for(int y = 0; y < board.getSize(); y++) {
-                if(boardElements[y][x] == 1) {
-                    board.setPiece(x, y, Piece.WHITE);
-                }
-
-                if(boardElements[y][x] == 2) {
-                    board.setPiece(x, y, Piece.BLACK);
-                }
-            }
-        }
-
-        return board;
-    }
 
     @Test
     public void cannotPlacePieceOnOccupiedTile() {
-        Board board = createBoardFromArray(new int[][] {
+        Game game = GameTestingUtils.createGameFromArray(new int[][] {
                 {0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -45,9 +29,6 @@ public class GameTests {
                 {0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0},
         });
-
-        Game game = new Game();
-        game.setBoard(board);
 
         game.makeMove(new Move(
                 Optional.of(new Position(0, 0)),
@@ -84,7 +65,7 @@ public class GameTests {
 
     @Test
     public void cannotPlayTwiceInARow() {
-        Board board = createBoardFromArray(new int[][] {
+        Game game = GameTestingUtils.createGameFromArray(new int[][] {
                 {0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -95,8 +76,6 @@ public class GameTests {
                 {0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0},
         });
-        Game game = new Game();
-        game.setBoard(board);
 
         game.makeMove(new Move(
                 Optional.of(new Position(0, 0)),
@@ -114,7 +93,7 @@ public class GameTests {
 
     @Test
     public void blackPlayerStartsGame() {
-        Board board = createBoardFromArray(new int[][] {
+        Game game = GameTestingUtils.createGameFromArray(new int[][] {
                 {0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -125,9 +104,6 @@ public class GameTests {
                 {0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0},
         });
-
-        Game game = new Game();
-        game.setBoard(board);
 
         assertThrows(
                 CorrectPlayersTurn.Exception.class,
@@ -146,12 +122,10 @@ public class GameTests {
 
     @Test
     public void skippingTwiceEndsGame() {
-        Board board = createBoardFromArray(new int[][] {
+        Game game = GameTestingUtils.createGameFromArray(new int[][] {
                 {0, 0},
                 {0, 0},
         });
-        Game game = new Game();
-        game.setBoard(board);
 
         assertFalse(game.isFinished());
         game.makeMove(new Move(Optional.empty(), Piece.BLACK));
