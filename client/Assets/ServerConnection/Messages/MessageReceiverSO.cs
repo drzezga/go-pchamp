@@ -39,8 +39,12 @@ namespace ServerConnection.Messages
         private void HandleMessageParsing(string messageString)
         {
             var message = JsonConvert.DeserializeObject<ResponseMessage<Object>>(messageString);
-
-            switch(message!.msg)
+            
+            Debug.Log(messageString);
+            Debug.Log(message.content.ToString());
+            Debug.Log(message.msg.ToString());
+            
+            switch (message!.msg)
             {
                 case MessageType.GameTryMove:
                     OnGameTryMoveResponseMessage?.Invoke(
@@ -92,7 +96,8 @@ namespace ServerConnection.Messages
                         JsonConvert.DeserializeObject<ReplayGetResponseMessage>(messageString)
                     );
                     break;
-                default: throw new NotImplementedException($"Parsing was not implemented for message {message.msg}");
+                default:
+                    throw new NotImplementedException($"Parsing was not implemented for message {message.msg}");
             }
         }
     }

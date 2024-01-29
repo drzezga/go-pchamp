@@ -10,9 +10,11 @@ namespace ServerConnection.Messages
     [Serializable]
     public class ResponseMessage<T>
     {
+        [JsonProperty("msg")]
         [JsonConverter(typeof(StringEnumConverter))]
         public MessageType msg;
     
+        [JsonProperty("status")]
         [JsonConverter(typeof(StringEnumConverter))]
         public ResponseStatus status;
     

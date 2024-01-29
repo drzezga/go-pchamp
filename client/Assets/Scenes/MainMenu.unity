@@ -6496,6 +6496,7 @@ GameObject:
   - component: {fileID: 1737942069}
   - component: {fileID: 1737942068}
   - component: {fileID: 1737942067}
+  - component: {fileID: 1737942070}
   m_Layer: 5
   m_Name: Lobby
   m_TagString: Untagged
@@ -6594,6 +6595,26 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1737942070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1737942065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aaf0413c42e4f4a4e965c6fafcd946ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingPlayer: {fileID: 1223287143}
+  boardSize: {fileID: 1354318914}
+  playAgainstBot: {fileID: 1979316150}
+  lobbyNameText: {fileID: 1125080159}
+  messageSenderSO: {fileID: 11400000, guid: b08b60a7b31d14f2689dbe2fb4fa93a4, type: 2}
+  usernameSO: {fileID: 11400000, guid: d871b0bc1894bcc4e8728f82cb382e1b, type: 2}
+  currentLobbySO: {fileID: 11400000, guid: eec429340ecb1c54a8ceb8b7257ad62d, type: 2}
+  errorSO: {fileID: 11400000, guid: 6337ddf9734d360468f3a4528fdd26ce, type: 2}
 --- !u!1001 &1752465574
 PrefabInstance:
   m_ObjectHideFlags: 0
