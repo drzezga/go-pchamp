@@ -35,11 +35,7 @@ public class GameStartHandler implements RequestMessageHandler<RequestGameStart>
         String hostName = lobby.getHost().get();
 
         if(!hostName.equals(sender.getName())) {
-            log.warning(String.format(
-                    "Player %s tried to start a game but is not the host of the lobby",
-                    sender.getName()
-            ));
-            return;
+            throw new GuestCannotStartGameException();
         }
 
         gameController.startGameFromLobby(lobby, message.getContent());
@@ -57,5 +53,11 @@ public class GameStartHandler implements RequestMessageHandler<RequestGameStart>
     @Override
     public MessageType getMessageType() {
         return MessageType.GAME_START;
+    }
+
+    public static class GuestCannotStartGameException extends RuntimeException {
+        public GuestCannotStartGameException() {
+            super("Guest cannot start a game. Only host can do so");
+        }
     }
 }

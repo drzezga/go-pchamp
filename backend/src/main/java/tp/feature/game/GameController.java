@@ -13,8 +13,8 @@ import tp.model.Position;
 import tp.model.messages.response.ResponseMessage;
 import tp.model.messages.shared.GameSettings;
 
-import java.util.HashMap;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Log
 @Controller
@@ -54,17 +54,40 @@ public class GameController {
         clientToGameMap.remove(whitePlayer);
     }
 
-    public void makeMove(Client player, Position position) {
+    public List<Position> makeMove(Client player, Position position) {
         Game game = getGameByClient(player);
         Piece playerPiece = getPlayerPiece(game, player);
         Move move = new Move(position, playerPiece);
 
         game.makeMove(move);
 
-//        game.getBoard().setPiece(move.position(), playerPiece);
         System.out.println(game.getCurrentBoardState());
-        updateCurrentPlayerTurn(game);
+
+        Set<Move> capturedPieces = createMoveSetFromBoard(game.getCurrentBoardState());
+        capturedPieces.removeAll(createMoveSetFromBoard(game.getPreviousBoardState()));
+        capturedPieces.remove(move);
+        return capturedPieces.stream().map(Move::position).collect(Collectors.toList());
     }
+
+    private Set<Move> createMoveSetFromBoard(Board board) {
+        var moveSet = new HashSet<Move>();
+
+        for(int x = 0; x < board.getSize(); x++) {
+            for(int y = 0; y < board.getSize(); y++) {
+                if(board.getPiece(x, y) == null) {
+                    continue;
+                }
+
+                moveSet.add(new Move(
+                        new Position(x, y),
+                        board.getPiece(x, y)
+                ));
+            }
+        }
+
+        return moveSet;
+    }
+
 
     public void broadcastMessageToPlayers(Game game, ResponseMessage<?> message) {
         Client blackClient = clientRepository.getClientByName(game.getBlackPlayerName())
@@ -86,11 +109,11 @@ public class GameController {
         String guestName = guest.getName();
 
         if(settings.getStartingPlayer().equals(hostName)) {
-            game.setWhitePlayerName(hostName);
             game.setBlackPlayerName(guestName);
+            game.setWhitePlayerName(hostName);
         } else {
-            game.setBlackPlayerName(guestName);
             game.setWhitePlayerName(hostName);
+            game.setBlackPlayerName(guestName);
         }
 
         clientToGameMap.put(host, game);
@@ -140,12 +163,6 @@ public class GameController {
     public class ClientAbsentFromGameException extends RuntimeException {
         public ClientAbsentFromGameException(String clientName) {
             super(String.format("Client '%s' is not currently in the specified game", clientName));
-        }
-    }
-
-    public class InvalidGameMoveException extends RuntimeException {
-        public InvalidGameMoveException(Throwable cause) {
-            super(cause);
         }
     }
 }

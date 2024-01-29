@@ -74,6 +74,7 @@ public class MessageController extends TextWebSocketHandler {
                     msg.getType(),
                     e
             ));
+            e.printStackTrace();
             player.getMessageChannel().sendResponse(
                     ResponseMessage.builder()
                             .messageType(msg.getType())

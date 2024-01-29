@@ -1,5 +1,6 @@
 package tp.model.messages.response;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,13 +15,15 @@ public class ResponseGameFinished extends ResponseMessage<ResponseGameFinished.C
     @Setter
     private Content content;
 
-    public ResponseGameFinished() {
+    public ResponseGameFinished(Content content) {
         this.messageType = MessageType.GAME_FINISHED;
         this.status =  MessageStatus.OK;
+        this.content = content;
     }
 
     @Data
-    public class Content {
+    @AllArgsConstructor
+    public static class Content {
         private List<GamePlayer> scores;
     }
 }

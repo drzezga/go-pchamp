@@ -10,7 +10,6 @@ import tp.model.Piece;
 import tp.model.Position;
 
 import static org.junit.jupiter.api.Assertions.*;
-import java.util.Optional;
 
 public class CapturingMechanicTests {
     private CapturingMechanic capturingMechanic = new CapturingMechanic();
