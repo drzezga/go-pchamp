@@ -11,12 +11,12 @@ import tp.feature.game.GameRepository;
 import java.util.Optional;
 
 @Component
-public class ClientDisconnectHandler {
+public class PlayerDisconnectHandler {
     private final GameRepository gameRepository;
     private final GameEvents gameEvents;
 
     @Autowired
-    public ClientDisconnectHandler(ClientEvents clientEvents, GameRepository gameRepository, GameEvents gameEvents) {
+    public PlayerDisconnectHandler(ClientEvents clientEvents, GameRepository gameRepository, GameEvents gameEvents) {
         this.gameRepository = gameRepository;
         this.gameEvents = gameEvents;
         clientEvents.getClientDisconnectEvent().subscribe(this::handleClientDisconnected);

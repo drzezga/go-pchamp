@@ -19,9 +19,15 @@ public class WebSocketMessageChannel implements ClientMessageChannel {
     @Override
     public <T extends ResponseMessage> void sendResponse(T response) {
         var objectMapper = new ObjectMapper();
+
+        if(!websocket.isOpen()) {
+            log.warning("Tried sending a response message via a closed websocket");
+            return;
+        }
+
         try {
             websocket.sendMessage(new TextMessage(objectMapper.writeValueAsString(response)));
-        } catch (IOException e) {
+        } catch (Exception e) {
             log.severe("Sending response message failed");
         }
     }

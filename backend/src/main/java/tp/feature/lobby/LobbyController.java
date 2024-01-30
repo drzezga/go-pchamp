@@ -1,8 +1,8 @@
 package tp.feature.lobby;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import tp.feature.client.Client;
-import tp.model.messages.response.ResponseLobbyStatus;
 
 import java.util.*;
 
@@ -10,6 +10,13 @@ import java.util.*;
 public class LobbyController {
     private HashMap<String, Lobby> nameToLobbyMap = new HashMap<>();
     private HashMap<Client, Lobby> clientToLobbyMap = new HashMap<>();
+
+    private final LobbyEvents lobbyEvents;
+
+    @Autowired
+    public LobbyController(LobbyEvents lobbyEvents) {
+        this.lobbyEvents = lobbyEvents;
+    }
 
     public Lobby addNewLobby(String lobbyName) {
         var lobby = new Lobby(lobbyName);
@@ -23,6 +30,17 @@ public class LobbyController {
 
     public Optional<Lobby> getLobbyByName(String lobbyName) {
         return Optional.ofNullable(nameToLobbyMap.get(lobbyName));
+    }
+
+    public void removeLobby(Lobby lobby) {
+        nameToLobbyMap.remove(lobby.getLobbyName());
+
+        if(lobby.getHost().isPresent()) {
+            clientToLobbyMap.remove(lobby.getHost().get());
+        }
+        if(lobby.getGuest().isPresent()) {
+            clientToLobbyMap.remove(lobby.getGuest().get());
+        }
     }
 
     public Lobby joinLobby(String lobbyName, Client client) {
@@ -49,9 +67,7 @@ public class LobbyController {
         }
 
         Lobby lobby = optionalLobby.get();
-        String senderName = client.getName();
-
-        if(lobby.getHost().equals(Optional.of(senderName))) {
+        if(lobby.getHost().equals(Optional.of(client))) {
             lobby.setHost(lobby.getGuest());
             lobby.setGuest(Optional.empty());
         } else {
@@ -60,8 +76,19 @@ public class LobbyController {
 
         clientToLobbyMap.remove(client);
 
+        if(isLobbyEmpty(lobby)) {
+            removeLobby(lobby);
+        }
+
         return optionalLobby;
     }
+
+    private boolean isLobbyEmpty(Lobby lobby) {
+        boolean isHostPresent = lobby.getHost().isPresent();
+        boolean isGuestPresent = lobby.getGuest().isPresent();
+        return !isHostPresent && !isGuestPresent;
+    }
+
 
     public Optional<Lobby> getLobbyByClient(Client client) {
         return Optional.ofNullable(clientToLobbyMap.get(client));
