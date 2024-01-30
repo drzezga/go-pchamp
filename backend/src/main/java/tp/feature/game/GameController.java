@@ -109,8 +109,8 @@ public class GameController {
         String guestName = guest.getName();
 
         if(settings.getStartingPlayer().equals(hostName)) {
-            game.setBlackPlayerName(guestName);
-            game.setWhitePlayerName(hostName);
+            game.setBlackPlayerName(hostName);
+            game.setWhitePlayerName(guestName);
         } else {
             game.setWhitePlayerName(hostName);
             game.setBlackPlayerName(guestName);
