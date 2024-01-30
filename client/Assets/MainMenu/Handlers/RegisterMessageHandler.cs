@@ -1,4 +1,5 @@
-﻿using ServerConnection.Messages;
+﻿using Game.GameState;
+using ServerConnection.Messages;
 using UnityEngine;
 
 namespace MainMenu.Handlers
@@ -8,6 +9,8 @@ namespace MainMenu.Handlers
         [SerializeField] private MessageReceiverSO messageReceiverSo;
 
         [SerializeField] private UsernameSO usernameSo;
+
+        [SerializeField] private ErrorSO errorSo;
 
         private void OnEnable()
         {
@@ -21,7 +24,10 @@ namespace MainMenu.Handlers
 
         private void HandleMessage(RegisterResponseMessage message)
         {
-            usernameSo.Value = message.content;
+            if (message.status == ResponseStatus.Ok)
+                usernameSo.Value = message.content;
+            else
+                errorSo.DisplayError(message.error ?? "Login error");
         }
     }
 }
