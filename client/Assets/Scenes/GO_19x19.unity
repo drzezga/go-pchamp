@@ -937,18 +937,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4913804619026346359, guid: a3f092083ca3f41c8aee4dbd1f11334e,
-        type: 3}
-      propertyPath: errorSO
-      value: 
-      objectReference: {fileID: 11400000, guid: 6337ddf9734d360468f3a4528fdd26ce,
-        type: 2}
-    - target: {fileID: 4913804619026346359, guid: a3f092083ca3f41c8aee4dbd1f11334e,
-        type: 3}
-      propertyPath: boardPiecePrefab
-      value: 
-      objectReference: {fileID: 1356292747684828366, guid: ac7d004e6a07d47b09527562df6b3b5a,
-        type: 3}
     - target: {fileID: 6165073576769797963, guid: a3f092083ca3f41c8aee4dbd1f11334e,
         type: 3}
       propertyPath: m_Name
