@@ -3,7 +3,7 @@ package tp.feature.game.rules;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import tp.feature.game.Game;
+import tp.feature.game.GameState;
 import tp.model.Board;
 import tp.model.Move;
 import tp.model.Piece;
@@ -21,11 +21,11 @@ public class CapturingMechanic implements GameRule {
     );
 
     @Override
-    public void apply(Game game, Move move) throws RuleBrokenException {
+    public void apply(GameState game, Move move) throws RuleBrokenException {
         Board board = game.getCurrentBoardState();
         List<PieceGroup> groups = getPieceGroups(board);
 
-        List<PieceGroup> opponentGroups = groups.stream().filter(group -> group.getColor() != move.piece()).toList();
+        List<PieceGroup> opponentGroups = groups.stream().filter(group -> group.getColor() != move.getPiece()).toList();
 
         boolean capturedAGroup = false;
         for(PieceGroup opponentGroup : opponentGroups) {
@@ -36,7 +36,7 @@ public class CapturingMechanic implements GameRule {
             captureGroup(opponentGroup, board);
 
             int groupSize = opponentGroup.getPositions().size();
-            switch(move.piece()) {
+            switch(move.getPiece()) {
                 case BLACK -> game.setNumberPiecesCapturedByBlack(game.getNumberPiecesCapturedByBlack() + groupSize);
                 case WHITE -> game.setNumberPiecesCapturedByWhite(game.getNumberPiecesCapturedByWhite() + groupSize);
             }
@@ -46,7 +46,7 @@ public class CapturingMechanic implements GameRule {
             return;
         }
 
-        List<PieceGroup> playerGroups = groups.stream().filter(group -> group.getColor() == move.piece()).toList();
+        List<PieceGroup> playerGroups = groups.stream().filter(group -> group.getColor() == move.getPiece()).toList();
         for(PieceGroup playerGroup : playerGroups) {
             if(shouldGroupBeCaptured(playerGroup, board)) {
                 throw new CapturingMechanic.CannotDoSuicideMoveException();

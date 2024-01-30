@@ -12,8 +12,8 @@ import java.util.Collection;
 public class GameRuleApplicator implements Serializable {
     protected ArrayList<GameRule> ruleList = new ArrayList<>();
 
-    public void tryApplyMove(Game game, Move move) throws RuleBrokenException {
-        Game copy = game.clone();
+    public void tryApplyMove(GameState game, Move move) throws RuleBrokenException {
+        GameState copy = game.clone();
 
         for (GameRule rule : ruleList) {
             rule.apply(copy, move);
@@ -22,7 +22,7 @@ public class GameRuleApplicator implements Serializable {
         applyChangesSinceNoErrorWasThrown(copy, game);
     }
 
-    private void applyChangesSinceNoErrorWasThrown(Game source, Game target) {
+    private void applyChangesSinceNoErrorWasThrown(GameState source, GameState target) {
         BeanUtils.copyProperties(source, target);
     }
 

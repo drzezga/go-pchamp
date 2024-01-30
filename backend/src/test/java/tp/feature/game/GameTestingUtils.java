@@ -23,8 +23,8 @@ public class GameTestingUtils {
         return board;
     }
 
-    public static Game createGameFromArray(int[][] boardElements) {
-        Game game = new Game(boardElements.length);
+    public static GameState createGameFromArray(int[][] boardElements) {
+        GameState game = new GameState(boardElements.length);
         game.setCurrentBoardState(createBoardFromStrings(boardElements));
         return game;
     }

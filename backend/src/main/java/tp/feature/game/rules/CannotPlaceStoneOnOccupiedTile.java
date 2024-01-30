@@ -1,16 +1,16 @@
 package tp.feature.game.rules;
 
-import tp.feature.game.Game;
+import tp.feature.game.GameState;
 import tp.model.Move;
 
 public class CannotPlaceStoneOnOccupiedTile implements GameRule {
     @Override
-    public void apply(Game game, Move move) throws RuleBrokenException {
-        if(move.position() == null) {
+    public void apply(GameState game, Move move) throws RuleBrokenException {
+        if(move.getPosition() == null) {
             return;
         }
 
-        if(game.getCurrentBoardState().getPiece(move.position()) != null) {
+        if(game.getCurrentBoardState().getPiece(move.getPosition()) != null) {
             throw new CannotPlaceStoneOnOccupiedTile.Exception("Cannot place stone on occupied tile!");
         }
     }

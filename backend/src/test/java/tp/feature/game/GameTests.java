@@ -3,12 +3,9 @@ package tp.feature.game;
 import org.junit.jupiter.api.Test;
 import tp.feature.game.rules.CannotPlaceStoneOnOccupiedTile;
 import tp.feature.game.rules.CorrectPlayersTurn;
-import tp.model.Board;
 import tp.model.Move;
 import tp.model.Piece;
 import tp.model.Position;
-
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,7 +15,7 @@ public class GameTests {
 
     @Test
     public void cannotPlacePieceOnOccupiedTile() {
-        Game game = GameTestingUtils.createGameFromArray(new int[][] {
+        GameState game = GameTestingUtils.createGameFromArray(new int[][] {
                 {0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -65,7 +62,7 @@ public class GameTests {
 
     @Test
     public void cannotPlayTwiceInARow() {
-        Game game = GameTestingUtils.createGameFromArray(new int[][] {
+        GameState game = GameTestingUtils.createGameFromArray(new int[][] {
                 {0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -93,7 +90,7 @@ public class GameTests {
 
     @Test
     public void blackPlayerStartsGame() {
-        Game game = GameTestingUtils.createGameFromArray(new int[][] {
+        GameState game = GameTestingUtils.createGameFromArray(new int[][] {
                 {0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -122,7 +119,7 @@ public class GameTests {
 
     @Test
     public void skippingTwiceEndsGame() {
-        Game game = GameTestingUtils.createGameFromArray(new int[][] {
+        GameState game = GameTestingUtils.createGameFromArray(new int[][] {
                 {0, 0},
                 {0, 0},
         });

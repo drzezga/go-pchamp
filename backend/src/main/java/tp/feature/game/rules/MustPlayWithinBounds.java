@@ -1,18 +1,18 @@
 package tp.feature.game.rules;
 
-import tp.feature.game.Game;
+import tp.feature.game.GameState;
 import tp.model.Board;
 import tp.model.Move;
 
 public class MustPlayWithinBounds implements GameRule {
     @Override
-    public void apply(Game game, Move move) throws RuleBrokenException {
-        if(move.position() == null) {
+    public void apply(GameState game, Move move) throws RuleBrokenException {
+        if(move.getPosition() == null) {
             return;
         }
 
         Board board = game.getCurrentBoardState();
-        if (move.position().x() >= board.getSize() || move.position().y() >= board.getSize()) {
+        if (move.getPosition().x() >= board.getSize() || move.getPosition().y() >= board.getSize()) {
             throw new MustPlayWithinBounds.Exception("Must play within bounds!");
         }
     }

@@ -27,22 +27,21 @@ public class LobbyController {
 
     public Lobby joinLobby(String lobbyName, Client client) {
         Optional<Lobby> optionalLobby = getLobbyByName(lobbyName);
-        String playerName = client.getName();
 
         Lobby lobby;
         if(optionalLobby.isPresent()) {
             lobby = optionalLobby.get();
-            lobby.setGuest(Optional.of(playerName));
+            lobby.setGuest(Optional.of(client));
         } else {
             lobby = addNewLobby(lobbyName);
-            lobby.setHost(Optional.of(playerName));
+            lobby.setHost(Optional.of(client));
         }
 
         clientToLobbyMap.put(client, lobby);
         return lobby;
     }
 
-    public Optional<Lobby> leaveLobby(String lobbyName, Client client) {
+    public Optional<Lobby> leaveLobby(Client client) {
         Optional<Lobby> optionalLobby = getLobbyByClient(client);
 
         if(optionalLobby.isEmpty()) {

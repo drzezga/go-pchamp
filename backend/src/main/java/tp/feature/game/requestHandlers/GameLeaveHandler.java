@@ -8,34 +8,30 @@ import tp.communication.RequestMessageHandler;
 import tp.feature.client.Client;
 import tp.feature.client.ClientRepository;
 import tp.feature.game.Game;
+import tp.feature.game.GameEvents;
 import tp.feature.game.GameController;
 import tp.model.messages.request.RequestGameLeave;
-import tp.model.messages.response.ResponseGameLeave;
 
 @Log
 @Controller
 public class GameLeaveHandler implements RequestMessageHandler<RequestGameLeave> {
     private final GameController gameController;
-    private final ClientRepository clientRepository;
+    private final GameEvents gameEvents;
 
     @Autowired
-    public GameLeaveHandler(GameController gameController, ClientRepository clientRepository) {
+    public GameLeaveHandler(GameController gameController, GameEvents gameEvents) {
         this.gameController = gameController;
-        this.clientRepository = clientRepository;
+        this.gameEvents = gameEvents;
     }
 
     @Override
     public void onMessage(RequestGameLeave message, Client sender) {
         Game game = gameController.getGameByClient(sender);
 
-        Client whitePlayer = clientRepository.getClientByName(game.getWhitePlayerName()).get();
-        Client blackPlayer = clientRepository.getClientByName(game.getBlackPlayerName()).get();
-
-        gameController.destroyGame(game);
-
-        var response = new ResponseGameLeave();
-        whitePlayer.getMessageChannel().sendResponse(response);
-        blackPlayer.getMessageChannel().sendResponse(response);
+        gameEvents.getClientLeaveEventEvent().dispatch(new GameEvents.ClientLeaveEvent(
+                game,
+                sender
+        ));
     }
 
     @Override

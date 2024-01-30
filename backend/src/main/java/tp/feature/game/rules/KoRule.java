@@ -1,12 +1,12 @@
 package tp.feature.game.rules;
 
-import tp.feature.game.Game;
+import tp.feature.game.GameState;
 import tp.model.Move;
 
 public class KoRule implements GameRule {
     @Override
-    public void apply(Game game, Move move) throws RuleBrokenException {
-        if(move.position() == null) {
+    public void apply(GameState game, Move move) throws RuleBrokenException {
+        if(move.getPosition() == null) {
             return;
         }
 

@@ -24,13 +24,7 @@ public class RegisterHandler implements RequestMessageHandler<RequestRegister> {
         String newName = message.getContent();
 
         if(clientRepository.getClientByName(newName).isPresent()) {
-            sender.getMessageChannel().sendResponse(
-                    new ResponseRegister(
-                            MessageStatus.NOT_OK,
-                            "ERROR: Player with specified name already exists"
-                    )
-            );
-            return;
+            throw new PlayerWithSpecifiedNameAlreadyExistsException();
         }
 
         clientRepository.renamePlayer(sender, newName);
@@ -40,5 +34,11 @@ public class RegisterHandler implements RequestMessageHandler<RequestRegister> {
     @Override
     public MessageType getMessageType() {
         return MessageType.REGISTER;
+    }
+
+    public static class PlayerWithSpecifiedNameAlreadyExistsException extends RuntimeException {
+        public PlayerWithSpecifiedNameAlreadyExistsException() {
+            super("Player with specified name already exists");
+        }
     }
 }

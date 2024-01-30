@@ -28,7 +28,7 @@ public class LobbyStatusHandler implements RequestMessageHandler<RequestLobbySta
     public void onMessage(RequestLobbyStatus message, Client sender) {
         switch(message.getContent().getAction()) {
             case JOIN -> handleJoinLobby(message, sender);
-            case LEAVE -> handleLeaveLobby(message, sender);
+            case LEAVE -> handleLeaveLobby(sender);
         }
         System.out.println(lobbyController.getAllLobbies());
     }
@@ -43,25 +43,22 @@ public class LobbyStatusHandler implements RequestMessageHandler<RequestLobbySta
         Lobby lobby = lobbyController.joinLobby(lobbyName, sender);
 
         ResponseLobbyStatus response = convertLobbyToResponseMessage(lobby);
-        Client host = clientRepository.getClientByName(lobby.getHost().get()).get();
+        Client host = lobby.getHost().get();
         host.getMessageChannel().sendResponse(response);
 
         if(lobby.getGuest().isEmpty()) {
             return;
         }
-        Client guest = clientRepository.getClientByName(lobby.getGuest().get()).get();
+        Client guest = lobby.getGuest().get();
         guest.getMessageChannel().sendResponse(response);
     }
 
-    private void handleLeaveLobby(RequestLobbyStatus message, Client sender) {
-        String lobbyName = message.getContent().getName();
-
-        Lobby lobby = lobbyController.leaveLobby(lobbyName, sender).get();
+    private void handleLeaveLobby(Client sender) {
+        Lobby lobby = lobbyController.leaveLobby(sender).get();
 
         sender.getMessageChannel().sendResponse(new ResponseLobbyStatus());
 
-        String hostName = lobby.getHost().get();
-        Optional<Client> optionalHost = clientRepository.getClientByName(hostName);
+        Optional<Client> optionalHost = lobby.getHost();
         optionalHost.ifPresent(
                 client -> client.getMessageChannel().sendResponse(convertLobbyToResponseMessage(lobby))
         );
@@ -73,13 +70,13 @@ public class LobbyStatusHandler implements RequestMessageHandler<RequestLobbySta
 
         if(lobby.getHost().isPresent()) {
             responseContent.getPlayers().add(
-                    new ResponseLobbyStatus.Player(lobby.getHost().get(), true)
+                    new ResponseLobbyStatus.Player(lobby.getHost().get().getName(), true)
             );
         }
 
         if(lobby.getGuest().isPresent()) {
             responseContent.getPlayers().add(
-                    new ResponseLobbyStatus.Player(lobby.getGuest().get(), false)
+                    new ResponseLobbyStatus.Player(lobby.getGuest().get().getName(), false)
             );
         }
 

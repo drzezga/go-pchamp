@@ -2,7 +2,7 @@ package tp.feature.game.rules;
 
 
 import org.junit.jupiter.api.Test;
-import tp.feature.game.Game;
+import tp.feature.game.GameState;
 import tp.feature.game.GameTestingUtils;
 import tp.model.Board;
 import tp.model.Move;
@@ -24,7 +24,7 @@ public class CapturingMechanicTests {
 
     @Test
     public void testCenterCapture() {
-        Game game = GameTestingUtils.createGameFromArray(new int[][] {
+        GameState game = GameTestingUtils.createGameFromArray(new int[][] {
                 {0, 1, 0},
                 {1, 2, 1},
                 {0, 1, 0}
@@ -43,7 +43,7 @@ public class CapturingMechanicTests {
 
     @Test
     public void testCornerCaptures() {
-        Game game = GameTestingUtils.createGameFromArray(new int[][] {
+        GameState game = GameTestingUtils.createGameFromArray(new int[][] {
                 {2, 1, 0},
                 {1, 0, 0},
                 {0, 0, 0}
@@ -62,7 +62,7 @@ public class CapturingMechanicTests {
 
     @Test
     public void testCaptureNextToWall() {
-        Game game = GameTestingUtils.createGameFromArray(new int[][] {
+        GameState game = GameTestingUtils.createGameFromArray(new int[][] {
                 {0, 0, 0},
                 {0, 1, 0},
                 {1, 2, 1}
@@ -81,7 +81,7 @@ public class CapturingMechanicTests {
 
     @Test
     public void testBigGroupCapture() {
-        Game game = GameTestingUtils.createGameFromArray(new int[][] {
+        GameState game = GameTestingUtils.createGameFromArray(new int[][] {
                 {0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -112,7 +112,7 @@ public class CapturingMechanicTests {
 
     @Test
     public void testDoubleGroupCapture() {
-        Game game = GameTestingUtils.createGameFromArray(new int[][] {
+        GameState game = GameTestingUtils.createGameFromArray(new int[][] {
                 {0, 0, 0, 0, 0},
                 {0, 1, 0, 1, 0},
                 {1, 2, 1, 2, 1},
@@ -135,7 +135,7 @@ public class CapturingMechanicTests {
 
     @Test
     public void testWhiteCanCaptureBlack() {
-        Game game = GameTestingUtils.createGameFromArray(new int[][] {
+        GameState game = GameTestingUtils.createGameFromArray(new int[][] {
                 {0, 2, 2, 2, 0},
                 {2, 1, 1, 1, 2},
                 {2, 1, 1, 1, 2},

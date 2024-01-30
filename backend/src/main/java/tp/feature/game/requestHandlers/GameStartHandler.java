@@ -32,7 +32,7 @@ public class GameStartHandler implements RequestMessageHandler<RequestGameStart>
     public void onMessage(RequestGameStart message, Client sender) {
         Lobby lobby = lobbyController.getLobbyByClient(sender).get();
 
-        String hostName = lobby.getHost().get();
+        String hostName = lobby.getHost().get().getName();
 
         if(!hostName.equals(sender.getName())) {
             throw new GuestCannotStartGameException();
@@ -40,8 +40,8 @@ public class GameStartHandler implements RequestMessageHandler<RequestGameStart>
 
         gameController.startGameFromLobby(lobby, message.getContent());
 
-        Client host = clientRepository.getClientByName(hostName).get();
-        Client guest = clientRepository.getClientByName(lobby.getGuest().get()).get();
+        Client host = lobby.getHost().get();
+        Client guest = lobby.getGuest().get();
 
         var response = new ResponseGameStart(MessageStatus.OK);
         response.setContent(message.getContent());

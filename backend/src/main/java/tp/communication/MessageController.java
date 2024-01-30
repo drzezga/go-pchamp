@@ -10,6 +10,7 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 import tp.feature.client.Client;
+import tp.feature.client.ClientEvents;
 import tp.feature.client.ClientRepository;
 import tp.feature.client.WebSocketMessageChannel;
 import tp.model.messages.request.RequestMessage;
@@ -23,10 +24,13 @@ import java.util.List;
 public class MessageController extends TextWebSocketHandler {
     private final HashMap<MessageType, RequestMessageHandler<?>> handlers = new HashMap<>();
     private final ClientRepository playerRegistry;
+    private final ClientEvents clientEvents;
 
     @Autowired
-    public MessageController(List<RequestMessageHandler<?>> handlers, ClientRepository playerRegistry) {
+    public MessageController(List<RequestMessageHandler<?>> handlers,
+                             ClientRepository playerRegistry, ClientEvents clientEvents) {
         this.playerRegistry = playerRegistry;
+        this.clientEvents = clientEvents;
         for (RequestMessageHandler<?> handler: handlers) {
             log.info("Registering handler for " + handler.getMessageType().toString());
             this.handlers.put(handler.getMessageType(), handler);
@@ -35,7 +39,7 @@ public class MessageController extends TextWebSocketHandler {
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) {
-        playerRegistry.addClient(new Client(
+        clientEvents.getClientConnectEvent().dispatch(new Client(
                 new WebSocketMessageChannel(session),
                 session.getId()
         ));
@@ -43,8 +47,8 @@ public class MessageController extends TextWebSocketHandler {
 
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) {
-        Client player = playerRegistry.getPlayerByMessageChannel(new WebSocketMessageChannel(session)).get();
-        playerRegistry.removePlayer(player);
+        Client client = playerRegistry.getPlayerByMessageChannel(new WebSocketMessageChannel(session)).get();
+        clientEvents.getClientDisconnectEvent().dispatch(client);
     }
 
     @Override

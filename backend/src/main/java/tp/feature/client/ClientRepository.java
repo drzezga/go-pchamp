@@ -1,5 +1,7 @@
 package tp.feature.client;
 
+import jakarta.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -10,17 +12,23 @@ public class ClientRepository {
     private HashMap<String, Client> nameToPlayerMap = new HashMap<>();
     private HashMap<ClientMessageChannel, Client> messageChannelPlayerMap = new HashMap<>();
 
+    @Autowired
+    public ClientRepository(ClientEvents clientEvents) {
+        clientEvents.getClientConnectEvent().subscribe(this::addClient);
+        clientEvents.getClientDisconnectEvent().subscribe(this::removeClient);
+    }
+
     public void addClient(Client player) {
         messageChannelPlayerMap.put(player.getMessageChannel(), player);
         nameToPlayerMap.put(player.getName(), player);
     }
 
     public void renamePlayer(Client player, String newName) {
-        removePlayer(player);
+        removeClient(player);
         addClient(new Client(player.getMessageChannel(), newName));
     }
 
-    public void removePlayer(Client player) {
+    public void removeClient(Client player) {
         messageChannelPlayerMap.remove(player.getMessageChannel());
         nameToPlayerMap.remove(player.getName());
     }

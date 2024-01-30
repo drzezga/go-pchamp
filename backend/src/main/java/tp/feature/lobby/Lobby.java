@@ -1,6 +1,7 @@
 package tp.feature.lobby;
 
 import lombok.*;
+import tp.feature.client.Client;
 
 import java.util.Optional;
 
@@ -10,8 +11,8 @@ import java.util.Optional;
 @AllArgsConstructor
 public class Lobby {
     String lobbyName;
-    Optional<String> host = Optional.empty();
-    Optional<String> guest = Optional.empty();
+    Optional<Client> host = Optional.empty();
+    Optional<Client> guest = Optional.empty();
 
     public Lobby(String lobbyName) {
         this.lobbyName = lobbyName;
