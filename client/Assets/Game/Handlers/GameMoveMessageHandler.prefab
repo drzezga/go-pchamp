@@ -24,13 +24,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6165073576769797963}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2, y: 0, z: 15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4913804619026346359
 MonoBehaviour:
@@ -46,5 +46,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messageReceiverSo: {fileID: 11400000, guid: 1e0bbe10678754b52ad8ab5227bf50ce, type: 2}
   gameBoardSo: {fileID: 11400000, guid: 7f096cdcc074c48c388862b1536d6ceb, type: 2}
-  opponentGamePiecePrefab: {fileID: 1356292747684828366, guid: ac7d004e6a07d47b09527562df6b3b5a,
-    type: 3}
+  boardPiecePrefab: {fileID: 0}
+  gameSettingsSo: {fileID: 11400000, guid: 9fe552f43a0eceb44b1be827d3b98bab, type: 2}

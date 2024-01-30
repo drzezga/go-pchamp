@@ -27,13 +27,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1356292747684828366}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.5, z: 0}
   m_LocalScale: {x: 0.8, y: 0.1, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &603707110986231998
 MeshFilter:
@@ -97,9 +97,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7076fb576d734855829286ba7ccb1bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _selectedGamerTileSo: {fileID: 11400000, guid: c9df8ec02331f415c8c2ea12b1102414,
+  selectedGamerTileSo: {fileID: 11400000, guid: c9df8ec02331f415c8c2ea12b1102414,
     type: 2}
-  _color: {r: 1, g: 1, b: 1, a: 0}
+  gameSettingsSo: {fileID: 11400000, guid: 9fe552f43a0eceb44b1be827d3b98bab, type: 2}
+  usernameSo: {fileID: 11400000, guid: d871b0bc1894bcc4e8728f82cb382e1b, type: 2}
 --- !u!114 &3791017382478900697
 MonoBehaviour:
   m_ObjectHideFlags: 0

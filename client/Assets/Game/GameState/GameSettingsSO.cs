@@ -7,5 +7,10 @@ namespace Game.GameState
     public class GameSettingsSO : SingleValueSO<GameSettings>
     {
         public bool inGame;
+
+        public Color GetColorOfPlayer(string playerName)
+        {
+            return Value.startingPlayer == playerName ? Color.black : Color.white;
+        }
     }
 }
