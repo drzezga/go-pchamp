@@ -35,7 +35,7 @@ namespace ServerConnection.Messages
     {
         public LobbyJoinRequestMessage(string lobbyName)
         {
-            msg = MessageType.Register;
+            msg = MessageType.LobbyStatus;
             content = new LobbyStatusRequestMessageContent
             {
                 action = LobbyStatusAction.Join,
@@ -48,7 +48,7 @@ namespace ServerConnection.Messages
     {
         public LobbyLeaveRequestMessage(string lobbyName)
         {
-            msg = MessageType.Register;
+            msg = MessageType.LobbyStatus;
             content = new LobbyStatusRequestMessageContent
             {
                 action = LobbyStatusAction.Leave,
@@ -61,7 +61,7 @@ namespace ServerConnection.Messages
     {
         public GameStartRequestMessage(GameSettings settings)
         {
-            msg = MessageType.Register;
+            msg = MessageType.GameStart;
             content = settings;
         }
     }
@@ -70,7 +70,7 @@ namespace ServerConnection.Messages
     {
         public GameLeaveRequestMessage(string lobbyName)
         {
-            msg = MessageType.Register;
+            msg = MessageType.GameLeave;
             content = new GameLeaveRequestMessageContent
             {
                 name = lobbyName

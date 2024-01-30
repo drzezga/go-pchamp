@@ -20,7 +20,7 @@ namespace MainMenu
 
         public void CreateLobby()
         {
-            messageSenderSo.SendMessage(new LobbyJoinRequestMessage(usernameSo + "'s lobby"));
+            messageSenderSo.SendMessage(new LobbyJoinRequestMessage(usernameSo.Value + "'s lobby"));
         }
     }
 }

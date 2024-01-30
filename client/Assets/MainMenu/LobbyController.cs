@@ -13,6 +13,7 @@ public class LobbyController : MonoBehaviour
     [SerializeField] private TMP_InputField boardSize;
     [SerializeField] private Toggle playAgainstBot;
     [SerializeField] private TMP_Text lobbyNameText;
+    [SerializeField] private TMP_Text playersText;
 
     [SerializeField] private MessageSenderSO messageSenderSO;
 
@@ -36,7 +37,13 @@ public class LobbyController : MonoBehaviour
 
     private void UpdateContent(LobbyDetails lobbyDetails)
     {
+        if (lobbyDetails == null) return;
         lobbyNameText.text = lobbyDetails.name;
+        playersText.text = "Players\n";
+        foreach (var player in currentLobbySO.Value.players)
+        {
+            playersText.text += player.name + "\n";
+        }
 
         if (lobbyDetails.players.Find(x => x.name == usernameSO.Value).isHost) return;
 
@@ -45,12 +52,12 @@ public class LobbyController : MonoBehaviour
         playAgainstBot.interactable = false;
     }
 
-    void LeaveLobby()
+    public void LeaveLobby()
     {
-        messageSenderSO.SendMessage(new LobbyLeaveRequestMessage(currentLobbySO.name));
+        messageSenderSO.SendMessage(new LobbyLeaveRequestMessage(currentLobbySO.Value.name));
     }
 
-    void StartGame()
+    public void StartGame()
     {
         var boardSizeInt = 19;
         try

@@ -40,10 +40,6 @@ namespace ServerConnection.Messages
         {
             var message = JsonConvert.DeserializeObject<ResponseMessage<Object>>(messageString);
             
-            Debug.Log(messageString);
-            Debug.Log(message.content.ToString());
-            Debug.Log(message.msg.ToString());
-            
             switch (message!.msg)
             {
                 case MessageType.GameTryMove:

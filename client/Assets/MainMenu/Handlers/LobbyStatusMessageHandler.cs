@@ -15,7 +15,7 @@ namespace MainMenu.Handlers
 
         [SerializeField] private MainMenuState mainMenuState;
 
-        [FormerlySerializedAs("lobbySo")] [SerializeField]
+        [SerializeField]
         private CurrentLobbySO currentLobbySo;
         
         private void OnEnable()
