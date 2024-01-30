@@ -14,18 +14,18 @@ namespace MainMenu
 
         [SerializeField] private MessageSenderSO messageSenderSO;
 
-        private string lobbyName;
+        private string _lobbyName;
 
         public void SetText(string lobbyName, string playerCount)
         {
             lobbyNameText.text = lobbyName;
-            playerCountText.text = playerCount;
-            this.lobbyName = lobbyName;
+            playerCountText.text = playerCount + " player(s)";
+            _lobbyName = lobbyName;
         }
 
         public void JoinLobby()
         {
-            messageSenderSO.SendMessage(new LobbyJoinRequestMessage(lobbyName));
+            messageSenderSO.SendMessage(new LobbyJoinRequestMessage(_lobbyName));
         }
     }
 }
