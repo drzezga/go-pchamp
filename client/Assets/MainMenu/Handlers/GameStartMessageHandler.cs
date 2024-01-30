@@ -37,7 +37,7 @@ namespace MainMenu.Handlers
             }
             else
             {
-                errorSo.DisplayError("Error joining the game");
+                errorSo.DisplayError(message.error ?? "Error joining the game");
             }
         }
 

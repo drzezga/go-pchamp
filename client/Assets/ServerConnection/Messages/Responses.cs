@@ -17,6 +17,9 @@ namespace ServerConnection.Messages
         [JsonProperty("status")]
         [JsonConverter(typeof(StringEnumConverter))]
         public ResponseStatus status;
+        
+        [AllowNull] [JsonProperty(NullValueHandling = NullValueHandling.Include)]
+        public string error;
     
         [AllowNull] [JsonProperty(NullValueHandling = NullValueHandling.Include)]
         public T content;
@@ -82,7 +85,10 @@ namespace ServerConnection.Messages
     public class GameMoveResponseMessageContent
     {
         public string player;
+        [AllowNull] [JsonProperty(NullValueHandling = NullValueHandling.Include)]
         public int[] position;
+
+        public int[][] captures;
     }
 
     [Serializable]

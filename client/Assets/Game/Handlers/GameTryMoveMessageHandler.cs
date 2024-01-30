@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Game.GameState;
 using ServerConnection.Messages;
 using UnityEngine;
 
@@ -8,6 +9,8 @@ public class GameTryMoveMessageHandler : MonoBehaviour
 {
     [SerializeField]
     private MessageReceiverSO messageReceiverSo;
+
+    [SerializeField] private ErrorSO errorSo;
 
     private void OnEnable()
     {
@@ -21,6 +24,6 @@ public class GameTryMoveMessageHandler : MonoBehaviour
 
     private void HandleGameTryMoveMessage(GameTryMoveResponseMessage message)
     {
-        Debug.Log($"WRONG MOVE: {message.content.error}");
+        errorSo.DisplayError(message.error ?? "Undisclosed Game Move error");
     }
 }

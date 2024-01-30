@@ -1,20 +1,39 @@
 using System.Collections.Generic;
 using JetBrains.Annotations;
+using Unity.VisualScripting;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "GO/GameBoardSO")]
-public class GameBoardSO : ScriptableObject
+namespace Game.GameState
 {
-    private readonly Dictionary<Vector2Int, GamerTileScript> _registeredTiles = new();
-
-    public void RegisterGamerTile(GamerTileScript tile)
+    [CreateAssetMenu(menuName = "GO/GameBoardSO")]
+    public class GameBoardSO : ScriptableObject
     {
-        _registeredTiles[tile.boardIndex] = tile;
-    }
+        private readonly Dictionary<Vector2Int, GamerTileScript> _registeredTiles = new();
+        
+        private readonly Dictionary<Vector2Int, GameObject> _placedPieces = new();
 
-    [CanBeNull]
-    public GamerTileScript GetTileByIndex(Vector2Int index)
-    {
-        return _registeredTiles[index];
+        public void RegisterGamerTile(GamerTileScript tile)
+        {
+            _registeredTiles[tile.boardIndex] = tile;
+        }
+
+        public void RegisterPlacedPiece(Vector2Int tileIndex, GameObject piece)
+        {
+            _placedPieces[tileIndex] = piece;
+        }
+
+        public void RemovePlacedPiece(Vector2Int tileIndex)
+        {
+            if (_placedPieces[tileIndex] == null) return;
+            _placedPieces.Remove(tileIndex);
+            Destroy(_placedPieces[tileIndex]);
+
+        }
+
+        [CanBeNull]
+        public GamerTileScript GetTileByIndex(Vector2Int index)
+        {
+            return _registeredTiles[index];
+        }
     }
 }

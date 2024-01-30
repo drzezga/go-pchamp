@@ -66,15 +66,12 @@ namespace ServerConnection.Messages
         }
     }
     
-    public class GameLeaveRequestMessage : RequestMessage<GameLeaveRequestMessageContent>
+    public class GameLeaveRequestMessage : RequestMessage<NullMessageContent>
     {
-        public GameLeaveRequestMessage(string lobbyName)
+        public GameLeaveRequestMessage()
         {
             msg = MessageType.GameLeave;
-            content = new GameLeaveRequestMessageContent
-            {
-                name = lobbyName
-            };
+            content = null;
         }
     }
 
@@ -99,7 +96,10 @@ namespace ServerConnection.Messages
         public GamePassTurnRequestMessage()
         {
             msg = MessageType.GameTryMove;
-            content = null;
+            content = new GameTryMoveRequestMessageContent
+            {
+                position = null
+            };
         }
     }
 
@@ -141,12 +141,6 @@ namespace ServerConnection.Messages
         public string name;
     }
     
-    [Serializable]
-    public class GameLeaveRequestMessageContent
-    {
-        public string name;
-    }
-
     [Serializable]
     public class GameTryMoveRequestMessageContent
     {

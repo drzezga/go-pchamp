@@ -14,7 +14,11 @@ public class GameMoveMessageHandler : MonoBehaviour
     [SerializeField]
     private GameObject boardPiecePrefab;
 
+    [SerializeField] private UsernameSO usernameSo;
+
     [SerializeField] private GameSettingsSO gameSettingsSo;
+
+    [SerializeField] private ErrorSO errorSO;
     
     private void OnEnable()
     {
@@ -28,6 +32,12 @@ public class GameMoveMessageHandler : MonoBehaviour
 
     private void HandleGameMoveMessage(GameMoveResponseMessage message)
     {
+        if (message.content.position == null)
+        {
+            if (message.content.player != usernameSo.Value)
+                errorSO.DisplayError("The opponent has passed their turn.");
+            return;
+        }
         var newOpponentPiece = Instantiate(boardPiecePrefab);
 
         var colorChanger = newOpponentPiece.GetComponent<ColorChangerScript>();
@@ -43,6 +53,18 @@ public class GameMoveMessageHandler : MonoBehaviour
         
         var gamerTile = gameBoardSo.GetTileByIndex(gameTileIndex)!;
         animationController.PlacePiece(gamerTile.transform.position);
+        
+        gameBoardSo.RegisterPlacedPiece(gameTileIndex, newOpponentPiece);
+
+        foreach (var capture in message.content.captures)
+        {
+            gameTileIndex = new Vector2Int(
+                capture[0],
+                capture[1]
+            );
+
+            gameBoardSo.RemovePlacedPiece(gameTileIndex);
+        }
     }
 
 }
