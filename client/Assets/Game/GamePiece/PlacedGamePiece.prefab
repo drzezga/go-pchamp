@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3791017382478900697}
   - component: {fileID: 1274585704774889441}
   m_Layer: 0
-  m_Name: OpponentGamePiece
+  m_Name: PlacedGamePiece
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

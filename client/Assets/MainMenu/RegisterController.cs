@@ -12,6 +12,10 @@ namespace MainMenu
 
         private void OnEnable()
         {
+            if (usernameSo.Value != "")
+            {
+                gameObject.SetActive(false);
+            }
             usernameSo.OnValueChanged += UsernameChanged;
         }
 

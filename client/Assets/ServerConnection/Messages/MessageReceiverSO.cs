@@ -39,7 +39,7 @@ namespace ServerConnection.Messages
         private void HandleMessageParsing(string messageString)
         {
             var message = JsonConvert.DeserializeObject<ResponseMessage<Object>>(messageString);
-            
+            Debug.Log(messageString);
             switch (message!.msg)
             {
                 case MessageType.GameTryMove:

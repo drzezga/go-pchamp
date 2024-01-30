@@ -40,7 +40,7 @@ namespace MainMenu.Handlers
             else
             {
                 // Display the error
-                errorSo.DisplayError("Lobby error");
+                errorSo.DisplayError(message.error ?? "Unknown Lobby Error");
             }
         }
     }
