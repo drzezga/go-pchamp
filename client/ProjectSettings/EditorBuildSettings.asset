@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/SuperGlobalScene.unity
     guid: 054f48a2e01f6ed43a44afe8a486d267
   - enabled: 1

@@ -33,7 +33,9 @@ namespace MainMenu.Handlers
             if (message.status == ResponseStatus.Ok)
             {
                 currentLobbySo.Value = message.content;
-                mainMenuState.SetMainMenuState(MainMenuState.StateEnum.Lobby);
+                mainMenuState.SetMainMenuState(message.content == null
+                    ? MainMenuState.StateEnum.MainMenu
+                    : MainMenuState.StateEnum.Lobby);
             }
             else
             {
