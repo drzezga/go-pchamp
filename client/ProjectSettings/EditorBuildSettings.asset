@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 1f07be828ea0a614f8e40dc46731a453
   - enabled: 1
+    path: Assets/Scenes/GO_AdaptiveSize.unity
+    guid: abbe7e6a04f160646a29a1af984f1912
+  - enabled: 0
     path: Assets/Scenes/GO_19x19.unity
     guid: 99c9720ab356a0642a771bea13969a05
   m_configObjects: {}
