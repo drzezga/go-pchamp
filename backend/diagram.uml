@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>/Users/pbo/Desktop/Projects/technologia-programowania/lab4/go-pchamp/backend/src/main/java/tp</OriginalElement>
+  <nodes>
+    <node x="6823.0936151092155" y="-512.0582654078046">tp.feature.game.rules.CannotPlaceStoneOnOccupiedTile</node>
+    <node x="7855.414703590831" y="-97.25600777276946">tp.model.messages.shared.GamePlayer</node>
+    <node x="6327.771308815655" y="-504.30776889992137">tp.model.messages.response.ResponseReplayList</node>
+    <node x="7227.5965429079815" y="-136.61466935053414">tp.events.EventHandler</node>
+    <node x="6585.751560326518" y="-656.1796752740083">tp.feature.replay.requestHandlers.ReplayListHandler</node>
+    <node x="6226.851001354805" y="-293.91052007130594">tp.feature.client.WebSocketMessageChannel</node>
+    <node x="6833.456820175294" y="-297.0627196732315">tp.communication.MessageController</node>
+    <node x="9496.583274015" y="-972.200394168919">tp.feature.game.requestHandlers.GameLeaveHandler</node>
+    <node x="10237.145351484014" y="-153.35485292457486">tp.feature.client.Client</node>
+    <node x="11075.121905229473" y="-538.037283619997">tp.model.messages.response.ResponseGameFinished</node>
+    <node x="10121.88714572644" y="-592.5611103213901">tp.model.messages.response.ResponseRegister</node>
+    <node x="7092.144616954791" y="-676.4622288513498">tp.feature.lobby.requestHandlers.LobbyStatusHandler</node>
+    <node x="10538.488657079812" y="-487.0077383411881">tp.feature.lobby.eventHandlers.DestroyLobbyHandler</node>
+    <node x="7954.491824114693" y="-448.62739998532675">tp.feature.game.eventHandlers.PlayerDisconnectHandler</node>
+    <node x="10065.455159003368" y="-778.0533828017117">tp.feature.lobby.requestHandlers.LobbyListHandler</node>
+    <node x="7237.193744716009" y="-513.8942144528331">tp.feature.game.rules.MoveIsRecorded</node>
+    <node x="10636.727732402305" y="-166.2335111533617">tp.model.Move</node>
+    <node x="10961.886044875475" y="-151.55332670620783">tp.model.messages.shared.GameSettings</node>
+    <node x="11402.980108510244" y="-543.0544733937834">tp.feature.game.bot.SurroundStrategy</node>
+    <node x="8757.280333522096" y="-279.0457598926484">tp.feature.client.ClientRepository</node>
+    <node x="10994.222576476783" y="-424.22057096912795">tp.feature.game.scoreCalculation.GameScoreCalculator</node>
+    <node x="11297.245499580005" y="-681.5422101610594">tp.feature.game.rules.TurnSkippingMechanic</node>
+    <node x="9275.512845559977" y="-77.68104596355948">tp.feature.game.Game</node>
+    <node x="11563.638304532233" y="-339.4963271378481">tp.feature.game.bot.BotController</node>
+    <node x="8583.777263886403" y="-372.9095571926571">tp.feature.lobby.eventHandlers.ClientDisconnectHandler</node>
+    <node x="8592.246744409133" y="-495.44877962950784">tp.model.messages.response.ResponseGameLeave</node>
+    <node x="10947.703127250468" y="-280.2638015681245">tp.Main</node>
+    <node x="9824.636727336212" y="-1104.125837378319">tp.model.messages.request.RequestMessage</node>
+    <node x="10630.229269090247" y="-323.8819740140537">tp.communication.MessageStatus</node>
+    <node x="7480.610858527231" y="-688.4737867927688">tp.feature.game.requestHandlers.GameTryMoveHandler</node>
+    <node x="8906.431420958557" y="-66.43109981812347">tp.feature.lobby.Lobby</node>
+    <node x="11826.194223363762" y="-861.8311083488271">tp.model.messages.request.RequestReplayList</node>
+    <node x="12276.493706598843" y="-615.120935290166">tp.feature.game.bot.BotStrategy</node>
+    <node x="8913.472941733742" y="-570.3134130722557">tp.model.messages.response.ResponseMessage</node>
+    <node x="8943.605411446471" y="-686.0753873156423">tp.feature.game.rules.MustPlayWithinBounds</node>
+    <node x="9631.989476532402" y="-134.35186831543672">tp.model.Board</node>
+    <node x="11587.91075040301" y="-657.9074835574472">tp.feature.game.rules.CurrentPlayerIsSwitched</node>
+    <node x="11836.020189692958" y="-264.20997741252626">tp.feature.game.persistence.GameRecord</node>
+    <node x="7469.821792933144" y="-137.10534348214372">tp.feature.client.ClientEvents</node>
+    <node x="11365.756242298405" y="-427.7831582012417">tp.feature.game.rules.RuleBrokenException</node>
+    <node x="7548.128852693876" y="-447.9434405148801">tp.model.messages.response.ResponseLobbyList</node>
+    <node x="8148.542193135523" y="-892.5477446589348">tp.communication.RequestMessageHandler</node>
+    <node x="9990.960947012394" y="-493.0380648424632">tp.feature.game.eventHandlers.ClientLeftGameHandler</node>
+    <node x="11881.951548769566" y="-615.0918637668893">tp.feature.game.bot.RandomSpotStrategy</node>
+    <node x="10381.309841834762" y="-632.2289363997537">tp.feature.game.rules.KoRule</node>
+    <node x="7105.386344973752" y="-385.65301209201743">tp.model.messages.response.ResponseReplayGet</node>
+    <node x="7719.688153013046" y="-853.0179854673357">tp.feature.replay.requestHandlers.ReplayGetHandler</node>
+    <node x="7030.619292559572" y="-22.65421898226208">tp.feature.game.GameEvents</node>
+    <node x="12532.42691102961" y="-412.0859752792146">tp.feature.game.bot.SkipStrategy</node>
+    <node x="12163.837650086314" y="-820.3537275273353">tp.model.messages.request.RequestGameMove</node>
+    <node x="11263.75092776775" y="-183.81708965132947">tp.communication.MessageType</node>
+    <node x="12221.912660558473" y="-290.42219087060977">tp.feature.lobby.LobbyEvents</node>
+    <node x="8872.95096071723" y="-952.1387338672084">tp.model.messages.request.RequestLobbyStatus</node>
+    <node x="11490.695668879922" y="-884.3158983749549">tp.model.messages.request.RequestRegister</node>
+    <node x="8360.444302914384" y="-56.599743120885734">tp.feature.game.GameState</node>
+    <node x="9979.345293664679" y="-195.33254722554705">tp.model.Piece</node>
+    <node x="8566.852521364232" y="-741.3163391709286">tp.feature.game.requestHandlers.GameStartHandler</node>
+    <node x="9206.049298452115" y="-1051.130623046585">tp.model.messages.request.RequestReplayGet</node>
+    <node x="9743.858324685636" y="-655.3620207202849">tp.model.messages.response.ResponseGameTryMove</node>
+    <node x="9573.19972568812" y="-768.9446875170015">tp.feature.game.rules.PreviousBoardStateRecorder</node>
+    <node x="10808.651214514812" y="-568.180290722519">tp.model.messages.response.ResponseGameMove</node>
+    <node x="7728.281738341168" y="-308.93951657170845">tp.feature.game.persistence.ReplayRepository</node>
+    <node x="9475.653643902846" y="-555.670868069341">tp.WebsocketConfiguration</node>
+    <node x="8166.65230010647" y="-604.7487444404019">tp.feature.game.rules.BoardStateBeforeRuleApplicationRecorder</node>
+    <node x="6551.7890833255" y="-398.943884853138">tp.feature.client.ClientMessageChannel</node>
+    <node x="10695.446252642909" y="-681.9061438330756">tp.feature.game.rules.PlayingAddsAStone</node>
+    <node x="7364.391651020383" y="-319.2678510077266">tp.feature.game.bot.CannotGenerateMoveException</node>
+    <node x="9173.327197061797" y="-832.3075280281712">tp.feature.client.requestHandlers.RegisterHandler</node>
+    <node x="9290.778752576729" y="-643.8379204424283">tp.model.messages.response.ResponseLobbyStatus</node>
+    <node x="10793.131148095075" y="-920.1301189405563">tp.model.messages.request.RequestGameTryMove</node>
+    <node x="10108.027253426151" y="-393.00254622545435">tp.feature.game.GameController</node>
+    <node x="7876.969940223127" y="-609.1638120136749">tp.feature.game.rules.CorrectPlayersTurn</node>
+    <node x="8118.099767644071" y="-212.6503908365322">tp.model.Position</node>
+    <node x="9617.34444607898" y="-442.44588023407414">tp.feature.lobby.LobbyController</node>
+    <node x="8289.246097983723" y="-236.5934920407625">tp.feature.game.GameRepository</node>
+    <node x="6592.127413365223" y="-129.23382661028063">tp.feature.game.scoreCalculation.GameScores</node>
+    <node x="11005.133109740516" y="-694.8360501194373">tp.feature.game.rules.CapturingMechanic</node>
+    <node x="8313.532010050068" y="-407.93330898115653">tp.model.messages.response.ResponseGameStart</node>
+    <node x="10192.95815301294" y="-1040.3759949030546">tp.model.messages.request.RequestGameLeave</node>
+    <node x="9300.819498621304" y="-289.02103267117076">tp.events.ServerEvent</node>
+    <node x="10463.359445887569" y="-890.3747477026209">tp.model.messages.request.RequestGameStart</node>
+    <node x="11871.406957857873" y="-500.9064495524673">tp.feature.game.GameRuleApplicator</node>
+    <node x="11173.187348741987" y="-896.9958443712098">tp.model.messages.request.RequestLobbyList</node>
+    <node x="9900.24850153539" y="-891.9968861951991">tp.feature.game.rules.GameRule</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="tp.feature.game.rules.MoveIsRecorded" target="tp.feature.game.rules.GameRule" relationship="REALIZATION">
+      <point x="114.50025528399146" y="2.1445283312004904E-4" />
+      <point x="8411.032" y="-487.394" />
+      <point x="8411.032" y="-441.127" />
+      <point x="8895.973" y="-441.127" />
+      <point x="8895.973" y="-593.0" />
+      <point x="9273.279" y="-593.0" />
+      <point x="9273.279" y="-678.0" />
+      <point x="10014.749" y="-678.0" />
+      <point x="4.984646093362244E-4" y="26.49988619519911" />
+    </edge>
+    <edge source="tp.model.messages.response.ResponseReplayList" target="tp.model.messages.response.ResponseMessage" relationship="GENERALIZATION">
+      <point x="-3.088156554440502E-4" y="13.999768899921378" />
+      <point x="6427.271" y="-440.443" />
+      <point x="7530.629" y="-440.443" />
+      <point x="7530.629" y="-514.0" />
+      <point x="8834.277" y="-514.0" />
+      <point x="8834.277" y="-474.949" />
+      <point x="-147.49994173374216" y="-20.135586927744328" />
+    </edge>
+    <edge source="tp.feature.game.rules.MustPlayWithinBounds" target="tp.feature.game.rules.GameRule" relationship="REALIZATION">
+      <point x="-4.114464718441013E-4" y="26.50038731564223" />
+      <point x="9058.105" y="-593.0" />
+      <point x="9273.279" y="-593.0" />
+      <point x="9273.279" y="-678.0" />
+      <point x="10014.749" y="-678.0" />
+      <point x="4.984646093362244E-4" y="26.49988619519911" />
+    </edge>
+    <edge source="tp.model.messages.request.RequestLobbyList" target="tp.model.messages.request.RequestMessage" relationship="GENERALIZATION">
+      <point x="0.0" y="-71.0" />
+      <point x="11274.187348741987" y="-1156.0" />
+      <point x="9929.137" y="-1156.0" />
+      <point x="15.000272663788564" y="-26.5" />
+    </edge>
+    <edge source="tp.feature.game.rules.PlayingAddsAStone" target="tp.feature.game.rules.GameRule" relationship="REALIZATION">
+      <point x="-114.50025264290889" y="1.438330756400319E-4" />
+      <point x="10653.0" y="-655.406" />
+      <point x="10653.0" y="-678.0" />
+      <point x="10014.749" y="-678.0" />
+      <point x="4.984646093362244E-4" y="26.49988619519911" />
+    </edge>
+    <edge source="tp.feature.lobby.requestHandlers.LobbyStatusHandler" target="tp.communication.RequestMessageHandler" relationship="REALIZATION">
+      <point x="3.830452096735826E-4" y="-37.99977114865021" />
+      <point x="7255.645" y="-759.0" />
+      <point x="8324.042" y="-759.0" />
+      <point x="-1.9313552365929354E-4" y="48.99974465893479" />
+    </edge>
+    <edge source="tp.feature.game.bot.SurroundStrategy" target="tp.feature.game.bot.BotStrategy" relationship="REALIZATION">
+      <point x="166.4998914897551" y="-1.8515266062165665" />
+      <point x="12246.0" y="-518.406" />
+      <point x="12246.0" y="-588.621" />
+      <point x="-166.49970659884275" y="-6.470983396411611E-5" />
+    </edge>
+    <edge source="tp.model.messages.response.ResponseGameTryMove" target="tp.model.messages.response.ResponseMessage" relationship="GENERALIZATION">
+      <point x="-113.5" y="5.024100277856633" />
+      <point x="9538.278752576729" y="-636.3379204424283" />
+      <point x="9538.278752576729" y="-723.4446875170015" />
+      <point x="9190.105411446471" y="-723.4446875170015" />
+      <point x="129.1324697127293" y="-115.5" />
+    </edge>
+    <edge source="tp.model.messages.request.RequestGameStart" target="tp.model.messages.request.RequestMessage" relationship="GENERALIZATION">
+      <point x="0.0" y="-71.0" />
+      <point x="10564.359445887569" y="-1077.625837378319" />
+      <point x="89.5" y="0.0" />
+    </edge>
+    <edge source="tp.feature.game.bot.RandomSpotStrategy" target="tp.feature.game.bot.BotStrategy" relationship="REALIZATION">
+      <point x="166.5004512304331" y="-1.362331106520287E-4" />
+      <point x="12246.0" y="-588.592" />
+      <point x="12246.0" y="-588.621" />
+      <point x="-166.49970659884275" y="-6.470983396411611E-5" />
+    </edge>
+    <edge source="tp.model.messages.response.ResponseGameFinished" target="tp.model.messages.response.ResponseMessage" relationship="GENERALIZATION">
+      <point x="-115.0" y="3.8572836199970197" />
+      <point x="9918.153643902846" y="-507.67999999999995" />
+      <point x="9918.153643902846" y="-472.5380648424632" />
+      <point x="147.5" y="-17.724651770207515" />
+    </edge>
+    <edge source="tp.model.messages.response.ResponseGameMove" target="tp.model.messages.response.ResponseMessage" relationship="GENERALIZATION">
+      <point x="0.0" y="14.0" />
+      <point x="10911.651214514812" y="135.14813168456328" />
+      <point x="8739.780333522096" y="135.14813168456328" />
+      <point x="8739.780333522096" y="-311.268" />
+      <point x="9045.972941733742" y="-311.268" />
+      <point x="-15.0" y="115.5" />
+    </edge>
+    <edge source="tp.model.messages.request.RequestReplayGet" target="tp.model.messages.request.RequestMessage" relationship="GENERALIZATION">
+      <point x="-2.984521142934682E-4" y="-71.00037695341507" />
+      <point x="9307.049" y="-1126.0" />
+      <point x="9914.137" y="-1126.0" />
+      <point x="2.726637885643868E-4" y="-26.500162621681056" />
+    </edge>
+    <edge source="tp.feature.game.requestHandlers.GameStartHandler" target="tp.communication.RequestMessageHandler" relationship="REALIZATION">
+      <point x="4.7863576764939353E-4" y="-37.999660829071445" />
+      <point x="8724.853" y="-759.0" />
+      <point x="8324.042" y="-759.0" />
+      <point x="-1.9313552365929354E-4" y="48.99974465893479" />
+    </edge>
+    <edge source="tp.feature.client.WebSocketMessageChannel" target="tp.feature.client.ClientMessageChannel" relationship="REALIZATION">
+      <point x="0.0" y="-48.5" />
+      <point x="6358.351001354805" y="-372.443884853138" />
+      <point x="-110.5" y="0.0" />
+    </edge>
+    <edge source="tp.feature.client.requestHandlers.RegisterHandler" target="tp.communication.RequestMessageHandler" relationship="REALIZATION">
+      <point x="-150.5" y="-3.240216630763598" />
+      <point x="175.5" y="46.0" />
+    </edge>
+    <edge source="tp.model.messages.request.RequestLobbyStatus" target="tp.model.messages.request.RequestMessage" relationship="GENERALIZATION">
+      <point x="3.928276964870747E-5" y="-71.00026613279158" />
+      <point x="8975.451" y="-1126.0" />
+      <point x="9914.137" y="-1126.0" />
+      <point x="2.726637885643868E-4" y="-26.500162621681056" />
+    </edge>
+    <edge source="tp.feature.game.requestHandlers.GameTryMoveHandler" target="tp.communication.RequestMessageHandler" relationship="REALIZATION">
+      <point x="1.4147276851872448E-4" y="-38.00021320723124" />
+      <point x="7648.611" y="-759.0" />
+      <point x="8324.042" y="-759.0" />
+      <point x="-1.9313552365929354E-4" y="48.99974465893479" />
+    </edge>
+    <edge source="tp.feature.game.rules.BoardStateBeforeRuleApplicationRecorder" target="tp.feature.game.rules.GameRule" relationship="REALIZATION">
+      <point x="181.4996998935294" y="15.43574444040189" />
+      <point x="8793.747" y="-562.813" />
+      <point x="8793.747" y="-593.0" />
+      <point x="9273.279" y="-593.0" />
+      <point x="9273.279" y="-678.0" />
+      <point x="10014.749" y="-678.0" />
+      <point x="4.984646093362244E-4" y="26.49988619519911" />
+    </edge>
+    <edge source="tp.model.messages.response.ResponseLobbyList" target="tp.model.messages.response.ResponseMessage" relationship="GENERALIZATION">
+      <point x="1.4730612383573316E-4" y="-13.999559485119903" />
+      <point x="7645.629" y="-514.0" />
+      <point x="8834.277" y="-514.0" />
+      <point x="8834.277" y="-474.949" />
+      <point x="-147.49994173374216" y="-20.135586927744328" />
+    </edge>
+    <edge source="tp.model.messages.response.ResponseGameLeave" target="tp.model.messages.response.ResponseMessage" relationship="GENERALIZATION">
+      <point x="2.555908668000484E-4" y="-14.000220370492173" />
+      <point x="8696.747" y="-514.0" />
+      <point x="8834.277" y="-514.0" />
+      <point x="8834.277" y="-474.949" />
+      <point x="-147.49994173374216" y="-20.135586927744328" />
+    </edge>
+    <edge source="tp.model.messages.request.RequestGameTryMove" target="tp.model.messages.request.RequestMessage" relationship="GENERALIZATION">
+      <point x="0.0" y="-82.0" />
+      <point x="10901.631148095075" y="-1171.0" />
+      <point x="9899.137" y="-1171.0" />
+      <point x="-14.999727336211436" y="-26.5" />
+    </edge>
+    <edge source="tp.feature.game.rules.PreviousBoardStateRecorder" target="tp.feature.game.rules.GameRule" relationship="REALIZATION">
+      <point x="2.743118802754907E-4" y="26.499687517001462" />
+      <point x="9705.2" y="-678.0" />
+      <point x="10014.749" y="-678.0" />
+      <point x="4.984646093362244E-4" y="26.49988619519911" />
+    </edge>
+    <edge source="tp.feature.game.rules.TurnSkippingMechanic" target="tp.feature.game.rules.GameRule" relationship="REALIZATION">
+      <point x="-4.995800045435317E-4" y="26.500210161059385" />
+      <point x="11411.745" y="-611.042" />
+      <point x="10653.0" y="-611.042" />
+      <point x="10653.0" y="-678.0" />
+      <point x="10014.749" y="-678.0" />
+      <point x="4.984646093362244E-4" y="26.49988619519911" />
+    </edge>
+    <edge source="tp.feature.replay.requestHandlers.ReplayListHandler" target="tp.communication.RequestMessageHandler" relationship="REALIZATION">
+      <point x="4.39673482105718E-4" y="-38.00032472599162" />
+      <point x="6742.752" y="-759.0" />
+      <point x="8324.042" y="-759.0" />
+      <point x="-1.9313552365929354E-4" y="48.99974465893479" />
+    </edge>
+    <edge source="tp.model.messages.response.ResponseReplayGet" target="tp.model.messages.response.ResponseMessage" relationship="GENERALIZATION">
+      <point x="99.49965502624855" y="4.720012092017441" />
+      <point x="7941.492" y="-366.933" />
+      <point x="7941.492" y="-514.0" />
+      <point x="8834.277" y="-514.0" />
+      <point x="8834.277" y="-474.949" />
+      <point x="-147.49994173374216" y="-20.135586927744328" />
+    </edge>
+    <edge source="tp.model.messages.response.ResponseRegister" target="tp.model.messages.response.ResponseMessage" relationship="GENERALIZATION">
+      <point x="-92.0" y="11.247697249134376" />
+      <point x="147.5" y="-112.5" />
+    </edge>
+    <edge source="tp.model.messages.request.RequestGameMove" target="tp.model.messages.request.RequestMessage" relationship="GENERALIZATION">
+      <point x="0.0" y="-71.0" />
+      <point x="12264.837650086314" y="-1186.0" />
+      <point x="9884.137" y="-1186.0" />
+      <point x="-29.999727336211436" y="-26.5" />
+    </edge>
+    <edge source="tp.communication.RequestMessageHandler" target="tp.model.messages.request.RequestMessage" relationship="DEPENDENCY">
+      <point x="0.0" y="-49.0" />
+      <point x="8324.042193135523" y="-1077.625837378319" />
+      <point x="-89.5" y="0.0" />
+    </edge>
+    <edge source="tp.feature.lobby.requestHandlers.LobbyListHandler" target="tp.communication.RequestMessageHandler" relationship="REALIZATION">
+      <point x="-44.99700599042808" y="-38.0" />
+      <point x="10175.45815301294" y="-1141.0" />
+      <point x="8309.042193135523" y="-1141.0" />
+      <point x="-15.0" y="-49.0" />
+    </edge>
+    <edge source="tp.model.messages.request.RequestGameLeave" target="tp.model.messages.request.RequestMessage" relationship="GENERALIZATION">
+      <point x="-1.5301293933589477E-4" y="-71.00000509694542" />
+      <point x="10293.958" y="-1126.0" />
+      <point x="9914.137" y="-1126.0" />
+      <point x="2.726637885643868E-4" y="-26.500162621681056" />
+    </edge>
+    <edge source="tp.model.messages.response.ResponseGameStart" target="tp.model.messages.response.ResponseMessage" relationship="GENERALIZATION">
+      <point x="-18.50001005006925" y="-13.999691018843464" />
+      <point x="8396.032" y="-514.0" />
+      <point x="8834.277" y="-514.0" />
+      <point x="8834.277" y="-474.949" />
+      <point x="-147.49994173374216" y="-20.135586927744328" />
+    </edge>
+    <edge source="tp.feature.game.rules.KoRule" target="tp.feature.game.rules.GameRule" relationship="REALIZATION">
+      <point x="114.50015816523774" y="-6.360024633522698E-5" />
+      <point x="10653.0" y="-605.729" />
+      <point x="10653.0" y="-678.0" />
+      <point x="10014.749" y="-678.0" />
+      <point x="4.984646093362244E-4" y="26.49988619519911" />
+    </edge>
+    <edge source="tp.model.messages.response.ResponseLobbyStatus" target="tp.model.messages.response.ResponseMessage" relationship="GENERALIZATION">
+      <point x="0.0" y="14.0" />
+      <point x="9398.278752576729" y="-510.17086806934105" />
+      <point x="147.5" y="-55.35745499708537" />
+    </edge>
+    <edge source="tp.feature.game.rules.CurrentPlayerIsSwitched" target="tp.feature.game.rules.GameRule" relationship="REALIZATION">
+      <point x="-116.4997504030107" y="20.36548355744719" />
+      <point x="10653.0" y="-611.042" />
+      <point x="10653.0" y="-678.0" />
+      <point x="10014.749" y="-678.0" />
+      <point x="4.984646093362244E-4" y="26.49988619519911" />
+    </edge>
+    <edge source="tp.model.messages.request.RequestReplayList" target="tp.model.messages.request.RequestMessage" relationship="GENERALIZATION">
+      <point x="0.0" y="-71.0" />
+      <point x="11927.194223363762" y="-1216.0" />
+      <point x="9869.137" y="-1216.0" />
+      <point x="-44.999727336211436" y="-26.5" />
+    </edge>
+    <edge source="tp.feature.game.bot.SkipStrategy" target="tp.feature.game.bot.BotStrategy" relationship="REALIZATION">
+      <point x="-166.4999110296103" y="-2.4720785404497292E-5" />
+      <point x="12246.0" y="-385.586" />
+      <point x="12246.0" y="-588.621" />
+      <point x="-166.49970659884275" y="-6.470983396411611E-5" />
+    </edge>
+    <edge source="tp.feature.replay.requestHandlers.ReplayGetHandler" target="tp.communication.RequestMessageHandler" relationship="REALIZATION">
+      <point x="-1.5301304574677488E-4" y="37.999985467335705" />
+      <point x="7876.688" y="-759.0" />
+      <point x="8324.042" y="-759.0" />
+      <point x="-1.9313552365929354E-4" y="48.99974465893479" />
+    </edge>
+    <edge source="tp.feature.game.rules.CorrectPlayersTurn" target="tp.feature.game.rules.GameRule" relationship="REALIZATION">
+      <point x="5.977687305858126E-5" y="-26.500187986325045" />
+      <point x="7991.47" y="-640.575" />
+      <point x="8778.747" y="-640.575" />
+      <point x="8778.747" y="-593.0" />
+      <point x="9273.279" y="-593.0" />
+      <point x="9273.279" y="-678.0" />
+      <point x="10014.749" y="-678.0" />
+      <point x="4.984646093362244E-4" y="26.49988619519911" />
+    </edge>
+    <edge source="tp.model.messages.request.RequestRegister" target="tp.model.messages.request.RequestMessage" relationship="GENERALIZATION">
+      <point x="0.0" y="-71.0" />
+      <point x="11591.695668879922" y="-1201.0" />
+      <point x="9944.137" y="-1201.0" />
+      <point x="30.000272663788564" y="-26.5" />
+    </edge>
+    <edge source="tp.feature.game.rules.CannotPlaceStoneOnOccupiedTile" target="tp.feature.game.rules.GameRule" relationship="REALIZATION">
+      <point x="3.8489078451675596E-4" y="-26.49973459219541" />
+      <point x="6976.094" y="-534.249" />
+      <point x="8793.747" y="-534.249" />
+      <point x="8793.747" y="-593.0" />
+      <point x="9273.279" y="-593.0" />
+      <point x="9273.279" y="-678.0" />
+      <point x="10014.749" y="-678.0" />
+      <point x="4.984646093362244E-4" y="26.49988619519911" />
+    </edge>
+    <edge source="tp.feature.game.requestHandlers.GameLeaveHandler" target="tp.communication.RequestMessageHandler" relationship="REALIZATION">
+      <point x="0.0" y="-38.0" />
+      <point x="9657.583274015" y="-1156.0" />
+      <point x="8294.042193135523" y="-1156.0" />
+      <point x="-30.0" y="-49.0" />
+    </edge>
+    <edge source="tp.feature.game.rules.CapturingMechanic" target="tp.feature.game.rules.GameRule" relationship="REALIZATION">
+      <point x="-1.0974051656376105E-4" y="26.500050119437333" />
+      <point x="11119.633" y="-611.042" />
+      <point x="10653.0" y="-611.042" />
+      <point x="10653.0" y="-678.0" />
+      <point x="10014.749" y="-678.0" />
+      <point x="4.984646093362244E-4" y="26.49988619519911" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.3572372372372372" showDependencies="false" x="9851.042030934765" y="-321.8113651647602" />
+  <SelectedNodes>
+    <node>tp.feature.game.requestHandlers.GameTryMoveHandler</node>
+    <node>tp.feature.game.rules.CannotPlaceStoneOnOccupiedTile</node>
+    <node>tp.feature.replay.requestHandlers.ReplayGetHandler</node>
+    <node>tp.model.messages.shared.GameSettings</node>
+    <node>tp.feature.lobby.LobbyEvents</node>
+    <node>tp.feature.client.requestHandlers.RegisterHandler</node>
+    <node>tp.model.messages.request.RequestRegister</node>
+    <node>tp.model.messages.response.ResponseGameFinished</node>
+    <node>tp.feature.game.requestHandlers.GameLeaveHandler</node>
+    <node>tp.feature.game.GameController</node>
+    <node>tp.model.messages.request.RequestReplayList</node>
+    <node>tp.feature.client.WebSocketMessageChannel</node>
+    <node>tp.feature.game.rules.RuleBrokenException</node>
+    <node>tp.feature.game.rules.CapturingMechanic</node>
+    <node>tp.feature.game.scoreCalculation.GameScoreCalculator</node>
+    <node>tp.model.messages.response.ResponseReplayList</node>
+    <node>tp.feature.lobby.eventHandlers.DestroyLobbyHandler</node>
+    <node>tp.feature.lobby.requestHandlers.LobbyListHandler</node>
+    <node>tp.feature.client.Client</node>
+    <node>tp.Main</node>
+    <node>tp.model.messages.request.RequestMessage</node>
+    <node>tp.model.Piece</node>
+    <node>tp.model.messages.response.ResponseGameTryMove</node>
+    <node>tp.feature.game.GameState</node>
+    <node>tp.feature.client.ClientRepository</node>
+    <node>tp.model.messages.response.ResponseLobbyList</node>
+    <node>tp.model.messages.response.ResponseGameLeave</node>
+    <node>tp.model.messages.request.RequestGameTryMove</node>
+    <node>tp.events.EventHandler</node>
+    <node>tp.feature.lobby.Lobby</node>
+    <node>tp.events.ServerEvent</node>
+    <node>tp.feature.game.rules.CorrectPlayersTurn</node>
+    <node>tp.feature.client.ClientMessageChannel</node>
+    <node>tp.feature.game.GameEvents</node>
+    <node>tp.feature.game.GameRuleApplicator</node>
+    <node>tp.feature.game.rules.MoveIsRecorded</node>
+    <node>tp.model.Move</node>
+    <node>tp.feature.game.requestHandlers.GameStartHandler</node>
+    <node>tp.communication.MessageStatus</node>
+    <node>tp.communication.MessageType</node>
+    <node>tp.feature.game.bot.CannotGenerateMoveException</node>
+    <node>tp.model.messages.request.RequestLobbyList</node>
+    <node>tp.feature.game.rules.PlayingAddsAStone</node>
+    <node>tp.model.messages.response.ResponseGameStart</node>
+    <node>tp.model.messages.request.RequestReplayGet</node>
+    <node>tp.model.messages.response.ResponseMessage</node>
+    <node>tp.model.Board</node>
+    <node>tp.feature.game.rules.MustPlayWithinBounds</node>
+    <node>tp.communication.MessageController</node>
+    <node>tp.feature.game.eventHandlers.ClientLeftGameHandler</node>
+    <node>tp.model.messages.request.RequestLobbyStatus</node>
+    <node>tp.feature.client.ClientEvents</node>
+    <node>tp.feature.game.GameRepository</node>
+    <node>tp.feature.lobby.requestHandlers.LobbyStatusHandler</node>
+    <node>tp.feature.game.rules.GameRule</node>
+    <node>tp.feature.game.bot.RandomSpotStrategy</node>
+    <node>tp.feature.game.bot.SkipStrategy</node>
+    <node>tp.model.messages.response.ResponseGameMove</node>
+    <node>tp.communication.RequestMessageHandler</node>
+    <node>tp.feature.lobby.LobbyController</node>
+    <node>tp.feature.game.bot.SurroundStrategy</node>
+    <node>tp.feature.game.persistence.ReplayRepository</node>
+    <node>tp.WebsocketConfiguration</node>
+    <node>tp.feature.game.rules.KoRule</node>
+    <node>tp.feature.lobby.eventHandlers.ClientDisconnectHandler</node>
+    <node>tp.model.messages.response.ResponseRegister</node>
+    <node>tp.feature.game.rules.CurrentPlayerIsSwitched</node>
+    <node>tp.feature.game.rules.PreviousBoardStateRecorder</node>
+    <node>tp.feature.game.bot.BotController</node>
+    <node>tp.feature.game.bot.BotStrategy</node>
+    <node>tp.feature.game.scoreCalculation.GameScores</node>
+    <node>tp.feature.game.Game</node>
+    <node>tp.model.messages.response.ResponseReplayGet</node>
+    <node>tp.model.Position</node>
+    <node>tp.feature.game.eventHandlers.PlayerDisconnectHandler</node>
+    <node>tp.model.messages.response.ResponseLobbyStatus</node>
+    <node>tp.feature.replay.requestHandlers.ReplayListHandler</node>
+    <node>tp.model.messages.request.RequestGameLeave</node>
+    <node>tp.model.messages.shared.GamePlayer</node>
+    <node>tp.feature.game.rules.BoardStateBeforeRuleApplicationRecorder</node>
+    <node>tp.model.messages.request.RequestGameStart</node>
+    <node>tp.model.messages.request.RequestGameMove</node>
+    <node>tp.feature.game.rules.TurnSkippingMechanic</node>
+    <node>tp.feature.game.persistence.GameRecord</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>public</VISIBILITY>
+</Diagram>
+
