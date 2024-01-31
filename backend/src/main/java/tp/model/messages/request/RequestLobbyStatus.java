@@ -1,9 +1,11 @@
 package tp.model.messages.request;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import tp.communication.MessageType;
 
 @Data
+@NoArgsConstructor
 public class RequestLobbyStatus extends RequestMessage {
     private Content content;
 
