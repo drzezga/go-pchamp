@@ -29,7 +29,7 @@ namespace MainMenu
 
             sequence?.Kill();
             sequence = DOTween.Sequence();
-            sequence.Append(errorTextObject.DOFade(1.0f, 0.5f));
+            sequence.Append(errorTextObject.DOFade(1.0f, 0.2f));
             sequence.AppendInterval(3.0f);
             sequence.Append(errorTextObject.DOFade(0.0f, 2.0f));
         }
