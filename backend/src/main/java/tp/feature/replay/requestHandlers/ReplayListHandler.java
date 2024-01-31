@@ -1,4 +1,4 @@
-package tp.feature.game.requestHandlers;
+package tp.feature.replay.requestHandlers;
 
 import org.springframework.stereotype.Component;
 import tp.communication.MessageType;
@@ -33,7 +33,7 @@ public class ReplayListHandler implements RequestMessageHandler<RequestReplayLis
         ResponseReplayList.ReplayMetadata replayMetadata = new ResponseReplayList.ReplayMetadata();
 
         replayMetadata.setId(record.getId());
-        replayMetadata.setName(record.getId());
+        replayMetadata.setName(record.getName());
         replayMetadata.setPlayers(record.getPlayers());
         replayMetadata.setStartingPlayer(record.getGameSettings().getStartingPlayer());
 
