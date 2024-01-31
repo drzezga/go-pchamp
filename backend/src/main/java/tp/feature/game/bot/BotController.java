@@ -17,6 +17,8 @@ import tp.model.messages.response.ResponseGameMove;
 import tp.model.messages.response.ResponseMessage;
 import tp.model.messages.shared.GameSettings;
 
+import java.sql.Array;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.Executors;
@@ -37,10 +39,15 @@ public class BotController {
     private final ClientRepository clientRepository;
     private final Random random = new Random();
     private final ScheduledExecutorService executor =  Executors.newSingleThreadScheduledExecutor();
+    private final List<BotStrategy> botStrategies = new ArrayList<>();
 
     @Autowired
     public BotController(ClientRepository clientRepository) {
         this.clientRepository = clientRepository;
+
+        botStrategies.add(new SurroundStrategy());
+        botStrategies.add(new RandomSpotStrategy());
+        botStrategies.add(new SkipStrategy());
     }
 
     @PostConstruct
@@ -53,14 +60,21 @@ public class BotController {
     }
 
     public void move(Game game) {
-        Move move;
-        List<Position> capturedPositions;
-        try {
-            move = getRandomMove(game.getGameState());
-            capturedPositions = game.getGameState().makeMove(move);
-        } catch(RuleBrokenException e) {
-            move = getSkippingMove(game.getGameState());
-            capturedPositions = game.getGameState().makeMove(move);
+        Piece botPiece = getBotPiece(game.getGameState().getSettings());
+
+        Move move = new Move(
+                null,
+                botPiece
+        );
+        List<Position> capturedPositions = List.of();
+
+        for(BotStrategy strategy : botStrategies) {
+            try {
+                Position position = strategy.tryGenerateMovePosition(game.getGameState());
+                move.setPosition(position);
+                capturedPositions = game.getGameState().makeMove(move);
+                break;
+            } catch(CannotGenerateMoveException | RuleBrokenException ignored) {}
         }
 
         var response = new ResponseGameMove(
@@ -74,22 +88,6 @@ public class BotController {
 
         game.getBlackPlayer().getMessageChannel().sendResponse(response);
         game.getWhitePlayer().getMessageChannel().sendResponse(response);
-    }
-
-    private Move getSkippingMove(GameState game) {
-        return new Move(null, getBotPiece(game.getSettings()));
-    }
-
-    private Move getRandomMove(GameState game) {
-        int boardSize = game.getSettings().getSize();
-
-        return new Move(
-                new Position(
-                        random.nextInt(boardSize),
-                        random.nextInt(boardSize)
-                ),
-                getBotPiece(game.getSettings())
-        );
     }
 
     private Piece getBotPiece(GameSettings gameSettings) {

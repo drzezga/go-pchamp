@@ -147,6 +147,4 @@ public class GameTests {
 
         assertEquals(List.of(new Position(0,0)), capturedPieces);
     }
-
-
 }

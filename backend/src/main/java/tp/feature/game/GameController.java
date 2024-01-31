@@ -54,8 +54,6 @@ public class GameController {
 
         List<Position> capturedPieces = game.getGameState().makeMove(move);
 
-        System.out.println(game.getGameState().getCurrentBoardState());
-
         if(game.getGameState().getSettings().getBotOpponent()) {
             botController.scheduleMove(game);
         }
