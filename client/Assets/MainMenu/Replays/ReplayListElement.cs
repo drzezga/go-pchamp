@@ -16,7 +16,7 @@ public class ReplayListElement : MonoBehaviour
 
     private string _replayId;
 
-    public void SetText(string replayId, string playerOneName, string playerTwoName, int playerOneScore, int playerTwoScore)
+    public void SetText(string replayId, string playerOneName, string playerTwoName, float playerOneScore, float playerTwoScore)
     {
         replayIdText.text = replayId;
         replayPlayersText.text = playerOneName + " (" + playerOneScore + ") vs " + playerTwoName + " (" + playerTwoScore + ")";

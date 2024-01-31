@@ -56,7 +56,7 @@ namespace ServerConnection.Messages
     public class ScorePlayer
     {
         public string name;
-        public int score;
+        public float score;
     }
 
     [Serializable]
