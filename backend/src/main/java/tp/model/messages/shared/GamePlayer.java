@@ -7,5 +7,5 @@ import lombok.Data;
 @AllArgsConstructor
 public class GamePlayer {
     private String name;
-    private Integer score;
+    private Float score;
 }

@@ -5,7 +5,7 @@ import tp.model.Piece;
 
 public class GameTestingUtils {
 
-    public static Board createBoardFromStrings(int[][] boardElements) {
+    public static Board createBoardFromArray(int[][] boardElements) {
         var board = new Board(boardElements.length);
 
         for(int x = 0; x < board.getSize(); x++) {
@@ -25,7 +25,7 @@ public class GameTestingUtils {
 
     public static GameState createGameFromArray(int[][] boardElements) {
         GameState game = new GameState(boardElements.length);
-        game.setCurrentBoardState(createBoardFromStrings(boardElements));
+        game.setCurrentBoardState(createBoardFromArray(boardElements));
         return game;
     }
 

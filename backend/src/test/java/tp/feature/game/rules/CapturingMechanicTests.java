@@ -32,7 +32,7 @@ public class CapturingMechanicTests {
 
         capturingMechanic.apply(game, someBlackMove);
 
-        Board expected = GameTestingUtils.createBoardFromStrings(new int[][] {
+        Board expected = GameTestingUtils.createBoardFromArray(new int[][] {
                 {0, 1, 0},
                 {1, 0, 1},
                 {0, 1, 0}
@@ -51,7 +51,7 @@ public class CapturingMechanicTests {
 
         capturingMechanic.apply(game, someBlackMove);
 
-        Board expected = GameTestingUtils.createBoardFromStrings(new int[][] {
+        Board expected = GameTestingUtils.createBoardFromArray(new int[][] {
                 {0, 1, 0},
                 {1, 0, 0},
                 {0, 0, 0}
@@ -70,7 +70,7 @@ public class CapturingMechanicTests {
 
         capturingMechanic.apply(game, someBlackMove);
 
-        Board expected = GameTestingUtils.createBoardFromStrings(new int[][] {
+        Board expected = GameTestingUtils.createBoardFromArray(new int[][] {
                 {0, 0, 0},
                 {0, 1, 0},
                 {1, 0, 1}
@@ -95,7 +95,7 @@ public class CapturingMechanicTests {
 
         capturingMechanic.apply(game, someBlackMove);
 
-        Board expected = GameTestingUtils.createBoardFromStrings(new int[][] {
+        Board expected = GameTestingUtils.createBoardFromArray(new int[][] {
                 {0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -122,7 +122,7 @@ public class CapturingMechanicTests {
 
         capturingMechanic.apply(game, someBlackMove);
 
-        Board expected = GameTestingUtils.createBoardFromStrings(new int[][] {
+        Board expected = GameTestingUtils.createBoardFromArray(new int[][] {
                 {0, 0, 0, 0, 0},
                 {0, 1, 0, 1, 0},
                 {1, 0, 1, 0, 1},
@@ -145,7 +145,7 @@ public class CapturingMechanicTests {
 
         capturingMechanic.apply(game, someWhiteMove);
 
-        Board expected = GameTestingUtils.createBoardFromStrings(new int[][] {
+        Board expected = GameTestingUtils.createBoardFromArray(new int[][] {
                 {0, 2, 2, 2, 0},
                 {2, 0, 0, 0, 2},
                 {2, 0, 0, 0, 2},
