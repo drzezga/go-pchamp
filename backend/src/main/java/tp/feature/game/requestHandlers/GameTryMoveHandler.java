@@ -13,7 +13,9 @@ import tp.feature.game.persistence.GameRecord;
 import tp.feature.game.persistence.ReplayRepository;
 import tp.feature.game.scoreCalculation.GameScoreCalculator;
 import tp.feature.game.scoreCalculation.GameScores;
+import tp.feature.lobby.Lobby;
 import tp.feature.lobby.LobbyController;
+import tp.feature.lobby.LobbyEvents;
 import tp.model.Position;
 import tp.model.messages.request.RequestGameTryMove;
 import tp.model.messages.response.ResponseGameFinished;
@@ -29,18 +31,21 @@ public class GameTryMoveHandler implements RequestMessageHandler<RequestGameTryM
     private final GameScoreCalculator gameScoreCalculator;
     private final LobbyController lobbyController;
     private final ReplayRepository replayRepository;
+    private final LobbyEvents lobbyEvents;
 
     @Autowired
     public GameTryMoveHandler(GameController gameController,
                               GameRepository gameRepository,
                               GameScoreCalculator gameScoreCalculator,
                               LobbyController lobbyController,
-                              ReplayRepository replayRepository) {
+                              ReplayRepository replayRepository,
+                              LobbyEvents lobbyEvents) {
         this.gameController = gameController;
         this.gameRepository = gameRepository;
         this.gameScoreCalculator = gameScoreCalculator;
         this.lobbyController = lobbyController;
         this.replayRepository = replayRepository;
+        this.lobbyEvents = lobbyEvents;
     }
 
     @Override
@@ -66,8 +71,8 @@ public class GameTryMoveHandler implements RequestMessageHandler<RequestGameTryM
         var gameFinishedContent = new ResponseGameFinished.Content(scoreList);
         gameController.broadcastMessageToPlayers(game, new ResponseGameFinished(gameFinishedContent));
 
-
-        String lobbyName = lobbyController.getLobbyByClient(sender).get().getLobbyName();
+        Lobby lobby = lobbyController.getLobbyByClient(sender).get();
+        String lobbyName = lobby.getLobbyName();
         GameRecord gameRecord = new GameRecord();
         gameRecord.setName(lobbyName);
         gameRecord.setGameSettings(game.getGameState().getSettings());
@@ -75,6 +80,7 @@ public class GameTryMoveHandler implements RequestMessageHandler<RequestGameTryM
         gameRecord.setMoves(game.getGameState().getMoves());
         replayRepository.save(gameRecord);
 
+        lobbyEvents.getDestroyLobbyEvent().dispatch(lobby);
         gameRepository.removeGame(game);
     }
 
