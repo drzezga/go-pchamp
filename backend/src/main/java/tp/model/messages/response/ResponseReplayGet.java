@@ -1,8 +1,6 @@
 package tp.model.messages.response;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import tp.communication.MessageStatus;
 import tp.communication.MessageType;
 import tp.model.Position;
@@ -13,17 +11,27 @@ import java.util.List;
 
 public class ResponseReplayGet extends ResponseMessage<ResponseReplayGet.Content> {
 
-    public ResponseReplayGet(MessageStatus status) {
+    public ResponseReplayGet(Content content) {
         this.messageType = MessageType.REPLAY_GET;
-        this.status = status;
+        this.status = MessageStatus.OK;
+        this.content = content;
     }
 
     @Data
-    public class Content {
+    public static class Content {
         private String id;
         private String name;
         private List<GamePlayer> players;
-        private List<Position> move;
+        private List<Position> moves;
+        private List<BoardState> boardStates;
         private GameSettings gameSettings;
+    }
+
+    @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class BoardState {
+        private List<Position> black;
+        private List<Position> white;
     }
 }

@@ -11,13 +11,14 @@ import java.util.List;
 
 public class ResponseReplayList extends ResponseMessage<List<ResponseReplayList.ReplayMetadata>> {
 
-    public ResponseReplayList() {
+    public ResponseReplayList(List<ReplayMetadata> replays) {
         this.messageType = MessageType.REPLAY_LIST;
         this.status = MessageStatus.OK;
+        this.content = replays;
     }
 
     @Data
-    public class ReplayMetadata {
+    public static class ReplayMetadata {
         private String id;
         private String name;
         private List<GamePlayer> players;

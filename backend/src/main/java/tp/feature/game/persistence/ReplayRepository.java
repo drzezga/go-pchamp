@@ -1,11 +1,16 @@
 package tp.feature.game.persistence;
 
-import tp.model.Move;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Repository;
+import tp.feature.game.GameState;
 
 import java.util.List;
+import java.util.Optional;
 
-public interface ReplayRepository {
-
-//    List<Move> getAll
-
+@Repository
+public interface ReplayRepository extends MongoRepository<GameRecord, String> {
+    List<GameRecord> findAll();
+    Optional<GameRecord> findById(String id);
+    GameRecord save(GameRecord newRecord);
 }
