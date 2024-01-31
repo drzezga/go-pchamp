@@ -24,6 +24,7 @@ namespace MainMenu.Handlers
 
         private void HandleMessage(RegisterResponseMessage message)
         {
+            Debug.Log("Registered successfully");
             if (message.status == ResponseStatus.Ok)
                 usernameSo.Value = message.content;
             else

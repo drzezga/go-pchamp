@@ -22,7 +22,8 @@ namespace MainMenu
         {
             foreach (Transform child in elementContainer.transform)
             {
-                Destroy(child.gameObject);
+                if (child != null)
+                    Destroy(child.gameObject);
             }
 
             foreach (var lobby in lobbies)
