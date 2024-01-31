@@ -12,12 +12,10 @@ import java.util.Optional;
 
 @Component
 public class ClientDisconnectHandler {
-    private final LobbyEvents lobbyEvents;
     private final LobbyController lobbyController;
 
     @Autowired
-    public ClientDisconnectHandler(ClientEvents clientEvents, LobbyEvents lobbyEvents, LobbyController lobbyController) {
-        this.lobbyEvents = lobbyEvents;
+    public ClientDisconnectHandler(ClientEvents clientEvents, LobbyController lobbyController) {
         this.lobbyController = lobbyController;
         clientEvents.getClientDisconnectEvent().subscribe(this::handleClientDisconnect);
     }

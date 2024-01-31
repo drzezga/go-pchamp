@@ -18,6 +18,6 @@ public class LobbyTestUtils {
                 @Override
                 public <T extends ResponseMessage> void sendResponse(T response) {}
             },
-            "test"
+            "test_2"
     );
 }

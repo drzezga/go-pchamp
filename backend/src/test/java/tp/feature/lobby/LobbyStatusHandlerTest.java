@@ -73,7 +73,6 @@ public class LobbyStatusHandlerTest {
 
         lobbyController.joinLobby("test", CLIENT_3);
 
-
         RequestLobbyStatus message = new RequestLobbyStatus(RequestLobbyStatus.Action.LEAVE, null);
 
         lobbyListHandler.onMessage(message, CLIENT_3);
