@@ -15,12 +15,10 @@ import java.util.Optional;
 
 @Controller
 public class LobbyStatusHandler implements RequestMessageHandler<RequestLobbyStatus> {
-    private final ClientRepository clientRepository;
     private final LobbyController lobbyController;
 
     @Autowired
-    public LobbyStatusHandler(ClientRepository playerRegistry, LobbyController lobbyRegistry) {
-        this.clientRepository = playerRegistry;
+    public LobbyStatusHandler(LobbyController lobbyRegistry) {
         this.lobbyController = lobbyRegistry;
     }
 
