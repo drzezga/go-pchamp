@@ -40,14 +40,16 @@ public class GameStartHandler implements RequestMessageHandler<RequestGameStart>
 
         gameController.startGameFromLobby(lobby, message.getContent());
 
+        // TODO: Validate correct number of players
         Client host = lobby.getHost().get();
-        Client guest = lobby.getGuest().get();
 
         var response = new ResponseGameStart(MessageStatus.OK);
         response.setContent(message.getContent());
 
         host.getMessageChannel().sendResponse(response);
-        guest.getMessageChannel().sendResponse(response);
+        lobby.getGuest().ifPresent(
+                guest -> guest.getMessageChannel().sendResponse(response)
+        );
     }
 
     @Override

@@ -23,7 +23,7 @@ public class ClientLeftGameHandler {
         this.gameRepository = gameRepository;
         this.lobbyEvents = lobbyEvents;
         this.lobbyController = lobbyController;
-        gameEvents.getClientLeaveEventEvent().subscribe(this::handleClientLeaveGame);
+        gameEvents.getClientLeaveEvent().subscribe(this::handleClientLeaveGame);
     }
 
     private void handleClientLeaveGame(GameEvents.ClientLeaveEvent event) {

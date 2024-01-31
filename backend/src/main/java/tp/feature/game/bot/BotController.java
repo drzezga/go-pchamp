@@ -3,6 +3,7 @@ package tp.feature.game.bot;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import tp.communication.MessageStatus;
 import tp.feature.client.Client;
 import tp.feature.client.ClientMessageChannel;
 import tp.feature.client.ClientRepository;
@@ -12,11 +13,15 @@ import tp.feature.game.rules.RuleBrokenException;
 import tp.model.Move;
 import tp.model.Piece;
 import tp.model.Position;
+import tp.model.messages.response.ResponseGameMove;
 import tp.model.messages.response.ResponseMessage;
 import tp.model.messages.shared.GameSettings;
 
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 @Controller
 public class BotController {
@@ -31,7 +36,7 @@ public class BotController {
 
     private final ClientRepository clientRepository;
     private final Random random = new Random();
-
+    private final ScheduledExecutorService executor =  Executors.newSingleThreadScheduledExecutor();
 
     @Autowired
     public BotController(ClientRepository clientRepository) {
@@ -44,6 +49,10 @@ public class BotController {
     }
 
     public void scheduleMove(Game game) {
+        executor.schedule(() -> move(game), 1, TimeUnit.SECONDS);
+    }
+
+    public void move(Game game) {
         Move move;
         List<Position> capturedPositions;
         try {
@@ -54,16 +63,17 @@ public class BotController {
             capturedPositions = game.getGameState().makeMove(move);
         }
 
-//        gameController.broadcastMessageToPlayers(game,
-//                new ResponseGameMove(
-//                        MessageStatus.OK,
-//                        new ResponseGameMove.Content(
-//                                BOT_PLAYER_NAME,
-//                                move.getPosition(),
-//                                capturedPositions
-//                        )
-//                )
-//        );
+        var response = new ResponseGameMove(
+                MessageStatus.OK,
+                new ResponseGameMove.Content(
+                        BOT_PLAYER_NAME,
+                        move.getPosition(),
+                        capturedPositions
+                )
+        );
+
+        game.getBlackPlayer().getMessageChannel().sendResponse(response);
+        game.getWhitePlayer().getMessageChannel().sendResponse(response);
     }
 
     private Move getSkippingMove(GameState game) {

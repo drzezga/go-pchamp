@@ -32,7 +32,7 @@ public class GameController {
     public Game startGameFromLobby(Lobby lobby, GameSettings settings) {
         boolean isPlayingAgainstBot = settings.getBotOpponent();
         if(isPlayingAgainstBot) {
-            return startGameAgainstBot(lobby, settings);
+            return gameRepository.registerGameAgainstABot(lobby, settings);
         } else {
             return gameRepository.registerGameAgainstAHuman(lobby, settings);
         }
@@ -70,10 +70,7 @@ public class GameController {
         whiteClient.getMessageChannel().sendResponse(message);
     }
 
-    private Game startGameAgainstBot(Lobby lobby, GameSettings settings) {
-        // TODO: Implement playing against a bot
-        throw new UnsupportedOperationException("Playing against a bot hasnt yet been implemented");
-    }
+
 
     private Piece getPlayerPiece(Game game, Client player) {
 

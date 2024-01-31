@@ -29,7 +29,7 @@ public class PlayerDisconnectHandler {
             return;
         }
 
-        gameEvents.getClientLeaveEventEvent().dispatch(new GameEvents.ClientLeaveEvent(
+        gameEvents.getClientLeaveEvent().dispatch(new GameEvents.ClientLeaveEvent(
                 game.get(),
                 client
         ));

@@ -17,7 +17,6 @@ public class DestroyLobbyHandler {
     }
 
     private void handleDestroyLobby(Lobby lobby) {
-        System.out.println("TETSETESTESTES");
         lobbyController.removeLobby(lobby);
     }
 }
