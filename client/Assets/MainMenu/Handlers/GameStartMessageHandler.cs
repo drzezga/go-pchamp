@@ -33,7 +33,7 @@ namespace MainMenu.Handlers
                 gameSettingsSo.Value = message.content;
 
                 // TODO: Add dynamically-sized scene
-                SceneManager.LoadScene("GO_19x19");
+                SceneManager.LoadScene("GO_AdaptiveSize");
             }
             else
             {
