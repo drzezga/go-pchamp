@@ -81,7 +81,7 @@ public class LobbyController : MonoBehaviour
             return;
         }
 
-        var otherPlayer = currentLobbySO.Value.players.Find(x => x.name != usernameSO.Value).name;
+        var otherPlayer = playAgainstBot.isOn ? "bot" : currentLobbySO.Value.players.Find(x => x.name != usernameSO.Value).name;
         
         messageSenderSO.SendMessage(new GameStartRequestMessage(new GameSettings
         {

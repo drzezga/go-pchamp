@@ -26,9 +26,17 @@ namespace Game.GameState
         public void RemovePlacedPiece(Vector2Int tileIndex)
         {
             if (_placedPieces[tileIndex] == null) return;
+            var piece = _placedPieces[tileIndex];
             _placedPieces.Remove(tileIndex);
-            Destroy(_placedPieces[tileIndex]);
+            Destroy(piece);
+        }
 
+        public void ClearAllPieces()
+        {
+            foreach (var piece in _placedPieces)
+            {
+                RemovePlacedPiece(piece.Key);
+            }
         }
 
         [CanBeNull]

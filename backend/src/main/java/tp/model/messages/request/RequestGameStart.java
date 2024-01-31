@@ -8,6 +8,10 @@ import tp.model.messages.shared.GameSettings;
 public class RequestGameStart extends RequestMessage {
     private GameSettings content;
 
+    public RequestGameStart(GameSettings gameSettings) {
+        content = gameSettings;
+    }
+
     @Override
     public MessageType getType() {
         return MessageType.GAME_START;

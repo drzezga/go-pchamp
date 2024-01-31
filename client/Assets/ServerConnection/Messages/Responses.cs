@@ -34,7 +34,7 @@ namespace ServerConnection.Messages
     public class GameMoveResponseMessage : ResponseMessage<GameMoveResponseMessageContent> {}
     public class GameFinishedResponseMessage : ResponseMessage<GameFinishedResponseMessageContent> {}
     public class ReplayListResponseMessage : ResponseMessage<List<ReplayBrief>> {}
-    public class ReplayGetResponseMessage : ResponseMessage<List<Replay>> {}
+    public class ReplayGetResponseMessage : ResponseMessage<ReplayGetResponseMessageContent> {}
 
     public class NullMessageContent : System.Object {}
 
@@ -56,7 +56,7 @@ namespace ServerConnection.Messages
     public class ScorePlayer
     {
         public string name;
-        public int score;
+        public float score;
     }
 
     [Serializable]
@@ -105,14 +105,23 @@ namespace ServerConnection.Messages
         public List<ScorePlayer> players;
         public string startingPlayer;
     }
+    
+    [Serializable]
+    public class BoardState
+    {
+        public int[][] white;
+        public int[][] black;
+    }
 
     [Serializable]
-    public class Replay
+    public class ReplayGetResponseMessageContent
     {
         public string id;
         public string name;
         public List<ScorePlayer> players;
         public List<Vector2Int> moves;
+        public List<BoardState> boardStates;
         public GameSettings gameSettings;
     }
+
 }
