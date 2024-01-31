@@ -68,8 +68,8 @@ public class GameState implements Serializable, Cloneable {
     public List<Position> makeMove(Move move) {
         rules.tryApplyMove(this, move);
 
-        Set<Move> capturedPieces = createMoveSetFromBoard(getCurrentBoardState());
-        capturedPieces.removeAll(createMoveSetFromBoard(getPreviousBoardState()));
+        Set<Move> capturedPieces = createMoveSetFromBoard(getPreviousBoardState());
+        capturedPieces.removeAll(createMoveSetFromBoard(getCurrentBoardState()));
         capturedPieces.remove(move);
 
         return capturedPieces.stream().map(Move::getPosition).collect(Collectors.toList());

@@ -7,6 +7,8 @@ import tp.model.Move;
 import tp.model.Piece;
 import tp.model.Position;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GameTests {
@@ -129,6 +131,21 @@ public class GameTests {
         assertFalse(game.isFinished());
         game.makeMove(new Move(null, Piece.WHITE));
         assertTrue(game.isFinished());
+    }
+
+    @Test
+    public void capturedPositionsAreReturned() {
+        GameState game = GameTestingUtils.createGameFromArray(new int[][] {
+                {2, 1},
+                {0, 0},
+        });
+
+        List<Position> capturedPieces = game.makeMove(new Move(
+                new Position(0, 1),
+                Piece.BLACK
+        ));
+
+        assertEquals(List.of(new Position(0,0)), capturedPieces);
     }
 
 
