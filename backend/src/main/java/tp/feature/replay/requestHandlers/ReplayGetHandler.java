@@ -1,4 +1,4 @@
-package tp.feature.game.requestHandlers;
+package tp.feature.replay.requestHandlers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

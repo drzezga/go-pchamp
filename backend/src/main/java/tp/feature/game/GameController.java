@@ -32,7 +32,9 @@ public class GameController {
     public Game startGameFromLobby(Lobby lobby, GameSettings settings) {
         boolean isPlayingAgainstBot = settings.getBotOpponent();
         if(isPlayingAgainstBot) {
-            return gameRepository.registerGameAgainstABot(lobby, settings);
+            Game game = gameRepository.registerGameAgainstABot(lobby, settings);
+            botController.scheduleMove(game);
+            return game;
         } else {
             return gameRepository.registerGameAgainstAHuman(lobby, settings);
         }
