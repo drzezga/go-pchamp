@@ -46,10 +46,10 @@ public class GameScoreCalculator {
 
             for (int i = 0; i < gameBoard.getSize(); i++) {
                 for (int j = 0; j < gameBoard.getSize(); j++) {
-                    if (resultBoard[i][j] == 1 + 4 || resultBoard[i][j] == 1) {
+                    if (resultBoard[i][j] == 0b01) {
                         whiteScore++;
                     }
-                    if (resultBoard[i][j] == 2 + 4 || resultBoard[i][j] == 2) {
+                    if (resultBoard[i][j] == 0b10) {
                         blackScore++;
                     }
                 }
@@ -58,7 +58,7 @@ public class GameScoreCalculator {
 
         private int floodFill(int x, int y, boolean[][] visited, Board gameBoard) {
             if (x < 0 || x >= gameBoard.getSize() || y < 0 || y >= gameBoard.getSize()) {
-                return 0;
+                return 0b00;
             }
 
             if (visited[x][y]) {
@@ -68,16 +68,16 @@ public class GameScoreCalculator {
             visited[x][y] = true;
 
             if (gameBoard.getPiece(x, y) == Piece.WHITE) {
-                return 1;
+                return 0b01;
             }
             if (gameBoard.getPiece(x, y) == Piece.BLACK) {
-                return 2;
+                return 0b10;
             }
 
-            resultBoard[x][y] = resultBoard[x][y] | floodFill(x + 1, y, visited, gameBoard);
-            resultBoard[x][y] = resultBoard[x][y] | floodFill(x - 1, y, visited, gameBoard);
-            resultBoard[x][y] = resultBoard[x][y] | floodFill(x, y + 1, visited, gameBoard);
-            resultBoard[x][y] = resultBoard[x][y] | floodFill(x, y - 1, visited, gameBoard);
+            resultBoard[x][y] |= floodFill(x + 1, y, visited, gameBoard)
+                    | floodFill(x - 1, y, visited, gameBoard)
+                    | floodFill(x, y + 1, visited, gameBoard)
+                    | floodFill(x, y - 1, visited, gameBoard);
             return resultBoard[x][y];
         }
     }
