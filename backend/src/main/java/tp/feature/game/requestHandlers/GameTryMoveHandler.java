@@ -9,6 +9,8 @@ import tp.feature.client.Client;
 import tp.feature.game.Game;
 import tp.feature.game.GameController;
 import tp.feature.game.GameRepository;
+import tp.feature.game.scoreCalculation.GameScoreCalculator;
+import tp.feature.game.scoreCalculation.GameScores;
 import tp.model.Position;
 import tp.model.messages.request.RequestGameTryMove;
 import tp.model.messages.response.ResponseGameFinished;
@@ -21,11 +23,13 @@ import java.util.List;
 public class GameTryMoveHandler implements RequestMessageHandler<RequestGameTryMove> {
     private final GameController gameController;
     private final GameRepository gameRepository;
+    private final GameScoreCalculator gameScoreCalculator;
 
     @Autowired
-    public GameTryMoveHandler(GameController gameController, GameRepository gameRepository) {
+    public GameTryMoveHandler(GameController gameController, GameRepository gameRepository, GameScoreCalculator gameScoreCalculator) {
         this.gameController = gameController;
         this.gameRepository = gameRepository;
+        this.gameScoreCalculator = gameScoreCalculator;
     }
 
     @Override
@@ -46,16 +50,16 @@ public class GameTryMoveHandler implements RequestMessageHandler<RequestGameTryM
             return;
         }
 
-        // TODO: Add score calculation
+        GameScores scores = gameScoreCalculator.calculateScores(game.getGameState());
+
         var gameFinishedContent = new ResponseGameFinished.Content(List.of(
-                new GamePlayer(game.getBlackPlayer().getName(), 0),
-                new GamePlayer(game.getWhitePlayer().getName(), 0)
+                new GamePlayer(game.getBlackPlayer().getName(), scores.getBlackPlayerScore()),
+                new GamePlayer(game.getWhitePlayer().getName(), scores.getWhitePlayerScore())
         ));
         gameController.broadcastMessageToPlayers(game, new ResponseGameFinished(gameFinishedContent));
         // TODO: Implement saving game replay
         // gameController.saveReplay(game);
         gameRepository.removeGame(game);
-
     }
 
     @Override
