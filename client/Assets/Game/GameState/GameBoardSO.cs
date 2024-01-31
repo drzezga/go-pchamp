@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Game.GamerTile;
 using JetBrains.Annotations;
 using Unity.VisualScripting;
@@ -33,9 +34,11 @@ namespace Game.GameState
 
         public void ClearAllPieces()
         {
-            foreach (var piece in _placedPieces)
+            var toBeDestroyed = _placedPieces.Select(piece => piece.Value).ToList();
+            _placedPieces.Clear();
+            foreach (var element in toBeDestroyed)
             {
-                RemovePlacedPiece(piece.Key);
+                Destroy(element);
             }
         }
 

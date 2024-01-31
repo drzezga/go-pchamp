@@ -1,4 +1,6 @@
+using System;
 using Game.GameState;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -12,9 +14,16 @@ namespace Game.Replay
         [SerializeField] private GameBoardSO gameBoardSo;
 
         [SerializeField] private GameObject boardPiecePrefab;
+
+        [SerializeField] private TMP_Text currentTurnText;
     
         private int _turnIndex = 0;
-    
+
+        private void Start()
+        {
+            ApplyCurrentTurn();
+        }
+
         public void NextTurn()
         {
             if (currentReplaySo.Value.moves.Count <= _turnIndex) return;
@@ -31,6 +40,7 @@ namespace Game.Replay
 
         private void ApplyCurrentTurn()
         {
+            currentTurnText.text = (_turnIndex + 1).ToString();
             gameBoardSo.ClearAllPieces();
 
             var boardState = currentReplaySo.Value.boardStates[_turnIndex];

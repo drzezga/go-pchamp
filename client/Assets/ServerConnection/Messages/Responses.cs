@@ -119,7 +119,7 @@ namespace ServerConnection.Messages
         public string id;
         public string name;
         public List<ScorePlayer> players;
-        public List<Vector2Int> moves;
+        public List<int[]> moves;
         public List<BoardState> boardStates;
         public GameSettings gameSettings;
     }

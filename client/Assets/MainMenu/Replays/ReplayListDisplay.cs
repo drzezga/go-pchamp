@@ -15,6 +15,11 @@ public class ReplayListDisplay : MonoBehaviour
     {
         replayListSo.OnValueChanged += Handle;
     }
+    
+    private void OnDisable()
+    {
+        replayListSo.OnValueChanged -= Handle;
+    }
 
     private void Handle(List<ReplayBrief> replays)
     {

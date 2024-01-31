@@ -8,6 +8,8 @@ namespace MainMenu.Handlers
         [SerializeField]
         private MessageReceiverSO messageReceiverSo;
 
+        [SerializeField] private ReplayListSO replayListSo;
+
         private void OnEnable()
         {
             messageReceiverSo.OnReplayListResponseMessage += HandleMessage;
@@ -20,7 +22,7 @@ namespace MainMenu.Handlers
 
         private void HandleMessage(ReplayListResponseMessage message)
         {
-            
+            replayListSo.Value = message.content;
         }
     }
 }

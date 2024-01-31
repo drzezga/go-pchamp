@@ -45,11 +45,20 @@ public class LobbyController : MonoBehaviour
             playersText.text += player.name + "\n";
         }
 
-        if (lobbyDetails.players.Find(x => x.name == usernameSO.Value).isHost) return;
+        if (lobbyDetails.players.Find(x => x.name == usernameSO.Value).isHost)
+        {
+            startingPlayer.interactable = false;
+            boardSize.interactable = false;
+            playAgainstBot.interactable = false;
+        }
+        else
+        {
+            
+            startingPlayer.interactable = true;
+            boardSize.interactable = true;
+            playAgainstBot.interactable = true;
+        }
 
-        startingPlayer.interactable = false;
-        boardSize.interactable = false;
-        playAgainstBot.interactable = false;
     }
 
     public void LeaveLobby()

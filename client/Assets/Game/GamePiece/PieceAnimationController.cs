@@ -26,6 +26,7 @@ public class PieceAnimationController : MonoBehaviour
 
     public void PlacePiece(Vector3 targetPosition)
     {
+        transform.position = targetPosition + Vector3.up;
         transform.DOMove(targetPosition, placePieceDuration).SetEase(Ease.OutCubic);
     }
 }
