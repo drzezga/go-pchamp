@@ -47,16 +47,15 @@ public class LobbyController : MonoBehaviour
 
         if (lobbyDetails.players.Find(x => x.name == usernameSO.Value).isHost)
         {
-            startingPlayer.interactable = false;
-            boardSize.interactable = false;
-            playAgainstBot.interactable = false;
-        }
-        else
-        {
-            
             startingPlayer.interactable = true;
             boardSize.interactable = true;
             playAgainstBot.interactable = true;
+        }
+        else
+        {
+            startingPlayer.interactable = false;
+            boardSize.interactable = false;
+            playAgainstBot.interactable = false;
         }
 
     }
